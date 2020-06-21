@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CafeMana
+namespace CafeMana.VIEW
 {
-    public partial class Form1 : Form
+    public partial class AddCategory : Form
     {
-        public Form1()
+        public AddCategory()
         {
             InitializeComponent();
         }
