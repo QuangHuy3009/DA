@@ -16,7 +16,7 @@ namespace CafeMana.VIEW
         {
             InitializeComponent();
         }
-
+        
         private void AdmintoolStrip_Click(object sender, EventArgs e)
         {
             fAdmin f = new fAdmin();
