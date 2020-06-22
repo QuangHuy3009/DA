@@ -47,6 +47,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTO\Category.cs" />
+    <Compile Include="DTO\Product.cs" />
+    <Compile Include="DTO\Sale.cs" />
+    <Compile Include="DTO\SaleItem.cs" />
+    <Compile Include="DTO\User.cs" />
     <Compile Include="VIEW\AddAccount.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -147,7 +152,6 @@
   <ItemGroup>
     <Folder Include="BLL\" />
     <Folder Include="DAL\" />
-    <Folder Include="DTO\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
