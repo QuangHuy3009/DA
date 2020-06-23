@@ -6,7 +6,6 @@ namespace CafeMana.BLL
 {
     class Data
     {
-
         private static Data _Instance;
 
         internal static Data Instance
