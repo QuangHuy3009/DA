@@ -39,5 +39,10 @@ namespace CafeMana.VIEW
             CashForm f = new CashForm();
             f.ShowDialog();
         }
+
+        private void ProductsGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

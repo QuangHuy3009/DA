@@ -18,7 +18,7 @@ namespace CafeMana.DAL
         {
             List<Sale> SalesList = new List<Sale>();
 
-            using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-IA2LFL1;Initial Catalog=QuanLyCaPhe1;Integrated Security=True")) 
+            using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-B8N6V6G;Initial Catalog=QuanLyCaPhe1;Integrated Security=True")) 
             {
                 SqlCommand command = new SqlCommand("SELECT * FROM Sales;", connection);
                 connection.Open();
@@ -49,7 +49,7 @@ namespace CafeMana.DAL
         {
             List<User> UsersList = new List<User>();
 
-            using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-IA2LFL1;Initial Catalog=QuanLyCaPhe1;Integrated Security=True"))
+            using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-B8N6V6G;Initial Catalog=QuanLyCaPhe1;Integrated Security=True"))
             {
                 SqlCommand command = new SqlCommand("SELECT * FROM Users;", connection);
                 connection.Open();
@@ -79,7 +79,7 @@ namespace CafeMana.DAL
         {
             List<SaleItem> SaleItemsList = new List<SaleItem>();
 
-            using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-IA2LFL1;Initial Catalog=QuanLyCaPhe1;Integrated Security=True"))
+            using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-B8N6V6G;Initial Catalog=QuanLyCaPhe1;Integrated Security=True"))
             {
                 SqlCommand command = new SqlCommand("SELECT * FROM SaleItems;", connection);
                 connection.Open();

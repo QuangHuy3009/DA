@@ -22,6 +22,19 @@ namespace CafeMana.VIEW
         private void fAdmin_Load(object sender, EventArgs e)
         {
             LoadSale();
+            LoadUser();
+        }
+
+        
+
+        private void LoadUser()
+        {
+            List<User> UsersList = Data.Instance.UsersList;
+            UsersGridView.Rows.Clear();
+            foreach (User user in UsersList)
+            {
+                UsersGridView.Rows.Add(user.ID, user.Name, user.Role);
+            }
         }
 
         private void LoadSale()
@@ -33,7 +46,7 @@ namespace CafeMana.VIEW
             {
                 foreach (User user in UsersList)
                 {
-                    if (user.ID == sale.SalesManID) { SalesGridView.Rows.Add(sale.ID, sale.Time, user.Name, sale.Total, "View Product"); break; }
+                    if (user.ID == sale.SalesManID) { SalesGridView.Rows.Add(sale.ID, sale.Time, user.Name, sale.Total,null); break; }
                 }
 
             }
@@ -99,8 +112,39 @@ namespace CafeMana.VIEW
             }
         }
 
+
+
         #endregion
 
+        private void SalesGridView_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
+        {
+          // SalesGridView.Rows[e.RowIndex].Cells[4].Value = Image.FromFile(@"C:\Users\HP\Desktop\kinhlup.jpg");
 
+        }
+
+        private void SalesGridView_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+        {
+           // SalesGridView.Rows[e.RowIndex].Cells[4].Value = Image.FromFile(@"C:\Users\HP\Desktop\kinhlup.jpg");
+        }
+
+        private void SalesGridView_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            if (e.RowIndex < 0)
+                return;
+
+            //I supposed your button column is at index 0
+            if (e.ColumnIndex == 4)
+            {
+                e.Paint(e.CellBounds, DataGridViewPaintParts.All);
+                Image SomeImage= Image.FromFile(@"C:\Users\HP\Desktop\m_kinhlup (1).jpg");
+                var w = SomeImage.Width;
+                var h = SomeImage.Height;
+                var x = e.CellBounds.Left + (e.CellBounds.Width - w) / 2;
+                var y = e.CellBounds.Top + (e.CellBounds.Height - h) / 2;
+
+                e.Graphics.DrawImage(SomeImage, new Rectangle(x, y, w, h));
+                e.Handled = true;
+            }
+        }
     }
 }

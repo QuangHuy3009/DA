@@ -33,14 +33,9 @@
             this.LogoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AdmintoolStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.UserNameIDMenuLabel = new System.Windows.Forms.ToolStripMenuItem();
             this.BillGroupBox = new System.Windows.Forms.GroupBox();
             this.ProductsGridView = new System.Windows.Forms.DataGridView();
-            this.ProductID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProductTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
             this.ProductsGroupBox = new System.Windows.Forms.GroupBox();
             this.ProductsFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.CategoryGroupBox = new System.Windows.Forms.GroupBox();
@@ -48,7 +43,12 @@
             this.CheckOutButton = new System.Windows.Forms.Button();
             this.TotalBillBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.UserNameIDMenuLabel = new System.Windows.Forms.ToolStripMenuItem();
+            this.ProductID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProductTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
             this.menuStrip1.SuspendLayout();
             this.BillGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ProductsGridView)).BeginInit();
@@ -98,6 +98,17 @@
             this.menuStrip1.TabIndex = 6;
             this.menuStrip1.Text = "menuStrip1";
             // 
+            // UserNameIDMenuLabel
+            // 
+            this.UserNameIDMenuLabel.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.UserNameIDMenuLabel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.UserNameIDMenuLabel.Enabled = false;
+            this.UserNameIDMenuLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UserNameIDMenuLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.UserNameIDMenuLabel.Name = "UserNameIDMenuLabel";
+            this.UserNameIDMenuLabel.Size = new System.Drawing.Size(22, 20);
+            this.UserNameIDMenuLabel.Text = " ";
+            // 
             // BillGroupBox
             // 
             this.BillGroupBox.Controls.Add(this.ProductsGridView);
@@ -125,60 +136,7 @@
             this.ProductsGridView.RowHeadersWidth = 51;
             this.ProductsGridView.Size = new System.Drawing.Size(419, 450);
             this.ProductsGridView.TabIndex = 0;
-            // 
-            // ProductID
-            // 
-            this.ProductID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.ProductID.FillWeight = 50F;
-            this.ProductID.HeaderText = "ID";
-            this.ProductID.MinimumWidth = 6;
-            this.ProductID.Name = "ProductID";
-            this.ProductID.Width = 50;
-            // 
-            // ProductName
-            // 
-            this.ProductName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.ProductName.HeaderText = "ProductName";
-            this.ProductName.MinimumWidth = 6;
-            this.ProductName.Name = "ProductName";
-            this.ProductName.ReadOnly = true;
-            this.ProductName.Width = 120;
-            // 
-            // Price
-            // 
-            this.Price.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Price.FillWeight = 70F;
-            this.Price.HeaderText = "Price";
-            this.Price.MinimumWidth = 6;
-            this.Price.Name = "Price";
-            this.Price.Width = 50;
-            // 
-            // Quantity
-            // 
-            this.Quantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Quantity.FillWeight = 70F;
-            this.Quantity.HeaderText = "Quantity";
-            this.Quantity.MinimumWidth = 6;
-            this.Quantity.Name = "Quantity";
-            this.Quantity.Width = 50;
-            // 
-            // ProductTotal
-            // 
-            this.ProductTotal.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.ProductTotal.FillWeight = 70F;
-            this.ProductTotal.HeaderText = "Product Total";
-            this.ProductTotal.MinimumWidth = 6;
-            this.ProductTotal.Name = "ProductTotal";
-            this.ProductTotal.Width = 70;
-            // 
-            // Delete
-            // 
-            this.Delete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Delete.FillWeight = 50F;
-            this.Delete.HeaderText = "Delete";
-            this.Delete.MinimumWidth = 6;
-            this.Delete.Name = "Delete";
-            this.Delete.Width = 25;
+            this.ProductsGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ProductsGridView_CellContentClick);
             // 
             // ProductsGroupBox
             // 
@@ -245,16 +203,61 @@
             this.label1.TabIndex = 10;
             this.label1.Text = "Total Bill";
             // 
-            // UserNameIDMenuLabel
+            // ProductID
             // 
-            this.UserNameIDMenuLabel.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.UserNameIDMenuLabel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.UserNameIDMenuLabel.Enabled = false;
-            this.UserNameIDMenuLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UserNameIDMenuLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.UserNameIDMenuLabel.Name = "UserNameIDMenuLabel";
-            this.UserNameIDMenuLabel.Size = new System.Drawing.Size(22, 20);
-            this.UserNameIDMenuLabel.Text = " ";
+            this.ProductID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.ProductID.FillWeight = 50F;
+            this.ProductID.HeaderText = "ID";
+            this.ProductID.MinimumWidth = 6;
+            this.ProductID.Name = "ProductID";
+            this.ProductID.Width = 50;
+            // 
+            // ProductName
+            // 
+            this.ProductName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.ProductName.HeaderText = "ProductName";
+            this.ProductName.MinimumWidth = 6;
+            this.ProductName.Name = "ProductName";
+            this.ProductName.ReadOnly = true;
+            this.ProductName.Width = 120;
+            // 
+            // Price
+            // 
+            this.Price.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Price.FillWeight = 70F;
+            this.Price.HeaderText = "Price";
+            this.Price.MinimumWidth = 6;
+            this.Price.Name = "Price";
+            this.Price.Width = 50;
+            // 
+            // Quantity
+            // 
+            this.Quantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Quantity.FillWeight = 70F;
+            this.Quantity.HeaderText = "Quantity";
+            this.Quantity.MinimumWidth = 6;
+            this.Quantity.Name = "Quantity";
+            this.Quantity.Width = 50;
+            // 
+            // ProductTotal
+            // 
+            this.ProductTotal.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.ProductTotal.FillWeight = 70F;
+            this.ProductTotal.HeaderText = "Product Total";
+            this.ProductTotal.MinimumWidth = 6;
+            this.ProductTotal.Name = "ProductTotal";
+            this.ProductTotal.Width = 70;
+            // 
+            // Delete
+            // 
+            this.Delete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Delete.FillWeight = 50F;
+            this.Delete.HeaderText = "Delete";
+            this.Delete.MinimumWidth = 6;
+            this.Delete.Name = "Delete";
+            this.Delete.Text = "X";
+            this.Delete.UseColumnTextForButtonValue = true;
+            this.Delete.Width = 25;
             // 
             // FormGeneral
             // 
@@ -294,15 +297,15 @@
         private System.Windows.Forms.FlowLayoutPanel ProductsFlowPanel;
         private System.Windows.Forms.GroupBox CategoryGroupBox;
         private System.Windows.Forms.FlowLayoutPanel CategoriesFlowPanel;
+        private System.Windows.Forms.Button CheckOutButton;
+        private System.Windows.Forms.TextBox TotalBillBox;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ToolStripMenuItem UserNameIDMenuLabel;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProductID;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProductName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Price;
         private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProductTotal;
         private System.Windows.Forms.DataGridViewButtonColumn Delete;
-        private System.Windows.Forms.Button CheckOutButton;
-        private System.Windows.Forms.TextBox TotalBillBox;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ToolStripMenuItem UserNameIDMenuLabel;
     }
 }
