@@ -10,16 +10,16 @@ namespace CafeMana.DTO
     {
 
         int      _ID;
-        int      _UserID;
+        int      _SalesManID;
         DateTime _Time;
-        decimal  _TotalBill;
+        decimal  _Total;
         decimal  _CashGiven;
         decimal  _CashReturn;
 
         public int      ID         { get => _ID; set => _ID = value; }
-        public int      UserID     { get => _UserID; set => _UserID = value; }
+        public int      SalesManID { get => _SalesManID; set => _SalesManID = value; }
         public DateTime Time       { get => _Time; set => _Time = value; }
-        public decimal  TotalBill  { get => _TotalBill; set => _TotalBill = value; }
+        public decimal  Total      { get => _Total; set => _Total = value; }
         public decimal  CashGiven  { get => _CashGiven; set => _CashGiven = value; }
         public decimal  CashReturn { get => _CashReturn; set => _CashReturn = value; }
     }

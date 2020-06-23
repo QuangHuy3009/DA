@@ -47,6 +47,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\Data.cs" />
+    <Compile Include="BLL\SaleBLL.cs" />
+    <Compile Include="BLL\SaleItemBLL.cs" />
+    <Compile Include="BLL\UserBLL.cs" />
+    <Compile Include="DAL\DataAccess.cs" />
     <Compile Include="DTO\Category.cs" />
     <Compile Include="DTO\Product.cs" />
     <Compile Include="DTO\Sale.cs" />
@@ -102,6 +107,12 @@
     <Compile Include="VIEW\FormGeneral.Designer.cs">
       <DependentUpon>FormGeneral.cs</DependentUpon>
     </Compile>
+    <Compile Include="VIEW\SaleItems.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\SaleItems.Designer.cs">
+      <DependentUpon>SaleItems.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="VIEW\AddAccount.resx">
       <DependentUpon>AddAccount.cs</DependentUpon>
     </EmbeddedResource>
@@ -136,6 +147,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="VIEW\SaleItems.resx">
+      <DependentUpon>SaleItems.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -149,9 +163,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="BLL\" />
-    <Folder Include="DAL\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
