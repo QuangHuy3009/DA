@@ -24,11 +24,38 @@ namespace CafeMana.VIEW
         {
             LoadSale();
             LoadUser();
-            LoadCategories();
+            LoadCategory();
+            LoadComboBoxCategories();
             LoadProducts();
         }
 
         #region Load
+
+        private void LoadCategory()
+        {
+            List<Category> CategoriesList = Data.Instance.CategoriesList;
+
+            foreach (Category Category in CategoriesList)
+            {
+                Button btn = new Button();
+                btn.Text = Category.Name;
+                btn.Size = new System.Drawing.Size(80, 80);
+                btn.ForeColor = Color.White;
+
+                MemoryStream ms = new MemoryStream(Category.Image);
+                btn.Image = Image.FromStream(ms);
+                btn.Image = new Bitmap(btn.Image, btn.Size);
+
+                btn.Tag = Category.ID;
+
+                CategoriesFlowPanel.Controls.Add(btn);
+
+               // btn.Click += CategoryButtonClick;
+            }
+        }
+        
+
+
 
         private void LoadUser()
         {
@@ -55,7 +82,7 @@ namespace CafeMana.VIEW
             }
         }
 
-        private void LoadCategories()
+        private void LoadComboBoxCategories()
         {
             List<Category> CategoriesList = Data.Instance.CategoriesList;
             ProductCategoryComboBox.DataSource = CategoriesList;
@@ -150,7 +177,7 @@ namespace CafeMana.VIEW
             {
                 foreach (Product product in ProductsList)                
                      if (product.CatagoryID == IDCategory)
-                         ProductsGridView.Rows.Add(product.ID, product.Name, product.Price, CategoryName, product.Description, product.Image);
+                         ProductsGridView.Rows.Add(product.ID, product.Name, product.Price, CategoryName, product.Description, product.Image,null,null);
                 
             }
             else
@@ -159,11 +186,11 @@ namespace CafeMana.VIEW
                 {
                     if (product.CatagoryID == IDCategory)                   
                         if(product.Name.Contains(Txt)|| product.Price.ToString().Contains(Txt) || product.Description.Contains(Txt))
-                           ProductsGridView.Rows.Add(product.ID, product.Name, product.Price, CategoryName, product.Description, product.Image);
+                           ProductsGridView.Rows.Add(product.ID, product.Name, product.Price, CategoryName, product.Description, product.Image,null,null);
                 }
             }
         }
-     
+       
 
         #endregion
 
@@ -199,6 +226,32 @@ namespace CafeMana.VIEW
                 }
         }
 
-        
+        private void ProductsGridView_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+             if (e.RowIndex < 0) return;
+                e.Paint(e.CellBounds, DataGridViewPaintParts.All);
+                string path = Application.StartupPath;
+                path = path.Substring(0, path.IndexOf("bin") - 1);
+                path += "\\Image\\editbutton.png";
+                Image SomeImage = Image.FromFile(path);
+                var w = SomeImage.Width;
+                var h = SomeImage.Height;
+                var x = e.CellBounds.Left + (e.CellBounds.Width - w) / 2;
+                var y = e.CellBounds.Top + (e.CellBounds.Height - h) / 2;
+                string path2 = Application.StartupPath;
+                path2 = path2.Substring(0, path2.IndexOf("bin") - 1);
+                path2 += "\\Image\\1212.jpg";
+                Image SomeImage2 = Image.FromFile(path2);
+            //I supposed your button column is at index 6
+            if (e.ColumnIndex ==6 )
+                {
+                e.Graphics.DrawImage(SomeImage, new Rectangle(x, y, w, h));
+                }
+            if (e.ColumnIndex == 7)
+            {
+                e.Graphics.DrawImage(SomeImage2, new Rectangle(x, y, w, h));
+            }
+            e.Handled = true;
+        }
     }
 }

@@ -1,8 +1,12 @@
-﻿using System;
+﻿using CafeMana.BLL;
+using CafeMana.DAL;
+using CafeMana.DTO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,10 +19,62 @@ namespace CafeMana.VIEW
         public FormGeneral()
         {
             InitializeComponent();
+            LoadCategory();
         }
 
         #region Event
+        private void LoadCategory()
+        {
+            List<Category> CategoriesList = Data.Instance.CategoriesList;
 
+            foreach (Category Category in CategoriesList)
+            {
+                Button btn = new Button();
+                btn.Text = Category.Name;
+                btn.Size = new System.Drawing.Size(80, 80);
+                btn.ForeColor = Color.White;
+
+                MemoryStream ms = new MemoryStream(Category.Image);
+                btn.Image = Image.FromStream(ms);
+                btn.Image = new Bitmap(btn.Image, btn.Size);
+
+                btn.Tag = Category.ID;
+
+                CategoriesFlowPanel.Controls.Add(btn);
+
+                 btn.Click += CategoryButtonClick;
+            }
+
+        }
+        void CategoryButtonClick(object sender, EventArgs e)
+        {
+            ProductsFlowPanel.Controls.Clear();
+
+            Button btn = (Button)sender;
+
+            int CategoryID = Convert.ToInt32(btn.Tag);
+
+            List<Product> ProductsList = Data.Instance.ProductsList;
+            foreach (Product Product in DataAccess.Instance.RetreiveProductsFromCategory(CategoryID))
+            {
+                Button ProductButton = new Button();
+                ProductButton.Text = Product.Name;
+                ProductButton.Size = new System.Drawing.Size(80, 80);
+                ProductButton.ForeColor = Color.White;
+
+                MemoryStream ms = new MemoryStream(Product.Image);
+                ProductButton.Image = Image.FromStream(ms);
+                ProductButton.Image = new Bitmap(ProductButton.Image, ProductButton.Size);
+
+                ProductButton.Tag = Product.ID;
+
+                ProductsFlowPanel.Controls.Add(ProductButton);
+
+              //  ProductButton.Click += ProductButton_Click;
+
+                //ProductButton.MouseClick += ProductButton_MouseClick;
+            }
+        }
         private void AdmintoolStrip_Click(object sender, EventArgs e)
         {
             fAdmin f = new fAdmin();

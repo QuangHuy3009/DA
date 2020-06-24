@@ -175,5 +175,34 @@ namespace CafeMana.DAL
                 return ProductsList;
             }
         }
+        public List<Product> RetreiveProductsFromCategory(int CategoryID)
+        {
+            List<Product> ProductsList = new List<Product>();
+
+            using (SqlConnection connection = new SqlConnection(ConnectionString.connectionString))
+            {
+                SqlCommand command = new SqlCommand("SELECT ID, ProductName, ProductPrice, ProductDescription, ProductImage FROM Products where ProductCategoryID = '" + CategoryID + "';", connection);
+                connection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        int ProductID = reader.GetInt32(0);
+                        string ProductName = reader.GetString(1);
+                        decimal ProductPrice = reader.GetDecimal(2);
+                        string ProductDescription = reader.GetString(3);
+                        byte[] ProductPicture = (byte[])reader[4];
+
+                        ProductsList.Add(new Product() { ID = ProductID, Name = ProductName, Price = ProductPrice, Image = ProductPicture, Description = ProductDescription });
+                    }
+                }
+                reader.Close();
+
+                return ProductsList;
+            }
+        }
     }
 }
