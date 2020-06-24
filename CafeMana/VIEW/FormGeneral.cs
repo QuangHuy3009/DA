@@ -16,7 +16,9 @@ namespace CafeMana.VIEW
         {
             InitializeComponent();
         }
-        
+
+        #region Event
+
         private void AdmintoolStrip_Click(object sender, EventArgs e)
         {
             fAdmin f = new fAdmin();
@@ -44,5 +46,7 @@ namespace CafeMana.VIEW
         {
 
         }
+
+        #endregion
     }
 }

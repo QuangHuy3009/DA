@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 using CafeMana.DTO;
 
 namespace CafeMana.DAL
@@ -17,31 +17,40 @@ namespace CafeMana.DAL
         public List<Sale> RetreiveAllSales()
         {
             List<Sale> SalesList = new List<Sale>();
-
-            using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-B8N6V6G;Initial Catalog=QuanLyCaPhe1;Integrated Security=True")) 
+            try
             {
-                SqlCommand command = new SqlCommand("SELECT * FROM Sales;", connection);
-                connection.Open();
-
-                SqlDataReader reader = command.ExecuteReader();
-
-                if (reader.HasRows)
+                using (SqlConnection connection = new SqlConnection(ConnectionString.connectionString))
                 {
-                    while (reader.Read())
+                    SqlCommand command = new SqlCommand("SELECT * FROM Sales;", connection);
+                    connection.Open();
+
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    if (reader.HasRows)
                     {
-                        int _ID              = reader.GetInt32(0);
-                        DateTime _Time       = reader.GetDateTime(1);
-                        int _SalesmanID      = reader.GetInt32(2);
-                        decimal _CashGiven   = reader.GetDecimal(3);
-                        decimal _Total       = reader.GetDecimal(4);
-                        decimal _CashReturn  = reader.GetDecimal(5);
+                        while (reader.Read())
+                        {
+                            int _ID = reader.GetInt32(0);
+                            DateTime _Time = reader.GetDateTime(1);
+                            int _SalesmanID = reader.GetInt32(2);
+                            decimal _CashGiven = reader.GetDecimal(3);
+                            decimal _Total = reader.GetDecimal(4);
+                            decimal _CashReturn = reader.GetDecimal(5);
 
-                        SalesList.Add(new Sale() { ID = _ID, Time = _Time, SalesManID = _SalesmanID,Total= _Total,CashGiven=_CashGiven,CashReturn=_CashReturn });
+                            SalesList.Add(new Sale() { ID = _ID, Time = _Time, SalesManID = _SalesmanID, Total = _Total, CashGiven = _CashGiven, CashReturn = _CashReturn });
+                        }
                     }
-                }
-                reader.Close();
+                    reader.Close();
 
-                return SalesList;
+                    return SalesList;
+
+                }
+            }
+            catch (Exception er)
+            {
+                MessageBox.Show(er.Message);
+                return null;
+              
             }
         }
 
@@ -49,7 +58,7 @@ namespace CafeMana.DAL
         {
             List<User> UsersList = new List<User>();
 
-            using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-B8N6V6G;Initial Catalog=QuanLyCaPhe1;Integrated Security=True"))
+            using (SqlConnection connection = new SqlConnection(ConnectionString.connectionString))
             {
                 SqlCommand command = new SqlCommand("SELECT * FROM Users;", connection);
                 connection.Open();
@@ -79,7 +88,7 @@ namespace CafeMana.DAL
         {
             List<SaleItem> SaleItemsList = new List<SaleItem>();
 
-            using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-B8N6V6G;Initial Catalog=QuanLyCaPhe1;Integrated Security=True"))
+            using (SqlConnection connection = new SqlConnection(ConnectionString.connectionString))
             {
                 SqlCommand command = new SqlCommand("SELECT * FROM SaleItems;", connection);
                 connection.Open();
@@ -103,6 +112,67 @@ namespace CafeMana.DAL
                 reader.Close();
 
                 return SaleItemsList;
+            }
+        }
+
+        public List<Category> RetreiveAllCategories()
+        {
+            List<Category> CategoriesList = new List<Category>();
+
+            using (SqlConnection connection = new SqlConnection(ConnectionString.connectionString))
+            {
+                SqlCommand command = new SqlCommand("SELECT * FROM Categories;", connection);
+                connection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        int    _ID         =reader.GetInt32(0);
+                        string _Name       =reader.GetString(1);
+                        string _Description=reader.GetString(2);
+                        byte[] _Image      = (byte[])reader[3];
+
+                        CategoriesList.Add(new Category() {  ID=_ID,Name=_Name,Description=_Description,Image=_Image});
+                    }
+                }
+                reader.Close();
+
+                return CategoriesList;
+            }
+        }
+
+        public List<Product> RetreiveAllProducts()
+        {
+            List<Product> ProductsList = new List<Product>();
+
+            using (SqlConnection connection = new SqlConnection(ConnectionString.connectionString))
+            {
+                SqlCommand command = new SqlCommand("SELECT * FROM Products;", connection);
+                connection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        int _ID             =reader.GetInt32(0);
+                        string _Name        =reader.GetString(1);
+                        decimal _Price      =reader.GetDecimal(2);
+                        int _CatagoryID     =reader.GetInt32(3);
+                        string _Description =reader.GetString(4);
+                        byte[] _Image       =(byte[])reader[5];
+
+
+                        ProductsList.Add(new Product() { ID = _ID, Name = _Name, Description = _Description, Image = _Image, CatagoryID = _CatagoryID, Price=_Price });
+                    }
+                }
+                reader.Close();
+
+                return ProductsList;
             }
         }
     }

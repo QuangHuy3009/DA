@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using CafeMana.DTO;
 using CafeMana.BLL;
+using System.IO;
 
 namespace CafeMana.VIEW
 {
@@ -23,9 +24,11 @@ namespace CafeMana.VIEW
         {
             LoadSale();
             LoadUser();
+            LoadCategories();
+            LoadProducts();
         }
 
-        
+        #region Load
 
         private void LoadUser()
         {
@@ -51,6 +54,30 @@ namespace CafeMana.VIEW
 
             }
         }
+
+        private void LoadCategories()
+        {
+            List<Category> CategoriesList = Data.Instance.CategoriesList;
+            ProductCategoryComboBox.DataSource = CategoriesList;
+            ProductCategoryComboBox.DisplayMember = "Name";
+        }
+
+        private void LoadProducts()
+        {
+            ProductsGridView.Rows.Clear();
+            List<Product>  ProductsList = Data.Instance.ProductsList;
+            List<Category> CategoriesList = Data.Instance.CategoriesList;
+            foreach (Product product in ProductsList)
+            {
+                foreach (Category category in CategoriesList)
+                {
+                    if (category.ID == product.CatagoryID){ ProductsGridView.Rows.Add(product.ID, product.Name, product.Price,category.Name,product.Description,product.Image); break;}
+                }
+                
+            }
+        }
+
+        #endregion
 
         #region Event
 
@@ -112,14 +139,37 @@ namespace CafeMana.VIEW
             }
         }
 
-
+        private void buttonFindProduct_Click(object sender, EventArgs e)
+        {
+            ProductsGridView.Rows.Clear();
+            List<Product> ProductsList = Data.Instance.ProductsList;
+            int IDCategory             = ((Category)ProductCategoryComboBox.SelectedValue).ID;
+            string CategoryName        = ((Category)ProductCategoryComboBox.SelectedValue).Name;
+            string Txt                 = txbFindProduct.Text;
+            if (Txt == "")
+            {
+                foreach (Product product in ProductsList)                
+                     if (product.CatagoryID == IDCategory)
+                         ProductsGridView.Rows.Add(product.ID, product.Name, product.Price, CategoryName, product.Description, product.Image);
+                
+            }
+            else
+            {
+                foreach (Product product in ProductsList)
+                {
+                    if (product.CatagoryID == IDCategory)                   
+                        if(product.Name.Contains(Txt)|| product.Price.ToString().Contains(Txt) || product.Description.Contains(Txt))
+                           ProductsGridView.Rows.Add(product.ID, product.Name, product.Price, CategoryName, product.Description, product.Image);
+                }
+            }
+        }
+     
 
         #endregion
 
         private void SalesGridView_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
         {
-          // SalesGridView.Rows[e.RowIndex].Cells[4].Value = Image.FromFile(@"C:\Users\HP\Desktop\kinhlup.jpg");
-
+            // SalesGridView.Rows[e.RowIndex].Cells[4].Value = Image.FromFile(@"C:\Users\HP\Desktop\kinhlup.jpg");
         }
 
         private void SalesGridView_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
@@ -129,22 +179,26 @@ namespace CafeMana.VIEW
 
         private void SalesGridView_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
-            if (e.RowIndex < 0)
-                return;
+            if (e.RowIndex < 0) return;
 
             //I supposed your button column is at index 0
             if (e.ColumnIndex == 4)
-            {
-                e.Paint(e.CellBounds, DataGridViewPaintParts.All);
-                Image SomeImage= Image.FromFile(@"C:\Users\HP\Desktop\m_kinhlup (1).jpg");
-                var w = SomeImage.Width;
-                var h = SomeImage.Height;
-                var x = e.CellBounds.Left + (e.CellBounds.Width - w) / 2;
-                var y = e.CellBounds.Top + (e.CellBounds.Height - h) / 2;
+                {
+                    e.Paint(e.CellBounds, DataGridViewPaintParts.All);
+                    string path = Application.StartupPath;
+                    path = path.Substring(0, path.IndexOf("bin") - 1);
+                    path += "\\Image\\kinhlup.jpg";
+                    Image SomeImage = Image.FromFile(path);
+                    var w = SomeImage.Width;
+                    var h = SomeImage.Height;
+                    var x = e.CellBounds.Left + (e.CellBounds.Width - w) / 2;
+                    var y = e.CellBounds.Top + (e.CellBounds.Height - h) / 2;
 
-                e.Graphics.DrawImage(SomeImage, new Rectangle(x, y, w, h));
-                e.Handled = true;
-            }
+                    e.Graphics.DrawImage(SomeImage, new Rectangle(x, y, w, h));
+                    e.Handled = true;
+                }
         }
+
+        
     }
 }

@@ -47,10 +47,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\CategoryBLL.cs" />
     <Compile Include="BLL\Data.cs" />
+    <Compile Include="BLL\ProductBLL.cs" />
     <Compile Include="BLL\SaleBLL.cs" />
     <Compile Include="BLL\SaleItemBLL.cs" />
     <Compile Include="BLL\UserBLL.cs" />
+    <Compile Include="DAL\ConnectionString.cs" />
     <Compile Include="DAL\DataAccess.cs" />
     <Compile Include="DTO\Category.cs" />
     <Compile Include="DTO\Product.cs" />
@@ -163,6 +166,8 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Image\kinhlup.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
