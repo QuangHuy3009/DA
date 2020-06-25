@@ -22,7 +22,8 @@ namespace CafeMana.VIEW
             LoadCategory();
         }
 
-        #region Event
+        #region Load
+
         private void LoadCategory()
         {
             List<Category> CategoriesList = Data.Instance.CategoriesList;
@@ -42,11 +43,16 @@ namespace CafeMana.VIEW
 
                 CategoriesFlowPanel.Controls.Add(btn);
 
-                 btn.Click += CategoryButtonClick;
+                btn.Click += CategoryButtonClick;
             }
 
         }
-        void CategoryButtonClick(object sender, EventArgs e)
+
+        #endregion
+
+        #region Event
+
+        private void CategoryButtonClick(object sender, EventArgs e)
         {
             ProductsFlowPanel.Controls.Clear();
 
@@ -55,7 +61,7 @@ namespace CafeMana.VIEW
             int CategoryID = Convert.ToInt32(btn.Tag);
 
             List<Product> ProductsList = Data.Instance.ProductsList;
-            foreach (Product Product in DataAccess.Instance.RetreiveProductsFromCategory(CategoryID))
+            foreach (Product Product in ProductBLL.Instance.RetreiveProductsFromCategory(CategoryID))
             {
                 Button ProductButton = new Button();
                 ProductButton.Text = Product.Name;
@@ -70,11 +76,12 @@ namespace CafeMana.VIEW
 
                 ProductsFlowPanel.Controls.Add(ProductButton);
 
-              //  ProductButton.Click += ProductButton_Click;
+                //ProductButton.Click += ProductButton_Click;
 
                 //ProductButton.MouseClick += ProductButton_MouseClick;
             }
         }
+
         private void AdmintoolStrip_Click(object sender, EventArgs e)
         {
             fAdmin f = new fAdmin();

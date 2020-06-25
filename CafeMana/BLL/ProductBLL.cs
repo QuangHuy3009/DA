@@ -20,5 +20,55 @@ namespace CafeMana.BLL
         {
             return DataAccess.Instance.RetreiveAllProducts();
         }
+
+        public List<Product> RetreiveProductsFromCategory(int IDCategory)
+        {
+            List<Product> ProductsList = new List<Product>();
+            foreach (Product product in Data.Instance.ProductsList)
+            {
+                if (product.CatagoryID == IDCategory) ProductsList.Add(product);
+            }
+            return ProductsList;
+        }
+
+        public Product RetreiveProducts(int IDProduct)
+        {            
+            foreach (Product product in Data.Instance.ProductsList)
+            {
+                if (product.ID == IDProduct) return product;
+            }
+            return null ;
+        }
+
+        public void AddNewProduct(Product product)
+        {
+         
+            Data.Instance.ProductsList.Add(product);
+            DataAccess.Instance.AddNewProduct(product);
+        }
+
+        public void UpdateProduct(Product product)
+        {
+            List<Product> ProductsList = Data.Instance.ProductsList;
+
+            for (int i=0;i< ProductsList.Count; i++)
+            {
+                if (ProductsList[i].ID == product.ID) { ProductsList[i] = product; break; }
+            }
+           
+            DataAccess.Instance.UpdateProduct(product);
+        }
+
+        public void DeleteProduct(int ID)
+        {
+            List<Product> ProductsList = Data.Instance.ProductsList;
+            int Index = 0;
+            for (int i = 0; i < ProductsList.Count; i++)
+            {
+                if (ProductsList[i].ID == ID) { Index=i; break; }
+            }
+            ProductsList.RemoveAt(Index);
+            DataAccess.Instance.DeleteProduct(ID);
+        }
     }
 }

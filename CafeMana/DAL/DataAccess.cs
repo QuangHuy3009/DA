@@ -50,7 +50,7 @@ namespace CafeMana.DAL
             {
                 MessageBox.Show(er.Message);
                 return null;
-              
+
             }
         }
 
@@ -69,13 +69,13 @@ namespace CafeMana.DAL
                 {
                     while (reader.Read())
                     {
-                        int _ID           = reader.GetInt32(0);
-                        string _Name     = reader.GetString(1);
-                        string _Role     = reader.GetString(2);
-                        string _Email    = reader.GetString(3);
+                        int _ID = reader.GetInt32(0);
+                        string _Name = reader.GetString(1);
+                        string _Role = reader.GetString(2);
+                        string _Email = reader.GetString(3);
                         string _Password = reader.GetString(4);
 
-                        UsersList.Add(new User() { ID = _ID, Name=_Name,Role=_Role,Email=_Email,Password=_Password });
+                        UsersList.Add(new User() { ID = _ID, Name = _Name, Role = _Role, Email = _Email, Password = _Password });
                     }
                 }
                 reader.Close();
@@ -99,14 +99,14 @@ namespace CafeMana.DAL
                 {
                     while (reader.Read())
                     {
-                        int _ID                 = reader.GetInt32(0);
-                        string _ProductName     = reader.GetString(1);
-                        decimal _ProductPrice   = reader.GetDecimal(2);
-                        int _ProductQuantity    = reader.GetInt32(3);
-                        decimal _ProductTotal   = reader.GetDecimal(4);
-                        int _SaleID             = reader.GetInt32(5);
+                        int _ID = reader.GetInt32(0);
+                        string _ProductName = reader.GetString(1);
+                        decimal _ProductPrice = reader.GetDecimal(2);
+                        int _ProductQuantity = reader.GetInt32(3);
+                        decimal _ProductTotal = reader.GetDecimal(4);
+                        int _SaleID = reader.GetInt32(5);
 
-                        SaleItemsList.Add(new SaleItem() {ID=_ID,ProductName=_ProductName,ProductPrice=_ProductPrice,ProductQuantity=_ProductQuantity,ProductTotal=_ProductTotal,SaleID=_SaleID});
+                        SaleItemsList.Add(new SaleItem() { ID = _ID, ProductName = _ProductName, ProductPrice = _ProductPrice, ProductQuantity = _ProductQuantity, ProductTotal = _ProductTotal, SaleID = _SaleID });
                     }
                 }
                 reader.Close();
@@ -130,12 +130,12 @@ namespace CafeMana.DAL
                 {
                     while (reader.Read())
                     {
-                        int    _ID         =reader.GetInt32(0);
-                        string _Name       =reader.GetString(1);
-                        string _Description=reader.GetString(2);
-                        byte[] _Image      = (byte[])reader[3];
+                        int _ID = reader.GetInt32(0);
+                        string _Name = reader.GetString(1);
+                        string _Description = reader.GetString(2);
+                        byte[] _Image = (byte[])reader[3];
 
-                        CategoriesList.Add(new Category() {  ID=_ID,Name=_Name,Description=_Description,Image=_Image});
+                        CategoriesList.Add(new Category() { ID = _ID, Name = _Name, Description = _Description, Image = _Image });
                     }
                 }
                 reader.Close();
@@ -159,15 +159,15 @@ namespace CafeMana.DAL
                 {
                     while (reader.Read())
                     {
-                        int _ID             =reader.GetInt32(0);
-                        string _Name        =reader.GetString(1);
-                        decimal _Price      =reader.GetDecimal(2);
-                        int _CatagoryID     =reader.GetInt32(3);
-                        string _Description =reader.GetString(4);
-                        byte[] _Image       =(byte[])reader[5];
+                        int _ID = reader.GetInt32(0);
+                        string _Name = reader.GetString(1);
+                        decimal _Price = reader.GetDecimal(2);
+                        int _CatagoryID = reader.GetInt32(3);
+                        string _Description = reader.GetString(4);
+                        byte[] _Image = (byte[])reader[5];
 
 
-                        ProductsList.Add(new Product() { ID = _ID, Name = _Name, Description = _Description, Image = _Image, CatagoryID = _CatagoryID, Price=_Price });
+                        ProductsList.Add(new Product() { ID = _ID, Name = _Name, Description = _Description, Image = _Image, CatagoryID = _CatagoryID, Price = _Price });
                     }
                 }
                 reader.Close();
@@ -175,34 +175,55 @@ namespace CafeMana.DAL
                 return ProductsList;
             }
         }
-        public List<Product> RetreiveProductsFromCategory(int CategoryID)
-        {
-            List<Product> ProductsList = new List<Product>();
 
+        public void AddNewProduct(Product product)
+        {
             using (SqlConnection connection = new SqlConnection(ConnectionString.connectionString))
             {
-                SqlCommand command = new SqlCommand("SELECT ID, ProductName, ProductPrice, ProductDescription, ProductImage FROM Products where ProductCategoryID = '" + CategoryID + "';", connection);
                 connection.Open();
+                SqlCommand command = connection.CreateCommand();
+                command.Parameters.AddWithValue("@ProductName",  product.Name);
+                command.Parameters.AddWithValue("@ProductPrice", product.Price);
+                command.Parameters.AddWithValue("@ProductCategoryID",  product.CatagoryID);
+                command.Parameters.AddWithValue("@ProductDescription", product.Description);
+                command.Parameters.AddWithValue("@ProductImage", product.Image);
+                command.CommandText = "Insert Into Products(ProductName, ProductPrice, ProductCategoryID, ProductDescription, ProductImage) Values (@ProductName,@ProductPrice,@ProductCategoryID,@ProductDescription,@ProductImage)";
+                command.ExecuteNonQuery();
+                connection.Close();
 
-                SqlDataReader reader = command.ExecuteReader();
+            }
+        }
 
-                if (reader.HasRows)
-                {
-                    while (reader.Read())
-                    {
-                        int ProductID = reader.GetInt32(0);
-                        string ProductName = reader.GetString(1);
-                        decimal ProductPrice = reader.GetDecimal(2);
-                        string ProductDescription = reader.GetString(3);
-                        byte[] ProductPicture = (byte[])reader[4];
+        public void UpdateProduct(Product product)
+        {
+            using (SqlConnection connection = new SqlConnection(ConnectionString.connectionString))
+            {
+                connection.Open();
+                SqlCommand command = connection.CreateCommand();
+                command.Parameters.AddWithValue("@ProductName", product.Name);
+                command.Parameters.AddWithValue("@ProductPrice", product.Price);
+                command.Parameters.AddWithValue("@ProductCategoryID", product.CatagoryID);
+                command.Parameters.AddWithValue("@ProductDescription", product.Description);
+                command.Parameters.AddWithValue("@ProductImage", product.Image);
+                command.CommandText = "Update Products Set ProductName=@ProductName,ProductPrice=@ProductPrice,ProductCategoryID=@ProductCategoryID,ProductDescription=@ProductDescription,ProductImage=@ProductImage Where ID="+product.ID+" ";
+                command.ExecuteNonQuery();
+                connection.Close();
 
-                        ProductsList.Add(new Product() { ID = ProductID, Name = ProductName, Price = ProductPrice, Image = ProductPicture, Description = ProductDescription });
-                    }
-                }
-                reader.Close();
+            }
+        }
 
-                return ProductsList;
+        public void DeleteProduct(int ID)
+        {
+            using (SqlConnection connection = new SqlConnection(ConnectionString.connectionString))
+            {
+                connection.Open();
+                SqlCommand command = connection.CreateCommand();               
+                command.CommandText = "Delete Products Where ID=" + ID + " ";
+                command.ExecuteNonQuery();
+                connection.Close();
+
             }
         }
     }
+
 }

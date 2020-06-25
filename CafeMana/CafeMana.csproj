@@ -110,6 +110,12 @@
     <Compile Include="VIEW\FormGeneral.Designer.cs">
       <DependentUpon>FormGeneral.cs</DependentUpon>
     </Compile>
+    <Compile Include="VIEW\FormUpdateProduct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VIEW\FormUpdateProduct.Designer.cs">
+      <DependentUpon>FormUpdateProduct.cs</DependentUpon>
+    </Compile>
     <Compile Include="VIEW\SaleItems.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -150,6 +156,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="VIEW\FormUpdateProduct.resx">
+      <DependentUpon>FormUpdateProduct.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VIEW\SaleItems.resx">
       <DependentUpon>SaleItems.cs</DependentUpon>
     </EmbeddedResource>
