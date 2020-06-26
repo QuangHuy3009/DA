@@ -50,7 +50,7 @@ namespace CafeMana.VIEW
 
         #endregion
 
-        #region Event
+        #region EventAddButtonProduct
 
         private void CategoryButtonClick(object sender, EventArgs e)
         {
@@ -76,12 +76,136 @@ namespace CafeMana.VIEW
 
                 ProductsFlowPanel.Controls.Add(ProductButton);
 
-                //ProductButton.Click += ProductButton_Click;
+                ProductButton.Click += ProductButton_Click;
 
-                //ProductButton.MouseClick += ProductButton_MouseClick;
+            //    ProductButton.MouseClick += ProductButton_MouseClick;
+            }
+        }
+        #endregion
+
+        #region ChucnangOder
+        public int RowIndex = 0;
+        public bool CheckProductAlreadyAdded(int ProductID)
+        {
+            foreach (DataGridViewRow Row in ProductsGridView.Rows)
+            {
+                if (Convert.ToInt32(Row.Cells["ID"].Value) == ProductID)
+                {
+                    RowIndex = Row.Index;
+                    return true;
+                }
+            }
+            return false;
+        }
+        void ProductButton_Click(object sender, EventArgs e)
+        {
+            Button ProductButton = sender as Button;
+
+
+            int ProductID = Convert.ToInt32(ProductButton.Tag);
+
+            //  Product ProductDetails = _DataAccess.RetreiveProductDetails(ProductID);
+            var ProductDetails = Data.Instance.ProductsList.FirstOrDefault(x => x.ID == ProductID);
+            if (CheckProductAlreadyAdded(ProductID))
+            {
+                // MessageBox.Show("Product Alraedy Exists in Datagrid view at Index : " + RowIndex);
+                int Quantity = Convert.ToInt32(ProductsGridView.Rows[RowIndex].Cells["Quantity"].Value);
+                decimal Price = Convert.ToInt32(ProductsGridView.Rows[RowIndex].Cells["Price"].Value);
+
+                Quantity++;
+
+                /////////////<Do thisssss...... Important.. Have decimal part in the total price>
+                double TotalPrice = Convert.ToDouble(Quantity * Price);
+
+                ProductsGridView.Rows[RowIndex].Cells["Quantity"].Value = Quantity;
+                ProductsGridView.Rows[RowIndex].Cells["ProductTotal"].Value = TotalPrice;
+
+
+
+                TotalBillBox.Text = CalculateTotalBill(ProductsGridView).ToString();
+            }
+            else
+            {
+                ProductsGridView.Rows.Add(ProductID, ProductDetails.Name, ProductDetails.Price, 1, ProductDetails.Price * 1);
+
+                TotalBillBox.Text = CalculateTotalBill(ProductsGridView).ToString();
+            }
+        }
+        private void ProductsGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            int index = e.RowIndex;
+            if (index >= 0)
+            {
+                int price = Convert.ToInt32(ProductsGridView.Rows[e.RowIndex].Cells["Price"].Value);
+                int quality = Convert.ToInt32(ProductsGridView.Rows[e.RowIndex].Cells["Quantity"].Value);
+                ProductsGridView.Rows[e.RowIndex].Cells["ProductTotal"].Value = price * quality;
+                TotalBillBox.Text = CalculateTotalBill(ProductsGridView).ToString();
+            }
+        }
+        public decimal CalculateTotalBill(DataGridView ProductsGridView)
+        {
+            decimal TotalBill = 0;
+
+            foreach (DataGridViewRow Row in ProductsGridView.Rows)
+            {
+                decimal ProductTotal = Convert.ToDecimal(Row.Cells["ProductTotal"].Value);
+
+
+                TotalBill = TotalBill + ProductTotal;
+            }
+
+            return TotalBill;
+        }
+        private void ProductsGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {   
+            if (e.RowIndex >= 0)
+            {
+                if (ProductsGridView.Columns[e.ColumnIndex].Name == "Delete")
+                {
+                    if (MessageBox.Show("Are You Sure You Want to Delete this Product", "Warning", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        decimal DeletedProductTotal = Convert.ToDecimal(ProductsGridView.Rows[e.RowIndex].Cells["ProductTotal"].Value);
+
+                        decimal CurrentTotalBill = Convert.ToDecimal(TotalBillBox.Text);
+
+                        CurrentTotalBill = CurrentTotalBill - DeletedProductTotal;
+
+                        ProductsGridView.Rows.RemoveAt(e.RowIndex);
+                        TotalBillBox.Text = CurrentTotalBill.ToString();
+                    }
+                }
             }
         }
 
+        #endregion
+
+        #region ButtonDeleteForProductGridView
+
+        private void ProductsGridView_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+
+            //I supposed your button column is at index 0
+            if (e.ColumnIndex == 5)
+            {
+                e.Paint(e.CellBounds, DataGridViewPaintParts.All);
+                string path = Application.StartupPath;
+                path = path.Substring(0, path.IndexOf("bin") - 1);
+                path += "\\Image\\1212.jpg";
+                Image SomeImage = Image.FromFile(path);
+                var w = SomeImage.Width;
+                var h = SomeImage.Height;
+                var x = e.CellBounds.Left + (e.CellBounds.Width - w) / 2;
+                var y = e.CellBounds.Top + (e.CellBounds.Height - h) / 2;
+
+                e.Graphics.DrawImage(SomeImage, new Rectangle(x, y, w, h));
+                e.Handled = true;
+            }
+        }
+        #endregion
+
+
+        //
         private void AdmintoolStrip_Click(object sender, EventArgs e)
         {
             fAdmin f = new fAdmin();
@@ -105,11 +229,5 @@ namespace CafeMana.VIEW
             f.ShowDialog();
         }
 
-        private void ProductsGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        #endregion
     }
 }
