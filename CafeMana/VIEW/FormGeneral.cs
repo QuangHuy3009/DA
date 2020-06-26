@@ -50,9 +50,39 @@ namespace CafeMana.VIEW
 
         #endregion
 
-        #region EventAddButtonProduct
+        #region Oder
 
-        private void CategoryButtonClick(object sender, EventArgs e)
+        public int RowIndex = 0;
+
+        public bool    CheckProductAlreadyAdded(int ProductID)
+        {
+            foreach (DataGridViewRow Row in ProductsGridView.Rows)
+            {
+                if (Convert.ToInt32(Row.Cells["ID"].Value) == ProductID)
+                {
+                    RowIndex = Row.Index;
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public decimal CalculateTotalBill(DataGridView ProductsGridView)
+        {
+            decimal TotalBill = 0;
+
+            foreach (DataGridViewRow Row in ProductsGridView.Rows)
+            {
+                decimal ProductTotal = Convert.ToDecimal(Row.Cells["ProductTotal"].Value);
+
+
+                TotalBill = TotalBill + ProductTotal;
+            }
+
+            return TotalBill;
+        }
+
+        private void   CategoryButtonClick(object sender, EventArgs e)
         {
             ProductsFlowPanel.Controls.Clear();
 
@@ -78,26 +108,11 @@ namespace CafeMana.VIEW
 
                 ProductButton.Click += ProductButton_Click;
 
-            //    ProductButton.MouseClick += ProductButton_MouseClick;
+                //    ProductButton.MouseClick += ProductButton_MouseClick;
             }
         }
-        #endregion
 
-        #region ChucnangOder
-        public int RowIndex = 0;
-        public bool CheckProductAlreadyAdded(int ProductID)
-        {
-            foreach (DataGridViewRow Row in ProductsGridView.Rows)
-            {
-                if (Convert.ToInt32(Row.Cells["ID"].Value) == ProductID)
-                {
-                    RowIndex = Row.Index;
-                    return true;
-                }
-            }
-            return false;
-        }
-        void ProductButton_Click(object sender, EventArgs e)
+        private void   ProductButton_Click(object sender, EventArgs e)
         {
             Button ProductButton = sender as Button;
 
@@ -109,15 +124,15 @@ namespace CafeMana.VIEW
             if (CheckProductAlreadyAdded(ProductID))
             {
                 // MessageBox.Show("Product Alraedy Exists in Datagrid view at Index : " + RowIndex);
-                int Quantity = Convert.ToInt32(ProductsGridView.Rows[RowIndex].Cells["Quantity"].Value);
-                decimal Price = Convert.ToInt32(ProductsGridView.Rows[RowIndex].Cells["Price"].Value);
+                int Quantity  = Convert.ToInt32(ProductsGridView.Rows[RowIndex].Cells["ProductQuantity"].Value);
+                decimal Price = Convert.ToDecimal(ProductsGridView.Rows[RowIndex].Cells["ProductPrice"].Value);
 
                 Quantity++;
 
                 /////////////<Do thisssss...... Important.. Have decimal part in the total price>
                 double TotalPrice = Convert.ToDouble(Quantity * Price);
 
-                ProductsGridView.Rows[RowIndex].Cells["Quantity"].Value = Quantity;
+                ProductsGridView.Rows[RowIndex].Cells["ProductQuantity"].Value = Quantity;
                 ProductsGridView.Rows[RowIndex].Cells["ProductTotal"].Value = TotalPrice;
 
 
@@ -131,32 +146,21 @@ namespace CafeMana.VIEW
                 TotalBillBox.Text = CalculateTotalBill(ProductsGridView).ToString();
             }
         }
-        private void ProductsGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+
+        private void   ProductsGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             int index = e.RowIndex;
+
             if (index >= 0)
             {
-                int price = Convert.ToInt32(ProductsGridView.Rows[e.RowIndex].Cells["Price"].Value);
-                int quality = Convert.ToInt32(ProductsGridView.Rows[e.RowIndex].Cells["Quantity"].Value);
+                decimal price = Convert.ToDecimal(ProductsGridView.Rows[e.RowIndex].Cells["ProductPrice"].Value);
+                int quality   = Convert.ToInt32(ProductsGridView.Rows[e.RowIndex].Cells["ProductQuantity"].Value);
                 ProductsGridView.Rows[e.RowIndex].Cells["ProductTotal"].Value = price * quality;
                 TotalBillBox.Text = CalculateTotalBill(ProductsGridView).ToString();
             }
         }
-        public decimal CalculateTotalBill(DataGridView ProductsGridView)
-        {
-            decimal TotalBill = 0;
-
-            foreach (DataGridViewRow Row in ProductsGridView.Rows)
-            {
-                decimal ProductTotal = Convert.ToDecimal(Row.Cells["ProductTotal"].Value);
-
-
-                TotalBill = TotalBill + ProductTotal;
-            }
-
-            return TotalBill;
-        }
-        private void ProductsGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+    
+        private void   ProductsGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {   
             if (e.RowIndex >= 0)
             {
@@ -175,6 +179,14 @@ namespace CafeMana.VIEW
                     }
                 }
             }
+        }
+
+        private void   CheckOutButton_Click(object sender, EventArgs e)
+        {
+            CashForm f = new CashForm();
+            f.Tag = ProductsGridView;
+            f.ShowDialog();
+
         }
 
         #endregion
@@ -202,6 +214,7 @@ namespace CafeMana.VIEW
                 e.Handled = true;
             }
         }
+
         #endregion
 
 
@@ -223,11 +236,7 @@ namespace CafeMana.VIEW
             this.Close();
         }
 
-        private void CheckOutButton_Click(object sender, EventArgs e)
-        {
-            CashForm f = new CashForm();
-            f.ShowDialog();
-        }
+      
 
     }
 }

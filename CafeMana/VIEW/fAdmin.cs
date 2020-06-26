@@ -90,10 +90,9 @@ namespace CafeMana.VIEW
         {
             ProductsGridView.Rows.Clear();
             List<Product>  ProductsList = Data.Instance.ProductsList;
-            List<Category> CategoriesList = Data.Instance.CategoriesList;
             foreach (Product product in ProductsList)
             {
-                ProductsGridView.Rows.Add(product.ID, product.Name, product.Price,CategoryBLL.Instance.RetreiveCategory(product.CatagoryID).Name,product.Description,product.Image);                                
+                ProductsGridView.Rows.Add(product.ID, product.Name, product.Price, Data.Instance.CategoriesList.FirstOrDefault(x => x.ID ==product.CatagoryID).Name,product.Description,product.Image);                                
             }
         }
 
@@ -233,11 +232,11 @@ namespace CafeMana.VIEW
                 FormUpdateProduct formUpdateProduct = new FormUpdateProduct();
                 formUpdateProduct.Tag = Convert.ToInt32(row.Cells[0].Value);
                 formUpdateProduct.ShowDialog();
-
-                Product product= ProductBLL.Instance.RetreiveProducts(Convert.ToInt32(row.Cells[0].Value));
+                int _ID= Convert.ToInt32(row.Cells[0].Value);
+                Product product = Data.Instance.ProductsList.FirstOrDefault(x => x.ID == _ID);
                 row.Cells[1].Value = product.Name;
                 row.Cells[2].Value = product.Price;
-                row.Cells[3].Value = CategoryBLL.Instance.RetreiveCategory(product.CatagoryID).Name;
+                row.Cells[3].Value = Data.Instance.CategoriesList.FirstOrDefault(x => x.ID ==product.CatagoryID).Name;
                 row.Cells[4].Value = product.Description;
                 row.Cells[5].Value = product.Image;
             }

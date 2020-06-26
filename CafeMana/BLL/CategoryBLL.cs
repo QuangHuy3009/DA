@@ -22,13 +22,5 @@ namespace CafeMana.BLL
             return DataAccess.Instance.RetreiveAllCategories();
         }
 
-        public Category RetreiveCategory(int ID)
-        {
-            foreach (Category category in Data.Instance.CategoriesList)
-            {
-                if (category.ID == ID) return category;
-            }
-            return null;
-        }
     }
 }

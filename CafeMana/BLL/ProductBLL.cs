@@ -31,13 +31,14 @@ namespace CafeMana.BLL
             return ProductsList;
         }
 
-        public Product RetreiveProducts(int IDProduct)
-        {            
+        public int  RetreiveProductID()
+        {
+            int ID = 0;
             foreach (Product product in Data.Instance.ProductsList)
             {
-                if (product.ID == IDProduct) return product;
+                if (product.ID > ID) ID = product.ID;
             }
-            return null ;
+            return ID + 1;
         }
 
         public void AddNewProduct(Product product)

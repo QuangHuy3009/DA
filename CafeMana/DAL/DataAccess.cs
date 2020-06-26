@@ -14,6 +14,7 @@ namespace CafeMana.DAL
 
         private DataAccess() { }
 
+
         public List<Sale> RetreiveAllSales()
         {
             List<Sale> SalesList = new List<Sale>();
@@ -176,6 +177,7 @@ namespace CafeMana.DAL
             }
         }
 
+
         public void AddNewProduct(Product product)
         {
             using (SqlConnection connection = new SqlConnection(ConnectionString.connectionString))
@@ -223,6 +225,46 @@ namespace CafeMana.DAL
                 connection.Close();
 
             }
+        }
+
+
+        public void AddNewSale(Sale sale)
+        {
+            using (SqlConnection connection = new SqlConnection(ConnectionString.connectionString))
+            {
+                connection.Open();
+                SqlCommand command = connection.CreateCommand();
+                command.Parameters.AddWithValue("@SaleTime",   sale.Time);
+                command.Parameters.AddWithValue("@SalesManID",  sale.SalesManID);
+                command.Parameters.AddWithValue("@CashGiven",  sale.CashGiven);
+                command.Parameters.AddWithValue("@TotalBill",  sale.Total);
+                command.Parameters.AddWithValue("@CashReturn", sale.CashReturn);
+                command.CommandText = "Insert Into Sales(SaleTime, SalesManID, CashGiven, TotalBill, CashReturn) Values (@SaleTime,@SalesManID,@CashGiven,@TotalBill,@CashReturn)";
+                command.ExecuteNonQuery();
+                connection.Close();
+
+            }
+
+        }
+
+
+        public void AddNewSaleItem(SaleItem saleItem)
+        {
+            using (SqlConnection connection = new SqlConnection(ConnectionString.connectionString))
+            {
+                connection.Open();
+                SqlCommand command = connection.CreateCommand();
+                command.Parameters.AddWithValue("@ProductName", saleItem.ProductName);
+                command.Parameters.AddWithValue("@ProductPrice", saleItem.ProductPrice);
+                command.Parameters.AddWithValue("@ProductQuantity", saleItem.ProductQuantity);
+                command.Parameters.AddWithValue("@ProductTotal", saleItem.ProductTotal);
+                command.Parameters.AddWithValue("@SaleID", saleItem.SaleID);
+                command.CommandText = "Insert Into SaleItems(ProductName, ProductPrice, ProductQuantity, ProductTotal, SaleID) Values (@ProductName,@ProductPrice,@ProductQuantity,@ProductTotal,@SaleID)";
+                command.ExecuteNonQuery();
+                connection.Close();
+
+            }
+
         }
     }
 

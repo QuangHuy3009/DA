@@ -34,18 +34,13 @@ namespace CafeMana.VIEW
                 MemoryStream ms = new MemoryStream();
                 ProductPictureBox.Image.Save(ms, ProductPictureBox.Image.RawFormat);
 
-                int _ID = 0;
-                foreach (Product _product in Data.Instance.ProductsList)
-                {
-                    if (_product.ID > _ID) _ID = _product.ID;
-                }
-                _ID++;
-                string  _Name = txtProductName.Text;
-                decimal _Price = decimal.Parse(txtProductPrice.Text);
+                int _ID              = ProductBLL.Instance.RetreiveProductID();
+                string  _Name        = txtProductName.Text;
+                decimal _Price       = decimal.Parse(txtProductPrice.Text);
                 string  _Description = rbProductDescription.Text;
-                byte[]  _Image = ms.GetBuffer();
-                int     _CategoryID = ((Category)ProductCategoryComboBox.SelectedValue).ID;
-                Product product = new Product() {ID=_ID,Name=_Name,Price=_Price,Description=_Description,Image=_Image,CatagoryID=_CategoryID};
+                byte[]  _Image       = ms.GetBuffer();
+                int     _CategoryID  = ((Category)ProductCategoryComboBox.SelectedValue).ID;
+                Product product      = new Product() {ID=_ID,Name=_Name,Price=_Price,Description=_Description,Image=_Image,CatagoryID=_CategoryID};
                 ProductBLL.Instance.AddNewProduct(product);
                
             }

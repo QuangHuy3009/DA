@@ -127,7 +127,7 @@
             this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(872, 529);
+            this.tabControl1.Size = new System.Drawing.Size(875, 535);
             this.tabControl1.TabIndex = 1;
             // 
             // tabSales
@@ -139,7 +139,7 @@
             this.tabSales.Margin = new System.Windows.Forms.Padding(4);
             this.tabSales.Name = "tabSales";
             this.tabSales.Padding = new System.Windows.Forms.Padding(4);
-            this.tabSales.Size = new System.Drawing.Size(864, 500);
+            this.tabSales.Size = new System.Drawing.Size(867, 506);
             this.tabSales.TabIndex = 0;
             this.tabSales.Text = "Sales";
             this.tabSales.UseVisualStyleBackColor = true;
@@ -151,7 +151,7 @@
             this.SalesGroupBox.Margin = new System.Windows.Forms.Padding(4);
             this.SalesGroupBox.Name = "SalesGroupBox";
             this.SalesGroupBox.Padding = new System.Windows.Forms.Padding(4);
-            this.SalesGroupBox.Size = new System.Drawing.Size(787, 428);
+            this.SalesGroupBox.Size = new System.Drawing.Size(852, 443);
             this.SalesGroupBox.TabIndex = 3;
             this.SalesGroupBox.TabStop = false;
             this.SalesGroupBox.Text = "Sales";
@@ -170,7 +170,8 @@
             this.SalesGridView.Location = new System.Drawing.Point(4, 19);
             this.SalesGridView.Margin = new System.Windows.Forms.Padding(4);
             this.SalesGridView.Name = "SalesGridView";
-            this.SalesGridView.Size = new System.Drawing.Size(779, 405);
+            this.SalesGridView.ReadOnly = true;
+            this.SalesGridView.Size = new System.Drawing.Size(844, 420);
             this.SalesGridView.TabIndex = 0;
             this.SalesGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.SalesGridView_CellContentClick);
             this.SalesGridView.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.SalesGridView_CellPainting);
@@ -179,26 +180,31 @@
             // 
             this.SaleIDColumn.HeaderText = "ID";
             this.SaleIDColumn.Name = "SaleIDColumn";
+            this.SaleIDColumn.ReadOnly = true;
             // 
             // TimeColumn
             // 
             this.TimeColumn.HeaderText = "Time";
             this.TimeColumn.Name = "TimeColumn";
+            this.TimeColumn.ReadOnly = true;
             // 
             // SalesmanColumn
             // 
             this.SalesmanColumn.HeaderText = "Salesman";
             this.SalesmanColumn.Name = "SalesmanColumn";
+            this.SalesmanColumn.ReadOnly = true;
             // 
             // TotalBillColumn
             // 
             this.TotalBillColumn.HeaderText = "Total Bill";
             this.TotalBillColumn.Name = "TotalBillColumn";
+            this.TotalBillColumn.ReadOnly = true;
             // 
             // ProductsColumn
             // 
             this.ProductsColumn.HeaderText = "Products";
             this.ProductsColumn.Name = "ProductsColumn";
+            this.ProductsColumn.ReadOnly = true;
             this.ProductsColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.ProductsColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
@@ -209,7 +215,7 @@
             this.panel1.Location = new System.Drawing.Point(11, 4);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(783, 52);
+            this.panel1.Size = new System.Drawing.Size(852, 52);
             this.panel1.TabIndex = 4;
             // 
             // buttonThongke
@@ -273,7 +279,7 @@
             this.tabProduct.Margin = new System.Windows.Forms.Padding(4);
             this.tabProduct.Name = "tabProduct";
             this.tabProduct.Padding = new System.Windows.Forms.Padding(4);
-            this.tabProduct.Size = new System.Drawing.Size(864, 500);
+            this.tabProduct.Size = new System.Drawing.Size(867, 506);
             this.tabProduct.TabIndex = 1;
             this.tabProduct.Text = "Product";
             this.tabProduct.UseVisualStyleBackColor = true;
@@ -285,7 +291,7 @@
             this.ProductsGroupBox.Margin = new System.Windows.Forms.Padding(4);
             this.ProductsGroupBox.Name = "ProductsGroupBox";
             this.ProductsGroupBox.Padding = new System.Windows.Forms.Padding(4);
-            this.ProductsGroupBox.Size = new System.Drawing.Size(787, 400);
+            this.ProductsGroupBox.Size = new System.Drawing.Size(859, 411);
             this.ProductsGroupBox.TabIndex = 0;
             this.ProductsGroupBox.TabStop = false;
             this.ProductsGroupBox.Text = "Products";
@@ -307,7 +313,8 @@
             this.ProductsGridView.Location = new System.Drawing.Point(4, 19);
             this.ProductsGridView.Margin = new System.Windows.Forms.Padding(4);
             this.ProductsGridView.Name = "ProductsGridView";
-            this.ProductsGridView.Size = new System.Drawing.Size(779, 377);
+            this.ProductsGridView.ReadOnly = true;
+            this.ProductsGridView.Size = new System.Drawing.Size(851, 388);
             this.ProductsGridView.TabIndex = 0;
             this.ProductsGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ProductsGridView_CellContentClick);
             this.ProductsGridView.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.ProductsGridView_CellPainting);
@@ -317,30 +324,35 @@
             this.ProductIDColumn.FillWeight = 21.90435F;
             this.ProductIDColumn.HeaderText = "ID";
             this.ProductIDColumn.Name = "ProductIDColumn";
+            this.ProductIDColumn.ReadOnly = true;
             // 
             // ProductNameColumn
             // 
             this.ProductNameColumn.FillWeight = 68.73803F;
             this.ProductNameColumn.HeaderText = "Product Name";
             this.ProductNameColumn.Name = "ProductNameColumn";
+            this.ProductNameColumn.ReadOnly = true;
             // 
             // ProductPriceColumn
             // 
             this.ProductPriceColumn.FillWeight = 81.48138F;
             this.ProductPriceColumn.HeaderText = "Price";
             this.ProductPriceColumn.Name = "ProductPriceColumn";
+            this.ProductPriceColumn.ReadOnly = true;
             // 
             // ProductCategoryColumn
             // 
             this.ProductCategoryColumn.FillWeight = 72.3064F;
             this.ProductCategoryColumn.HeaderText = "Category";
             this.ProductCategoryColumn.Name = "ProductCategoryColumn";
+            this.ProductCategoryColumn.ReadOnly = true;
             // 
             // ProductDescriptionColumn
             // 
             this.ProductDescriptionColumn.FillWeight = 76.51581F;
             this.ProductDescriptionColumn.HeaderText = "Description";
             this.ProductDescriptionColumn.Name = "ProductDescriptionColumn";
+            this.ProductDescriptionColumn.ReadOnly = true;
             // 
             // ProductImageColumn
             // 
@@ -348,12 +360,14 @@
             this.ProductImageColumn.HeaderText = "Image";
             this.ProductImageColumn.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Stretch;
             this.ProductImageColumn.Name = "ProductImageColumn";
+            this.ProductImageColumn.ReadOnly = true;
             // 
             // EditProductColumn
             // 
             this.EditProductColumn.FillWeight = 48.87409F;
             this.EditProductColumn.HeaderText = "Edit";
             this.EditProductColumn.Name = "EditProductColumn";
+            this.EditProductColumn.ReadOnly = true;
             this.EditProductColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.EditProductColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.EditProductColumn.Text = "";
@@ -363,29 +377,30 @@
             this.DeleteProductColumn.FillWeight = 48.87409F;
             this.DeleteProductColumn.HeaderText = "Delete";
             this.DeleteProductColumn.Name = "DeleteProductColumn";
+            this.DeleteProductColumn.ReadOnly = true;
             this.DeleteProductColumn.Text = "";
             // 
             // panel4
             // 
             this.panel4.Controls.Add(this.txbFindProduct);
             this.panel4.Controls.Add(this.buttonFindProduct);
-            this.panel4.Location = new System.Drawing.Point(504, 7);
+            this.panel4.Location = new System.Drawing.Point(527, 7);
             this.panel4.Margin = new System.Windows.Forms.Padding(4);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(283, 69);
+            this.panel4.Size = new System.Drawing.Size(332, 76);
             this.panel4.TabIndex = 1;
             // 
             // txbFindProduct
             // 
-            this.txbFindProduct.Location = new System.Drawing.Point(4, 23);
+            this.txbFindProduct.Location = new System.Drawing.Point(4, 22);
             this.txbFindProduct.Margin = new System.Windows.Forms.Padding(4);
             this.txbFindProduct.Name = "txbFindProduct";
-            this.txbFindProduct.Size = new System.Drawing.Size(181, 22);
+            this.txbFindProduct.Size = new System.Drawing.Size(219, 22);
             this.txbFindProduct.TabIndex = 0;
             // 
             // buttonFindProduct
             // 
-            this.buttonFindProduct.Location = new System.Drawing.Point(195, 4);
+            this.buttonFindProduct.Location = new System.Drawing.Point(244, 4);
             this.buttonFindProduct.Margin = new System.Windows.Forms.Padding(4);
             this.buttonFindProduct.Name = "buttonFindProduct";
             this.buttonFindProduct.Size = new System.Drawing.Size(84, 62);
@@ -402,13 +417,13 @@
             this.panel3.Location = new System.Drawing.Point(4, 7);
             this.panel3.Margin = new System.Windows.Forms.Padding(4);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(492, 69);
+            this.panel3.Size = new System.Drawing.Size(523, 76);
             this.panel3.TabIndex = 2;
             // 
             // ProductCategoryComboBox
             // 
             this.ProductCategoryComboBox.FormattingEnabled = true;
-            this.ProductCategoryComboBox.Location = new System.Drawing.Point(214, 20);
+            this.ProductCategoryComboBox.Location = new System.Drawing.Point(216, 23);
             this.ProductCategoryComboBox.Name = "ProductCategoryComboBox";
             this.ProductCategoryComboBox.Size = new System.Drawing.Size(273, 24);
             this.ProductCategoryComboBox.TabIndex = 3;
@@ -443,7 +458,7 @@
             this.tabProductCategory.Margin = new System.Windows.Forms.Padding(4);
             this.tabProductCategory.Name = "tabProductCategory";
             this.tabProductCategory.Padding = new System.Windows.Forms.Padding(4);
-            this.tabProductCategory.Size = new System.Drawing.Size(864, 500);
+            this.tabProductCategory.Size = new System.Drawing.Size(867, 506);
             this.tabProductCategory.TabIndex = 2;
             this.tabProductCategory.Text = "Category";
             this.tabProductCategory.UseVisualStyleBackColor = true;
@@ -605,7 +620,7 @@
             this.tabUsers.Margin = new System.Windows.Forms.Padding(4);
             this.tabUsers.Name = "tabUsers";
             this.tabUsers.Padding = new System.Windows.Forms.Padding(4);
-            this.tabUsers.Size = new System.Drawing.Size(864, 500);
+            this.tabUsers.Size = new System.Drawing.Size(867, 506);
             this.tabUsers.TabIndex = 3;
             this.tabUsers.Text = "Users";
             this.tabUsers.UseVisualStyleBackColor = true;
@@ -614,10 +629,10 @@
             // 
             this.panel5.Controls.Add(this.textBox1);
             this.panel5.Controls.Add(this.buttonFind);
-            this.panel5.Location = new System.Drawing.Point(487, 25);
+            this.panel5.Location = new System.Drawing.Point(511, 29);
             this.panel5.Margin = new System.Windows.Forms.Padding(4);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(363, 69);
+            this.panel5.Size = new System.Drawing.Size(356, 69);
             this.panel5.TabIndex = 0;
             // 
             // textBox1
@@ -682,10 +697,10 @@
             // 
             // buttonSetPassword
             // 
-            this.buttonSetPassword.Location = new System.Drawing.Point(61, 164);
+            this.buttonSetPassword.Location = new System.Drawing.Point(115, 159);
             this.buttonSetPassword.Margin = new System.Windows.Forms.Padding(4);
             this.buttonSetPassword.Name = "buttonSetPassword";
-            this.buttonSetPassword.Size = new System.Drawing.Size(169, 32);
+            this.buttonSetPassword.Size = new System.Drawing.Size(184, 32);
             this.buttonSetPassword.TabIndex = 0;
             this.buttonSetPassword.Text = "Set Password";
             this.buttonSetPassword.UseVisualStyleBackColor = true;
@@ -735,15 +750,15 @@
             this.panel13.Controls.Add(this.buttonDelAcc);
             this.panel13.Controls.Add(this.buttonEditAcc);
             this.panel13.Controls.Add(this.buttonAddAcc);
-            this.panel13.Location = new System.Drawing.Point(11, 25);
+            this.panel13.Location = new System.Drawing.Point(11, 26);
             this.panel13.Margin = new System.Windows.Forms.Padding(4);
             this.panel13.Name = "panel13";
-            this.panel13.Size = new System.Drawing.Size(420, 69);
+            this.panel13.Size = new System.Drawing.Size(459, 69);
             this.panel13.TabIndex = 11;
             // 
             // buttonDelAcc
             // 
-            this.buttonDelAcc.Location = new System.Drawing.Point(332, 4);
+            this.buttonDelAcc.Location = new System.Drawing.Point(375, 3);
             this.buttonDelAcc.Margin = new System.Windows.Forms.Padding(4);
             this.buttonDelAcc.Name = "buttonDelAcc";
             this.buttonDelAcc.Size = new System.Drawing.Size(84, 62);
@@ -753,7 +768,7 @@
             // 
             // buttonEditAcc
             // 
-            this.buttonEditAcc.Location = new System.Drawing.Point(173, 4);
+            this.buttonEditAcc.Location = new System.Drawing.Point(198, 4);
             this.buttonEditAcc.Margin = new System.Windows.Forms.Padding(4);
             this.buttonEditAcc.Name = "buttonEditAcc";
             this.buttonEditAcc.Size = new System.Drawing.Size(84, 62);
@@ -763,7 +778,7 @@
             // 
             // buttonAddAcc
             // 
-            this.buttonAddAcc.Location = new System.Drawing.Point(7, 4);
+            this.buttonAddAcc.Location = new System.Drawing.Point(0, 4);
             this.buttonAddAcc.Margin = new System.Windows.Forms.Padding(4);
             this.buttonAddAcc.Name = "buttonAddAcc";
             this.buttonAddAcc.Size = new System.Drawing.Size(84, 62);
@@ -776,7 +791,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(904, 549);
+            this.ClientSize = new System.Drawing.Size(893, 553);
             this.Controls.Add(this.tabControl1);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "fAdmin";

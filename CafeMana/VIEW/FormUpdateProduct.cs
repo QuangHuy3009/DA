@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 
 namespace CafeMana.VIEW
 {
@@ -30,8 +31,8 @@ namespace CafeMana.VIEW
 
         private void LoadData()
         {
-
-            Product product = ProductBLL.Instance.RetreiveProducts((int)this.Tag);         
+            int _ID = (int)this.Tag;
+            Product product = Data.Instance.ProductsList.FirstOrDefault(x => x.ID == _ID);
 
             ProductIDBox.Text           = product.ID.ToString();
             ProductNameBox.Text         = product.Name;
@@ -39,7 +40,7 @@ namespace CafeMana.VIEW
             ProductDescriptionRBox.Text = product.Description;
             MemoryStream ms = new MemoryStream(product.Image);
             ProductPictureBox.Image = Image.FromStream(ms);
-            ProductCategoryComboBox.Text = CategoryBLL.Instance.RetreiveCategory(product.CatagoryID).Name;
+            ProductCategoryComboBox.Text = Data.Instance.CategoriesList.FirstOrDefault(x => x.ID == product.CatagoryID).Name;
 
         }
 

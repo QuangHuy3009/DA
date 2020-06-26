@@ -20,5 +20,21 @@ namespace CafeMana.BLL
         {
             return DataAccess.Instance.RetreiveAllSales();
         }
+
+        public int RetreiveSaleID()
+        {
+            int ID=0;
+            foreach(Sale sale in Data.Instance.SalesList)
+            {
+                if (sale.ID > ID) ID = sale.ID;
+            }
+            return ID+1;
+        }
+
+        public void AddNewSale(Sale sale)
+        {
+            Data.Instance.SalesList.Add(sale);
+            DataAccess.Instance.AddNewSale(sale);
+        }
     }
 }
