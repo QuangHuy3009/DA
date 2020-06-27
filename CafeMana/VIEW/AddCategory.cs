@@ -34,7 +34,7 @@ namespace CafeMana.VIEW
                 MemoryStream ms = new MemoryStream();
                 CategoryPictureBox.Image.Save(ms, CategoryPictureBox.Image.RawFormat);
 
-                int    _ID          = ProductBLL.Instance.RetreiveProductID();
+                int    _ID          = CategoryBLL.Instance.RetreiveCategoryID();
                 string _Name        = CategoryNameBox.Text;
                 string _Description = CategoryDescriptionRBox.Text;
                 byte[] _Image       = ms.GetBuffer();

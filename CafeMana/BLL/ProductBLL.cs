@@ -69,7 +69,7 @@ namespace CafeMana.BLL
                 if (ProductsList[i].ID == ID) { Index=i; break; }
             }
             ProductsList.RemoveAt(Index);
-            DataAccess.Instance.DeleteProduct(ID);
+            DataAccess.Instance.DeleteSomething(ID,"Products");
         }
     }
 }

@@ -33,8 +33,8 @@ namespace CafeMana.VIEW
 
         private void LoadCategory()
         {
+            CategoriesFlowPanel.Controls.Clear();
             List<Category> CategoriesList = Data.Instance.CategoriesList;
-
             foreach (Category Category in CategoriesList)
             {
                 Button btn = new Button();
@@ -261,18 +261,62 @@ namespace CafeMana.VIEW
         {
             AddCategory _AddCategory = new AddCategory();
             _AddCategory.ShowDialog();
+            LoadCategory();
         }
 
         private void CategoryButton_Click(object sender, EventArgs e)
         {
             int ID = (int)(sender as Button).Tag;
             Category category = Data.Instance.CategoriesList.FirstOrDefault(x => x.ID == ID);
+            CategoryIDBox.Text = category.ID.ToString();
             CategoryNameBox.Text = category.Name;
             CategoryDescriptionRBox.Text = category.Description;
             MemoryStream ms = new MemoryStream(category.Image);
             CategoryPictureBox.Image = Image.FromStream(ms);
         }
+        //delete
+        private void buttonDelCate_Click(object sender, EventArgs e)
+        {
+           // Button btnh = sender as Button;
+            int ID = int.Parse(CategoryIDBox.Text.ToString());
+            CategoryBLL.Instance.DeleteCategory(ID);
+            LoadCategory();
+        }
+        //update
+        private void UploadPictureButton_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
 
+            ofd.Title = "Select Image file..";
+            ofd.DefaultExt = ".jpg";
+            ofd.Filter = "Media Files|*.jpg;*.png;*.gif;*.bmp;*.jpeg|All Files|*.*";
+
+            DialogResult result = ofd.ShowDialog();
+            if (result == DialogResult.OK)
+                CategoryPictureBox.Load(ofd.FileName);
+        }
+        private void buttonEditCate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MemoryStream ms = new MemoryStream();
+                CategoryPictureBox.Image.Save(ms, CategoryPictureBox.Image.RawFormat);
+
+                int _ID = int.Parse(CategoryIDBox.Text);
+                string _Name = CategoryNameBox.Text;
+                string _Description = CategoryDescriptionRBox.Text;
+                byte[] _Image = ms.GetBuffer();
+
+                Category category = new Category() { ID = _ID, Name = _Name, Description = _Description, Image = _Image };
+                CategoryBLL.Instance.UpdateCategory(category);
+                LoadCategory();
+
+            }
+            catch (Exception er)
+            {
+                MessageBox.Show(er.Message);
+            }
+        }
         #endregion
 
 
@@ -286,6 +330,31 @@ namespace CafeMana.VIEW
         {
             fAccountProfile f = new fAccountProfile();
             f.ShowDialog();
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void CategoryNameBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CategoryDescriptionRBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
         }
 
        

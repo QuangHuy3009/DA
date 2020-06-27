@@ -39,14 +39,17 @@ namespace CafeMana.VIEW
 
         private void txtCashGiven_TextChanged(object sender, EventArgs e)
         {
+            decimal CashGiven = 0, TotalBill, Bill, Discount, CashReturn;
             try
             {
-                decimal Bill = Convert.ToDecimal(txtBill.Text);
-                decimal Discount = numericDiscount.Value;
-                decimal TotalBill = Bill * ((100 - Discount) / 100);
-                decimal CashGiven = Convert.ToDecimal(txtCashGiven.Text);
-                decimal CashReturn = CashGiven - TotalBill;
-                txtCashReturn.Text = CashReturn.ToString();
+                 Bill = Convert.ToDecimal(txtBill.Text);
+                 Discount = numericDiscount.Value;
+                 TotalBill = Bill * ((100 - Discount) / 100);
+                
+                if (txtCashGiven.Text != "") { CashGiven = Convert.ToDecimal(txtCashGiven.Text); }
+                 CashReturn = CashGiven - TotalBill;
+                if (txtCashGiven.Text != "") txtCashReturn.Text = CashReturn.ToString();
+                else txtCashReturn.Text = "";
             }
             catch (Exception er)
             {
@@ -56,19 +59,18 @@ namespace CafeMana.VIEW
 
         private void numericDiscount_ValueChanged(object sender, EventArgs e)
         {
+            decimal CashGiven =0, TotalBill, Bill, Discount, CashReturn;
             try
             {
-                if (txtCashGiven.Text != "")
-                {
-                    decimal Bill = Convert.ToDecimal(txtBill.Text);
-                    decimal Discount = numericDiscount.Value;
-                    decimal TotalBill = Bill * ((100 - Discount) / 100);
-                    decimal CashGiven = Convert.ToDecimal(txtCashGiven.Text);
-                    decimal CashReturn = CashGiven - TotalBill;
-                    txtTotalBill.Text = TotalBill.ToString();
-                    txtCashReturn.Text = CashReturn.ToString();
-                }
-                else { MessageBox.Show("Nhap CashGiven Truoc!!"); numericDiscount.Value = 0; }
+               
+                     Bill = Convert.ToDecimal(txtBill.Text);
+                     Discount = numericDiscount.Value;
+                     TotalBill = Bill * ((100 - Discount) / 100);
+                     if (txtCashGiven.Text != "") { CashGiven = Convert.ToDecimal(txtCashGiven.Text); }
+                     CashReturn = CashGiven - TotalBill;
+                     txtTotalBill.Text = TotalBill.ToString();
+                     if (CashReturn>=0) txtCashReturn.Text = CashReturn.ToString();
+
             }
             catch (Exception er)
             {

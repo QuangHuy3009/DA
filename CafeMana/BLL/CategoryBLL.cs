@@ -37,5 +37,34 @@ namespace CafeMana.BLL
             Data.Instance.CategoriesList.Add(category);
             DataAccess.Instance.AddNewCategory(category);
         }
+
+        public void UpdateCategory(Category category)
+        {
+            List<Category> CategoriesList =Data.Instance.CategoriesList;
+            for (int i = 0; i < CategoriesList.Count; i++)
+            {
+                if (CategoriesList[i].ID == category.ID)
+                {
+                    CategoriesList[i].Name=category.Name;
+                    CategoriesList[i].Description = category.Description;
+                    CategoriesList[i].Image = category.Image;
+                    break;
+                }
+            }
+            DataAccess.Instance.UpdateCategory(category);
+        }
+
+        public void DeleteCategory(int ID)
+        {
+            List<Category> CategoriesList = Data.Instance.CategoriesList;
+            int Index = 0;
+            for (int i = 0; i < CategoriesList.Count; i++)
+            {
+                if (CategoriesList[i].ID == ID) { Index = i; break; }
+            }
+            if (DataAccess.Instance.DeleteSomething(ID, "Categories")==true) CategoriesList.RemoveAt(Index);
+
+        }
+
     }
 }

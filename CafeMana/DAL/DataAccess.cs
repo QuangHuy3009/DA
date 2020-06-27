@@ -214,16 +214,25 @@ namespace CafeMana.DAL
             }
         }
 
-        public void DeleteProduct(int ID)
+        public bool DeleteSomething(int ID, string s)
         {
-            using (SqlConnection connection = new SqlConnection(ConnectionString.connectionString))
+            try
             {
-                connection.Open();
-                SqlCommand command = connection.CreateCommand();               
-                command.CommandText = "Delete Products Where ID=" + ID + " ";
-                command.ExecuteNonQuery();
-                connection.Close();
-
+                using (SqlConnection connection = new SqlConnection(ConnectionString.connectionString))
+                {
+                    connection.Open();
+                    SqlCommand command = connection.CreateCommand();
+                    command.CommandText = "Delete " + s + " Where ID=" + ID + " ";
+                    MessageBox.Show(command.CommandText);
+                    command.ExecuteNonQuery();
+                    connection.Close();
+                    return true;
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Ban phai xoa Product truoc khi xoa Category!!");
+                return false;
             }
         }
 
@@ -278,12 +287,29 @@ namespace CafeMana.DAL
                 command.Parameters.AddWithValue("@CategoryDescription", category.Description);
                 command.Parameters.AddWithValue("@CategoryPicture", category.Image);
                 command.CommandText = "Insert Into Categories(CategoryName, CategoryDescription, CategoryPicture) Values (@CategoryName,@CategoryDescription,@CategoryPicture)";
+                MessageBox.Show(command.CommandText);
                 command.ExecuteNonQuery();
                 connection.Close();
 
             }
         }
+        public void UpdateCategory(Category category)
+        {
+            using (SqlConnection connection = new SqlConnection(ConnectionString.connectionString))
+            {
+                connection.Open();
+                SqlCommand command = connection.CreateCommand();
+                command.Parameters.AddWithValue("@CategoryName", category.Name);
+                command.Parameters.AddWithValue("@CategoryDescription", category.Description);
+                command.Parameters.AddWithValue("@CategoryPicture", category.Image);
+                command.Parameters.AddWithValue("@CategoryID", category.ID);
+                command.CommandText = "Update Categories set CategoryName=@CategoryName , CategoryDescription= @CategoryDescription , CategoryPicture=@CategoryPicture  where ID= @CategoryID";
+                System.Console.WriteLine(command.CommandText);
+                command.ExecuteNonQuery();
+                connection.Close();
 
+            }
+        }
 
     }
 
