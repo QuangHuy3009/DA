@@ -20,15 +20,20 @@ namespace CafeMana.VIEW
         private void LoadTotalBill()
         {
             DataGridView dataGridView = (DataGridView)Tag;
-            decimal TotalBill         = 0;
+            decimal Bill         = 0;
+            decimal TotalBill = 0;
+            decimal Discount = 0;
 
             foreach(DataGridViewRow row in dataGridView.Rows)
             {
                 decimal Price = Convert.ToDecimal(row.Cells["ProductPrice"].Value);
                 int Quantity  = Convert.ToInt32(row.Cells["ProductQuantity"].Value);
-                TotalBill    += Price * Quantity;
+                Discount = numericDiscount.Value;
+                Bill    += Price * Quantity;
+                TotalBill = Bill * ((100 - Discount) / 100); ;
             }
-
+            
+            txtBill.Text = Bill.ToString();
             txtTotalBill.Text = TotalBill.ToString();
         }
 
@@ -37,10 +42,12 @@ namespace CafeMana.VIEW
            
             try
             {
-                decimal TotalBill  = Convert.ToDecimal(txtTotalBill.Text);
+                decimal Bill  = Convert.ToDecimal(txtBill.Text);
                 decimal Discount = numericDiscount.Value;
+                decimal TotalBill = Bill * ((100 - Discount) / 100);
                 decimal CashGiven = Convert.ToDecimal(txtCashGiven.Text);
-                decimal CashReturn = CashGiven - (TotalBill*(100-Discount)/100);
+                decimal CashReturn = CashGiven - TotalBill;
+                txtTotalBill.Text = TotalBill.ToString();
                 txtCashReturn.Text = CashReturn.ToString(); 
             }
             catch (Exception er)
@@ -48,13 +55,20 @@ namespace CafeMana.VIEW
                 MessageBox.Show(er.Message);
             }
         }
+        private void TotalBill_Textchange(object sender, EventArgs e)
+        {
+            decimal Bill = Convert.ToDecimal(txtBill.Text);
+            decimal Discount = numericDiscount.Value;
+            decimal TotalBill = Bill * ((100 - Discount) / 100);
+            txtTotalBill.Text = TotalBill.ToString();
+        }
 
         private void ConfirmCheckoutButton_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Are You Sure!", "Notify", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 DataGridView dataGridView = (DataGridView)this.Tag;
-                decimal TotalBill  = Convert.ToDecimal(txtTotalBill.Text);
+                decimal TotalBill  = Convert.ToDecimal(txtBill.Text);
                 decimal Discount = numericDiscount.Value;
                 decimal CashGiven  = Convert.ToDecimal(txtCashGiven.Text);
                 decimal CashReturn = Convert.ToDecimal(txtCashReturn.Text);
@@ -72,10 +86,13 @@ namespace CafeMana.VIEW
                     saleItem.SaleID          = sale.ID;
 
                     SaleItemBLL.Instance.AddNewSaleItem(saleItem);
-                }
+                 
+                   
+                }                
             }
+           
 
-        }       
+        }
 
        
     }
