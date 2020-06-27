@@ -37,30 +37,43 @@ namespace CafeMana.VIEW
             txtTotalBill.Text = TotalBill.ToString();
         }
 
-        private void TextBox_TextChanged(object sender, EventArgs e)
+        private void txtCashGiven_TextChanged(object sender, EventArgs e)
         {
-           
             try
             {
-                decimal Bill  = Convert.ToDecimal(txtBill.Text);
+                decimal Bill = Convert.ToDecimal(txtBill.Text);
                 decimal Discount = numericDiscount.Value;
                 decimal TotalBill = Bill * ((100 - Discount) / 100);
                 decimal CashGiven = Convert.ToDecimal(txtCashGiven.Text);
                 decimal CashReturn = CashGiven - TotalBill;
-                txtTotalBill.Text = TotalBill.ToString();
-                txtCashReturn.Text = CashReturn.ToString(); 
+                txtCashReturn.Text = CashReturn.ToString();
             }
             catch (Exception er)
             {
                 MessageBox.Show(er.Message);
             }
         }
-        private void TotalBill_Textchange(object sender, EventArgs e)
+
+        private void numericDiscount_ValueChanged(object sender, EventArgs e)
         {
-            decimal Bill = Convert.ToDecimal(txtBill.Text);
-            decimal Discount = numericDiscount.Value;
-            decimal TotalBill = Bill * ((100 - Discount) / 100);
-            txtTotalBill.Text = TotalBill.ToString();
+            try
+            {
+                if (txtCashGiven.Text != "")
+                {
+                    decimal Bill = Convert.ToDecimal(txtBill.Text);
+                    decimal Discount = numericDiscount.Value;
+                    decimal TotalBill = Bill * ((100 - Discount) / 100);
+                    decimal CashGiven = Convert.ToDecimal(txtCashGiven.Text);
+                    decimal CashReturn = CashGiven - TotalBill;
+                    txtTotalBill.Text = TotalBill.ToString();
+                    txtCashReturn.Text = CashReturn.ToString();
+                }
+                else { MessageBox.Show("Nhap CashGiven Truoc!!"); numericDiscount.Value = 0; }
+            }
+            catch (Exception er)
+            {
+                MessageBox.Show(er.Message);
+            }
         }
 
         private void ConfirmCheckoutButton_Click(object sender, EventArgs e)
@@ -94,6 +107,6 @@ namespace CafeMana.VIEW
 
         }
 
-       
+        
     }
 }
