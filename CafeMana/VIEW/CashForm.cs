@@ -19,7 +19,7 @@ namespace CafeMana.VIEW
 
         private void LoadTotalBill()
         {
-            DataGridView dataGridView = (DataGridView)this.Tag;
+            DataGridView dataGridView = (DataGridView)Tag;
             decimal TotalBill         = 0;
 
             foreach(DataGridViewRow row in dataGridView.Rows)
@@ -34,12 +34,13 @@ namespace CafeMana.VIEW
 
         private void TextBox_TextChanged(object sender, EventArgs e)
         {
+           
             try
             {
                 decimal TotalBill  = Convert.ToDecimal(txtTotalBill.Text);
-                decimal Discount   = Convert.ToDecimal(txtDiscount.Text);
-                decimal CashGiven  = Convert.ToDecimal(txtCashGiven.Text);
-                decimal CashReturn = CashGiven - (TotalBill - Discount);
+                decimal Discount = numericDiscount.Value;
+                decimal CashGiven = Convert.ToDecimal(txtCashGiven.Text);
+                decimal CashReturn = CashGiven - (TotalBill*(100-Discount)/100);
                 txtCashReturn.Text = CashReturn.ToString(); 
             }
             catch (Exception er)
@@ -54,11 +55,11 @@ namespace CafeMana.VIEW
             {
                 DataGridView dataGridView = (DataGridView)this.Tag;
                 decimal TotalBill  = Convert.ToDecimal(txtTotalBill.Text);
-                decimal Discount   = Convert.ToDecimal(txtDiscount.Text);
+                decimal Discount = numericDiscount.Value;
                 decimal CashGiven  = Convert.ToDecimal(txtCashGiven.Text);
                 decimal CashReturn = Convert.ToDecimal(txtCashReturn.Text);
 
-                Sale sale = new Sale() { ID = SaleBLL.Instance.RetreiveSaleID(), Total = (TotalBill - Discount), CashGiven = CashGiven, CashReturn = CashReturn, Time = DateTime.Now, SalesManID = 1 };
+                Sale sale = new Sale() { ID = SaleBLL.Instance.RetreiveSaleID(), Total = (TotalBill*(1-Discount/100)), CashGiven = CashGiven, CashReturn = CashReturn, Time = DateTime.Now, SalesManID = 1 };
                 SaleBLL.Instance.AddNewSale(sale);
                 foreach (DataGridViewRow row in dataGridView.Rows)
                 {

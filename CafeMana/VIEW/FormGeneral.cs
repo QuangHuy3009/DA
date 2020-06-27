@@ -183,8 +183,10 @@ namespace CafeMana.VIEW
 
         private void   CheckOutButton_Click(object sender, EventArgs e)
         {
-            CashForm f = new CashForm();
-            f.Tag = ProductsGridView;
+            CashForm f = new CashForm
+            {
+                Tag = ProductsGridView
+            };
             f.ShowDialog();
 
         }
