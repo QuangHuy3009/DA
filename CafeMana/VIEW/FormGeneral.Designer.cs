@@ -229,6 +229,7 @@
             this.ID.HeaderText = "ID";
             this.ID.MinimumWidth = 6;
             this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
             this.ID.Width = 30;
             // 
             // ProductName
@@ -246,6 +247,7 @@
             this.ProductPrice.HeaderText = "Price";
             this.ProductPrice.MinimumWidth = 6;
             this.ProductPrice.Name = "ProductPrice";
+            this.ProductPrice.ReadOnly = true;
             this.ProductPrice.Width = 50;
             // 
             // ProductQuantity
@@ -264,6 +266,7 @@
             this.ProductTotal.HeaderText = "Total";
             this.ProductTotal.MinimumWidth = 6;
             this.ProductTotal.Name = "ProductTotal";
+            this.ProductTotal.ReadOnly = true;
             this.ProductTotal.Width = 70;
             // 
             // Delete

@@ -423,6 +423,8 @@
             // ProductCategoryComboBox
             // 
             this.ProductCategoryComboBox.FormattingEnabled = true;
+            this.ProductCategoryComboBox.Items.AddRange(new object[] {
+            "All Categories"});
             this.ProductCategoryComboBox.Location = new System.Drawing.Point(216, 23);
             this.ProductCategoryComboBox.Name = "ProductCategoryComboBox";
             this.ProductCategoryComboBox.Size = new System.Drawing.Size(273, 24);

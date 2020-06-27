@@ -43,7 +43,7 @@ namespace CafeMana.VIEW
 
                 CategoriesFlowPanel.Controls.Add(btn);
 
-                btn.Click += CategoryButtonClick;
+                btn.Click      += CategoryButtonClick;
             }
 
         }
@@ -188,6 +188,7 @@ namespace CafeMana.VIEW
             f.ShowDialog();
 
         }
+
 
         #endregion
 
