@@ -60,7 +60,7 @@ namespace CafeMana.VIEW
             UsersGridView.Rows.Clear();
             foreach (User user in UsersList)
             {
-                UsersGridView.Rows.Add(user.ID, user.Name, user.Role);
+                UsersGridView.Rows.Add(user.ID, user.Name, user.Role,user.Email);
             }
         }
 
@@ -274,15 +274,14 @@ namespace CafeMana.VIEW
             MemoryStream ms = new MemoryStream(category.Image);
             CategoryPictureBox.Image = Image.FromStream(ms);
         }
-        //delete
+        
         private void buttonDelCate_Click(object sender, EventArgs e)
         {
-           // Button btnh = sender as Button;
             int ID = int.Parse(CategoryIDBox.Text.ToString());
             CategoryBLL.Instance.DeleteCategory(ID);
             LoadCategory();
         }
-        //update
+      
         private void UploadPictureButton_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
@@ -295,6 +294,7 @@ namespace CafeMana.VIEW
             if (result == DialogResult.OK)
                 CategoryPictureBox.Load(ofd.FileName);
         }
+
         private void buttonEditCate_Click(object sender, EventArgs e)
         {
             try
@@ -317,20 +317,82 @@ namespace CafeMana.VIEW
                 MessageBox.Show(er.Message);
             }
         }
+
         #endregion
 
+        #region User
 
         private void buttonAddAcc_Click(object sender, EventArgs e)
         {
             AddAccount _AddAccount = new AddAccount();
             _AddAccount.ShowDialog();
+            LoadUser();
+        }
+
+        private void buttonEditAcc_Click(object sender, EventArgs e)
+        {
+           
+
+            //if (MessageBox.Show("Are You Sure!", "Notify", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            //{
+            //    int    _ID   = (int)(sender as Button).Tag;
+            //    string _Name = txbUserName.Text;
+            //    string _Role = txbUserName.Text;
+            //    UserBLL.Instance.UpdateUser(new User() { ID=_ID,Name=_Name,Role=_Role});
+            //    MessageBox.Show("Successfully!");
+            //    LoadUser();
+            //}
+        }
+
+        private void buttonDelAcc_Click(object sender, EventArgs e)
+        {
+           
+            if(MessageBox.Show("Are You Sure!", "Notify", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                int ID = (int)(sender as Button).Tag;
+                UserBLL.Instance.DeleteUser(ID);
+                MessageBox.Show("Successfully!");
+                LoadUser();
+            }
         }
 
         private void buttonSetPassword_Click(object sender, EventArgs e)
         {
+            int ID = (int)(sender as Button).Tag;
             fAccountProfile f = new fAccountProfile();
+            f.Tag = Data.Instance.UsersList.FirstOrDefault(x => x.ID == ID);
             f.ShowDialog();
+            LoadUser();
         }
+
+        private void UsersGridView_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            DataGridViewRow row     = UsersGridView.Rows[e.RowIndex];
+            txbUserName.Text        = Convert.ToString(row.Cells["UserName"].Value);
+            cbBoxRole.Text          = Convert.ToString(row.Cells["Role"].Value);        
+            buttonDelAcc.Tag        = Convert.ToInt32(row.Cells["ID"].Value);
+            buttonEditAcc.Tag       = Convert.ToInt32(row.Cells["ID"].Value);
+            buttonSetPassword.Tag   = Convert.ToInt32(row.Cells["ID"].Value);
+        }
+
+        private void buttonFind_Click(object sender, EventArgs e)
+        {
+            UsersGridView.Rows.Clear();
+            List<User> UsersList = Data.Instance.UsersList;
+            string     Txt       = txbFindUser.Text;
+
+            if (Txt == "") LoadUser();
+            else
+            {
+                foreach (User user in UsersList)
+                    if (user.Name.Contains(Txt) || user.Role.Contains(Txt) || user.Email.Contains(Txt) || user.ID.ToString().Contains(Txt))
+                        UsersGridView.Rows.Add(user.ID, user.Name, user.Role, user.Email);
+            }
+        }
+
+        #endregion
+
+
 
         private void panel2_Paint(object sender, PaintEventArgs e)
         {
@@ -357,6 +419,6 @@ namespace CafeMana.VIEW
 
         }
 
-       
+        
     }
 }

@@ -33,12 +33,8 @@ namespace CafeMana.BLL
 
         public int  RetreiveProductID()
         {
-            int ID = 0;
-            foreach (Product product in Data.Instance.ProductsList)
-            {
-                if (product.ID > ID) ID = product.ID;
-            }
-            return ID + 1;
+            Data.Instance.IdentityProduct++;
+            return Data.Instance.IdentityProduct;
         }
 
         public void AddNewProduct(Product product)

@@ -13,6 +13,10 @@ namespace CafeMana.BLL
             get { if (_Instance == null) _Instance = new Data(); return _Instance; }
         }
 
+        public int IdentityProduct  { get; set; }
+        public int IdentityCategory { get; set; }
+        public int IdentityUser     { get; set; }
+
         public  List<Sale>     SalesList      { get; set; }
         public  List<SaleItem> SaleItemsList  { get; set; }
         public  List<User>     UsersList      { get; set; }
@@ -22,10 +26,17 @@ namespace CafeMana.BLL
         private Data()
         {
             SalesList      = SaleBLL.Instance.RetreiveAllSale();
+            
             SaleItemsList  = SaleItemBLL.Instance.RetreiveAllSale();
+
             UsersList      = UserBLL.Instance.RetreiveAllUser();
-            CategoriesList = CategoryBLL.Instance.RetreiveAllCategories();
-            ProductsList = ProductBLL.Instance.RetreiveAllProducts();
+            IdentityUser   = UsersList[UsersList.Count - 1].ID;
+
+            CategoriesList   = CategoryBLL.Instance.RetreiveAllCategories();
+            IdentityCategory = CategoriesList[CategoriesList.Count - 1].ID;
+
+            ProductsList    = ProductBLL.Instance.RetreiveAllProducts();
+            IdentityProduct = ProductsList[ProductsList.Count - 1].ID;
         }
 
         

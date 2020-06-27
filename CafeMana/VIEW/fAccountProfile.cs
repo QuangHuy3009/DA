@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using CafeMana.DTO;
+using CafeMana.BLL;
 using System.Windows.Forms;
 
 namespace CafeMana.VIEW
@@ -16,5 +11,43 @@ namespace CafeMana.VIEW
         {
             InitializeComponent();
         }
+
+        private void fAccountProfile_Load(object sender, EventArgs e)
+        {
+            LoadData();
+        }
+
+        private void LoadData()
+        {
+            User user = (User)this.Tag;
+            txbUserName.Text = user.Name;
+            txbEmail.Text    = user.Email;
+            txbConfirm.Text  = txbNewPass.Text = txbPassword.Text = user.Password;
+            cbBoxRole.Text   = user.Role;
+        }
+
+        private void ButtonUpdate_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Are You Sure!", "Notify", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                if (txbUserName.Text.Trim().Length > 0 && txbPassword.Text.Trim().Length > 0 && txbEmail.Text.Trim().Length > 0  && txbNewPass.Text == txbConfirm.Text)
+                {
+                    int    _ID       = Convert.ToInt32(((User)this.Tag).ID);
+                    string _UserName = txbUserName.Text;
+                    string _Password = txbNewPass.Text;
+                    string _Email    = txbEmail.Text;
+                    string _Role     = cbBoxRole.Text;
+
+                    UserBLL.Instance.UpdateUser(new User() { ID = _ID, Name = _UserName, Role = _Role, Email = _Email, Password = _Password });
+                    MessageBox.Show("Successfully!");
+                }
+                else
+                {
+                    MessageBox.Show("Update Failed!");
+                }
+            }
+        }
     }
+
+         
 }

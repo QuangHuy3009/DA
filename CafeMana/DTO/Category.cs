@@ -17,5 +17,6 @@ namespace CafeMana.DTO
         public string Name        { get => _Name; set => _Name = value; }
         public string Description { get => _Description; set => _Description = value; }
         public byte[] Image       { get => _Image; set => _Image = value; }
+
     }
 }

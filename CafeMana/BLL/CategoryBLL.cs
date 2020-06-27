@@ -24,12 +24,8 @@ namespace CafeMana.BLL
 
         public int RetreiveCategoryID()
         {
-            int ID = 0;
-
-            foreach (Category category in Data.Instance.CategoriesList)
-                if (category.ID > ID) ID = category.ID;
-
-            return ID + 1;
+            Data.Instance.IdentityCategory++;
+            return Data.Instance.IdentityCategory;
         }
 
         public void AddNewCategory(Category category)
