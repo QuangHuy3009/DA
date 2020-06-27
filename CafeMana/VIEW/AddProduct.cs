@@ -54,9 +54,9 @@ namespace CafeMana.VIEW
         {
             OpenFileDialog ofd = new OpenFileDialog();
 
-            ofd.Title = "Select Image file..";
+            ofd.Title      = "Select Image file..";
             ofd.DefaultExt = ".jpg";
-            ofd.Filter = "Media Files|*.jpg;*.png;*.gif;*.bmp;*.jpeg|All Files|*.*";
+            ofd.Filter     = "Media Files|*.jpg;*.png;*.gif;*.bmp;*.jpeg|All Files|*.*";
 
             DialogResult result = ofd.ShowDialog();
             if (result == DialogResult.OK)           

@@ -52,87 +52,100 @@
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(286, 293);
+            this.panel1.Size = new System.Drawing.Size(381, 361);
             this.panel1.TabIndex = 0;
             // 
             // AddCategoryButton
             // 
             this.AddCategoryButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.AddCategoryButton.Location = new System.Drawing.Point(71, 249);
+            this.AddCategoryButton.Location = new System.Drawing.Point(168, 307);
+            this.AddCategoryButton.Margin = new System.Windows.Forms.Padding(4);
             this.AddCategoryButton.Name = "AddCategoryButton";
-            this.AddCategoryButton.Size = new System.Drawing.Size(130, 23);
+            this.AddCategoryButton.Size = new System.Drawing.Size(195, 28);
             this.AddCategoryButton.TabIndex = 15;
             this.AddCategoryButton.Text = "Add Category";
             this.AddCategoryButton.UseVisualStyleBackColor = true;
+            this.AddCategoryButton.Click += new System.EventHandler(this.AddCategoryButton_Click);
             // 
             // UploadPictureButton
             // 
-            this.UploadPictureButton.Location = new System.Drawing.Point(12, 162);
+            this.UploadPictureButton.Location = new System.Drawing.Point(16, 199);
+            this.UploadPictureButton.Margin = new System.Windows.Forms.Padding(4);
             this.UploadPictureButton.Name = "UploadPictureButton";
-            this.UploadPictureButton.Size = new System.Drawing.Size(85, 23);
+            this.UploadPictureButton.Size = new System.Drawing.Size(113, 28);
             this.UploadPictureButton.TabIndex = 14;
             this.UploadPictureButton.Text = "Upload Picture";
             this.UploadPictureButton.UseVisualStyleBackColor = true;
+            this.UploadPictureButton.Click += new System.EventHandler(this.UploadPictureButton_Click);
             // 
             // CategoryPictureBox
             // 
-            this.CategoryPictureBox.Location = new System.Drawing.Point(126, 133);
+            this.CategoryPictureBox.Location = new System.Drawing.Point(168, 164);
+            this.CategoryPictureBox.Margin = new System.Windows.Forms.Padding(4);
             this.CategoryPictureBox.Name = "CategoryPictureBox";
-            this.CategoryPictureBox.Size = new System.Drawing.Size(146, 102);
+            this.CategoryPictureBox.Size = new System.Drawing.Size(195, 126);
             this.CategoryPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.CategoryPictureBox.TabIndex = 13;
             this.CategoryPictureBox.TabStop = false;
             // 
             // CategoryDescriptionRBox
             // 
-            this.CategoryDescriptionRBox.Location = new System.Drawing.Point(126, 54);
+            this.CategoryDescriptionRBox.Location = new System.Drawing.Point(168, 66);
+            this.CategoryDescriptionRBox.Margin = new System.Windows.Forms.Padding(4);
             this.CategoryDescriptionRBox.Name = "CategoryDescriptionRBox";
-            this.CategoryDescriptionRBox.Size = new System.Drawing.Size(146, 73);
+            this.CategoryDescriptionRBox.Size = new System.Drawing.Size(193, 89);
             this.CategoryDescriptionRBox.TabIndex = 12;
             this.CategoryDescriptionRBox.Text = "";
             // 
             // CategoryNameBox
             // 
-            this.CategoryNameBox.Location = new System.Drawing.Point(126, 28);
+            this.CategoryNameBox.Location = new System.Drawing.Point(168, 34);
+            this.CategoryNameBox.Margin = new System.Windows.Forms.Padding(4);
             this.CategoryNameBox.Name = "CategoryNameBox";
-            this.CategoryNameBox.Size = new System.Drawing.Size(146, 20);
+            this.CategoryNameBox.Size = new System.Drawing.Size(193, 22);
             this.CategoryNameBox.TabIndex = 11;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 144);
+            this.label3.Location = new System.Drawing.Point(16, 177);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(85, 13);
+            this.label3.Size = new System.Drawing.Size(113, 17);
             this.label3.TabIndex = 10;
             this.label3.Text = "Category Picture";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 69);
+            this.label2.Location = new System.Drawing.Point(16, 85);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(105, 13);
+            this.label2.Size = new System.Drawing.Size(140, 17);
             this.label2.TabIndex = 9;
             this.label2.Text = "Category Description";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 31);
+            this.label1.Location = new System.Drawing.Point(16, 38);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(80, 13);
+            this.label1.Size = new System.Drawing.Size(106, 17);
             this.label1.TabIndex = 8;
             this.label1.Text = "Category Name";
             // 
             // AddCategory
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(287, 297);
+            this.ClientSize = new System.Drawing.Size(382, 365);
             this.Controls.Add(this.panel1);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "AddCategory";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "AddCategory";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

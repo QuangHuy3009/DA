@@ -266,6 +266,25 @@ namespace CafeMana.DAL
             }
 
         }
+
+
+        public void AddNewCategory(Category category)
+        {
+            using (SqlConnection connection = new SqlConnection(ConnectionString.connectionString))
+            {
+                connection.Open();
+                SqlCommand command = connection.CreateCommand();
+                command.Parameters.AddWithValue("@CategoryName", category.Name);
+                command.Parameters.AddWithValue("@CategoryDescription", category.Description);
+                command.Parameters.AddWithValue("@CategoryPicture", category.Image);
+                command.CommandText = "Insert Into Categories(CategoryName, CategoryDescription, CategoryPicture) Values (@CategoryName,@CategoryDescription,@CategoryPicture)";
+                command.ExecuteNonQuery();
+                connection.Close();
+
+            }
+        }
+
+
     }
 
 }

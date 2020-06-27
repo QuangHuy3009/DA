@@ -22,5 +22,20 @@ namespace CafeMana.BLL
             return DataAccess.Instance.RetreiveAllCategories();
         }
 
+        public int RetreiveCategoryID()
+        {
+            int ID = 0;
+
+            foreach (Category category in Data.Instance.CategoriesList)
+                if (category.ID > ID) ID = category.ID;
+
+            return ID + 1;
+        }
+
+        public void AddNewCategory(Category category)
+        {
+            Data.Instance.CategoriesList.Add(category);
+            DataAccess.Instance.AddNewCategory(category);
+        }
     }
 }
