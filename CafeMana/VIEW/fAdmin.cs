@@ -331,17 +331,16 @@ namespace CafeMana.VIEW
 
         private void buttonEditAcc_Click(object sender, EventArgs e)
         {
-           
-
-            //if (MessageBox.Show("Are You Sure!", "Notify", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            //{
-            //    int    _ID   = (int)(sender as Button).Tag;
-            //    string _Name = txbUserName.Text;
-            //    string _Role = txbUserName.Text;
-            //    UserBLL.Instance.UpdateUser(new User() { ID=_ID,Name=_Name,Role=_Role});
-            //    MessageBox.Show("Successfully!");
-            //    LoadUser();
-            //}
+            if (MessageBox.Show("Are You Sure!", "Notify", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                int    _ID   = (int)(sender as Button).Tag;
+                User   user  = Data.Instance.UsersList.FirstOrDefault(x => x.ID == _ID);
+                user.Name    = txbUserName.Text;
+                user.Role    = cbBoxRole.Text;
+                UserBLL.Instance.UpdateUser(user);
+                MessageBox.Show("Successfully!");
+                LoadUser();
+            }
         }
 
         private void buttonDelAcc_Click(object sender, EventArgs e)
