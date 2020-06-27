@@ -42,11 +42,12 @@ namespace CafeMana.VIEW
            
             try
             {
-                decimal Bill  = Convert.ToDecimal(txtBill.Text);
-                decimal Discount = numericDiscount.Value;
-                decimal TotalBill = Bill * ((100 - Discount) / 100);
-                decimal CashGiven = Convert.ToDecimal(txtCashGiven.Text);
-                decimal CashReturn = CashGiven - TotalBill;
+
+                decimal TotalBill  = Convert.ToDecimal(txtTotalBill.Text);
+                decimal Discount   = numericDiscount.Value;
+                decimal CashGiven  = Convert.ToDecimal(txtCashGiven.Text);
+                decimal CashReturn = CashGiven - (TotalBill*(100-Discount)/100);
+           
                 txtTotalBill.Text = TotalBill.ToString();
                 txtCashReturn.Text = CashReturn.ToString(); 
             }
@@ -55,13 +56,7 @@ namespace CafeMana.VIEW
                 MessageBox.Show(er.Message);
             }
         }
-        private void TotalBill_Textchange(object sender, EventArgs e)
-        {
-            decimal Bill = Convert.ToDecimal(txtBill.Text);
-            decimal Discount = numericDiscount.Value;
-            decimal TotalBill = Bill * ((100 - Discount) / 100);
-            txtTotalBill.Text = TotalBill.ToString();
-        }
+
 
         private void ConfirmCheckoutButton_Click(object sender, EventArgs e)
         {

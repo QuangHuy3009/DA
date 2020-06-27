@@ -45,7 +45,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(21, 64);
+            this.label4.Location = new System.Drawing.Point(29, 59);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(89, 17);
@@ -66,7 +66,7 @@
             // 
             // txtCashReturn
             // 
-            this.txtCashReturn.Location = new System.Drawing.Point(136, 162);
+            this.txtCashReturn.Location = new System.Drawing.Point(136, 124);
             this.txtCashReturn.Margin = new System.Windows.Forms.Padding(4);
             this.txtCashReturn.Name = "txtCashReturn";
             this.txtCashReturn.ReadOnly = true;
@@ -76,7 +76,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(23, 165);
+            this.label3.Location = new System.Drawing.Point(23, 128);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(87, 17);
@@ -85,17 +85,18 @@
             // 
             // txtCashGiven
             // 
-            this.txtCashGiven.Location = new System.Drawing.Point(136, 127);
+            this.txtCashGiven.Location = new System.Drawing.Point(136, 89);
             this.txtCashGiven.Margin = new System.Windows.Forms.Padding(4);
             this.txtCashGiven.Name = "txtCashGiven";
             this.txtCashGiven.Size = new System.Drawing.Size(175, 22);
             this.txtCashGiven.TabIndex = 12;
+            this.txtCashGiven.Text = "0";
             this.txtCashGiven.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(23, 127);
+            this.label2.Location = new System.Drawing.Point(23, 91);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(81, 17);
@@ -104,17 +105,15 @@
             // 
             // txtBill
             // 
-            this.txtBill.Location = new System.Drawing.Point(136, 27);
-            this.txtBill.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBill.Location = new System.Drawing.Point(136, 31);
             this.txtBill.Name = "txtBill";
-            this.txtBill.ReadOnly = true;
-            this.txtBill.Size = new System.Drawing.Size(175, 22);
-            this.txtBill.TabIndex = 10;
+            this.txtBill.Size = new System.Drawing.Size(176, 22);
+            this.txtBill.TabIndex = 18;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(23, 30);
+            this.label1.Location = new System.Drawing.Point(29, 31);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(26, 17);
@@ -133,7 +132,7 @@
             this.numericDiscount.Name = "numericDiscount";
             this.numericDiscount.Size = new System.Drawing.Size(176, 22);
             this.numericDiscount.TabIndex = 17;
-            this.numericDiscount.ValueChanged += new System.EventHandler(this.TotalBill_Textchange);
+            this.numericDiscount.ValueChanged += new System.EventHandler(this.TextBox_TextChanged);
             // 
             // label5
             // 
@@ -159,8 +158,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(349, 286);
-            this.Controls.Add(this.txtTotalBill);
-            this.Controls.Add(this.label5);
             this.Controls.Add(this.numericDiscount);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.ConfirmCheckoutButton);
@@ -172,7 +169,7 @@
             this.Controls.Add(this.label1);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "CashForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "CashForm";
             this.Load += new System.EventHandler(this.CashForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericDiscount)).EndInit();

@@ -50,7 +50,7 @@ namespace CafeMana.VIEW
 
                 CategoriesFlowPanel.Controls.Add(btn);
 
-               // btn.Click += CategoryButtonClick;
+                btn.Click += CategoryButton_Click;
             }
         }
         
@@ -255,11 +255,26 @@ namespace CafeMana.VIEW
 
         #endregion
 
+        #region Category
+
         private void buttonAddCategory_Click(object sender, EventArgs e)
         {
             AddCategory _AddCategory = new AddCategory();
             _AddCategory.ShowDialog();
         }
+
+        private void CategoryButton_Click(object sender, EventArgs e)
+        {
+            int ID = (int)(sender as Button).Tag;
+            Category category = Data.Instance.CategoriesList.FirstOrDefault(x => x.ID == ID);
+            CategoryNameBox.Text = category.Name;
+            CategoryDescriptionRBox.Text = category.Description;
+            MemoryStream ms = new MemoryStream(category.Image);
+            CategoryPictureBox.Image = Image.FromStream(ms);
+        }
+
+        #endregion
+
 
         private void buttonAddAcc_Click(object sender, EventArgs e)
         {
