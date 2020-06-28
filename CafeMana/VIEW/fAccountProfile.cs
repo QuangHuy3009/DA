@@ -22,7 +22,7 @@ namespace CafeMana.VIEW
             User user = Data.Instance.User;
             txbUserName.Text = user.Name;
             txbEmail.Text    = user.Email;
-            txbConfirm.Text  = txbNewPass.Text = txbPassword.Text = user.Password;
+            txbPassword.Text = user.Password;
             txbRole.Text     = user.Role;
         }
 
@@ -30,21 +30,37 @@ namespace CafeMana.VIEW
         {
             if (MessageBox.Show("Are You Sure!", "Notify", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                if (txbUserName.Text.Trim().Length > 0 && txbPassword.Text.Trim().Length > 0 && txbEmail.Text.Trim().Length > 0  && txbNewPass.Text == txbConfirm.Text)
+                if (txbNewPass.Text.Trim() != "")
+                { 
+                if (txbUserName.Text.Trim().Length > 0 && txbPassword.Text.Trim().Length > 0 && txbEmail.Text.Trim().Length > 0 && txbNewPass.Text == txbConfirm.Text)
                 {
-                    int _ID          = Data.Instance.User.ID;
+                    int _ID = Data.Instance.User.ID;
                     string _UserName = txbUserName.Text;
                     var h1 = new DTO.Hash();
                     string _Password = h1.MD5(txbNewPass.Text);
-                    string _Email    = txbEmail.Text;
-                    string _Role     = txbRole.Text;
+                    string _Email = txbEmail.Text;
+                    string _Role = txbRole.Text;
 
                     UserBLL.Instance.UpdateUser(new User() { ID = _ID, Name = _UserName, Role = _Role, Email = _Email, Password = _Password });
                     MessageBox.Show("Successfully!");
                 }
+
+                else MessageBox.Show("Update Failed!");
+                }
                 else
                 {
-                    MessageBox.Show("Update Failed!");
+                    if (txbUserName.Text.Trim().Length > 0 && txbPassword.Text.Trim().Length > 0 && txbEmail.Text.Trim().Length > 0)
+                    {
+                        int _ID = Data.Instance.User.ID;
+                        string _UserName = txbUserName.Text;
+                        var h1 = new DTO.Hash();
+                        string _Password = txbPassword.Text;
+                        string _Email = txbEmail.Text;
+                        string _Role = txbRole.Text;
+
+                        UserBLL.Instance.UpdateUser(new User() { ID = _ID, Name = _UserName, Role = _Role, Email = _Email, Password = _Password });
+                        MessageBox.Show("Successfully!");
+                    }
                 }
             }
         }
