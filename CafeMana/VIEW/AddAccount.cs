@@ -20,7 +20,8 @@ namespace CafeMana.VIEW
                 {
                     int    _ID       = UserBLL.Instance.RetreiveUserID();
                     string _UserName = txbUserName.Text;
-                    string _Password = txbPassword.Text;
+                    var h1 = new DTO.Hash();
+                    string _Password = h1.MD5(txbPassword.Text);
                     string _Email    = txbEmail.Text;
                     string _Role     = cbBoxRole.Text;
 
