@@ -88,7 +88,6 @@
             this.Role = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel12 = new System.Windows.Forms.Panel();
-            this.buttonSetPassword = new System.Windows.Forms.Button();
             this.cbBoxRole = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.txbUserName = new System.Windows.Forms.TextBox();
@@ -532,6 +531,7 @@
             this.CategoryDescriptionRBox.Size = new System.Drawing.Size(193, 89);
             this.CategoryDescriptionRBox.TabIndex = 2;
             this.CategoryDescriptionRBox.Text = "";
+            // 
             // CategoryNameBox
             // 
             this.CategoryNameBox.Location = new System.Drawing.Point(156, 70);
@@ -539,7 +539,6 @@
             this.CategoryNameBox.Name = "CategoryNameBox";
             this.CategoryNameBox.Size = new System.Drawing.Size(193, 22);
             this.CategoryNameBox.TabIndex = 3;
-
             // 
             // label3
             // 
@@ -570,6 +569,7 @@
             this.label4.Size = new System.Drawing.Size(106, 17);
             this.label4.TabIndex = 6;
             this.label4.Text = "Category Name";
+            // 
             // CategoryGroupBox
             // 
             this.CategoryGroupBox.Controls.Add(this.CategoriesFlowPanel);
@@ -724,7 +724,6 @@
             // panel12
             // 
             this.panel12.BackColor = System.Drawing.SystemColors.Window;
-            this.panel12.Controls.Add(this.buttonSetPassword);
             this.panel12.Controls.Add(this.cbBoxRole);
             this.panel12.Controls.Add(this.label8);
             this.panel12.Controls.Add(this.txbUserName);
@@ -734,17 +733,6 @@
             this.panel12.Name = "panel12";
             this.panel12.Size = new System.Drawing.Size(321, 356);
             this.panel12.TabIndex = 2;
-            // 
-            // buttonSetPassword
-            // 
-            this.buttonSetPassword.Location = new System.Drawing.Point(115, 159);
-            this.buttonSetPassword.Margin = new System.Windows.Forms.Padding(4);
-            this.buttonSetPassword.Name = "buttonSetPassword";
-            this.buttonSetPassword.Size = new System.Drawing.Size(184, 32);
-            this.buttonSetPassword.TabIndex = 0;
-            this.buttonSetPassword.Text = "Set Password";
-            this.buttonSetPassword.UseVisualStyleBackColor = true;
-            this.buttonSetPassword.Click += new System.EventHandler(this.buttonSetPassword_Click);
             // 
             // cbBoxRole
             // 
@@ -915,7 +903,6 @@
         private System.Windows.Forms.TextBox txbFindUser;
         private System.Windows.Forms.Button buttonFind;
         private System.Windows.Forms.DataGridView UsersGridView;
-        private System.Windows.Forms.Button buttonSetPassword;
         private System.Windows.Forms.Button buttonAddAcc;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProductIDColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProductNameColumn;

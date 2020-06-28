@@ -87,8 +87,8 @@ namespace CafeMana.VIEW
                 decimal Discount = numericDiscount.Value;
                 decimal CashGiven  = Convert.ToDecimal(txtCashGiven.Text);
                 decimal CashReturn = Convert.ToDecimal(txtCashReturn.Text);
-
-                Sale sale = new Sale() { ID = SaleBLL.Instance.RetreiveSaleID(), Total = (TotalBill*(1-Discount/100)), CashGiven = CashGiven, CashReturn = CashReturn, Time = DateTime.Now, SalesManID = 1 };
+                int _SalesmanID    = Data.Instance.User.ID;
+                Sale sale = new Sale() { ID = SaleBLL.Instance.RetreiveSaleID(), Total = (TotalBill*(1-Discount/100)), CashGiven = CashGiven, CashReturn = CashReturn, Time = DateTime.Now, SalesManID = _SalesmanID };
                 SaleBLL.Instance.AddNewSale(sale);
                 foreach (DataGridViewRow row in dataGridView.Rows)
                 {

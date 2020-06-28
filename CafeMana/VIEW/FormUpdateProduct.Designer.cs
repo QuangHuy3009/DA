@@ -214,6 +214,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "FormUpdateProduct";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "FormUpdateProduct";
             this.Load += new System.EventHandler(this.FormUpdateProduct_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ProductPictureBox)).EndInit();

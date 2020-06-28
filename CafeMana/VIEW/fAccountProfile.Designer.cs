@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel12 = new System.Windows.Forms.Panel();
+            this.txbRole = new System.Windows.Forms.TextBox();
             this.txbNewPass = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.ButtonUpdate = new System.Windows.Forms.Button();
@@ -38,7 +39,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.txbEmail = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.cbBoxRole = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.txbUserName = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
@@ -48,6 +48,7 @@
             // panel12
             // 
             this.panel12.BackColor = System.Drawing.SystemColors.Window;
+            this.panel12.Controls.Add(this.txbRole);
             this.panel12.Controls.Add(this.txbNewPass);
             this.panel12.Controls.Add(this.label2);
             this.panel12.Controls.Add(this.ButtonUpdate);
@@ -57,7 +58,6 @@
             this.panel12.Controls.Add(this.label5);
             this.panel12.Controls.Add(this.txbEmail);
             this.panel12.Controls.Add(this.label11);
-            this.panel12.Controls.Add(this.cbBoxRole);
             this.panel12.Controls.Add(this.label8);
             this.panel12.Controls.Add(this.txbUserName);
             this.panel12.Controls.Add(this.label12);
@@ -66,6 +66,15 @@
             this.panel12.Name = "panel12";
             this.panel12.Size = new System.Drawing.Size(369, 423);
             this.panel12.TabIndex = 14;
+            // 
+            // txbRole
+            // 
+            this.txbRole.Location = new System.Drawing.Point(115, 74);
+            this.txbRole.Margin = new System.Windows.Forms.Padding(4);
+            this.txbRole.Name = "txbRole";
+            this.txbRole.ReadOnly = true;
+            this.txbRole.Size = new System.Drawing.Size(235, 22);
+            this.txbRole.TabIndex = 17;
             // 
             // txbNewPass
             // 
@@ -124,6 +133,7 @@
             this.txbPassword.Location = new System.Drawing.Point(115, 167);
             this.txbPassword.Margin = new System.Windows.Forms.Padding(4);
             this.txbPassword.Name = "txbPassword";
+            this.txbPassword.ReadOnly = true;
             this.txbPassword.Size = new System.Drawing.Size(235, 22);
             this.txbPassword.TabIndex = 11;
             this.txbPassword.UseSystemPasswordChar = true;
@@ -157,19 +167,6 @@
             this.label11.Size = new System.Drawing.Size(42, 17);
             this.label11.TabIndex = 8;
             this.label11.Text = "Email";
-            // 
-            // cbBoxRole
-            // 
-            this.cbBoxRole.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbBoxRole.FormattingEnabled = true;
-            this.cbBoxRole.Items.AddRange(new object[] {
-            "Admin",
-            "Salesman"});
-            this.cbBoxRole.Location = new System.Drawing.Point(115, 73);
-            this.cbBoxRole.Margin = new System.Windows.Forms.Padding(4);
-            this.cbBoxRole.Name = "cbBoxRole";
-            this.cbBoxRole.Size = new System.Drawing.Size(235, 24);
-            this.cbBoxRole.TabIndex = 7;
             // 
             // label8
             // 
@@ -230,9 +227,9 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txbEmail;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.ComboBox cbBoxRole;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txbUserName;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox txbRole;
     }
 }

@@ -347,22 +347,13 @@ namespace CafeMana.VIEW
             }
         }    
 
-        private void buttonSetPassword_Click(object sender, EventArgs e)
-        {
-            int ID = (int)(sender as Button).Tag;
-            fAccountProfile f = new fAccountProfile();
-            f.Tag = Data.Instance.UsersList.FirstOrDefault(x => x.ID == ID);
-            f.ShowDialog();
-            LoadUser();
-        }
-
         private void UsersGridView_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             DataGridViewRow row     = UsersGridView.Rows[e.RowIndex];
             txbUserName.Text        = Convert.ToString(row.Cells["UserName"].Value);
             cbBoxRole.Text          = Convert.ToString(row.Cells["Role"].Value);                
             buttonEditAcc.Tag       = Convert.ToInt32(row.Cells["ID"].Value);
-            buttonSetPassword.Tag   = Convert.ToInt32(row.Cells["ID"].Value);
+           
         }
 
         private void buttonFind_Click(object sender, EventArgs e)

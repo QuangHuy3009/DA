@@ -58,7 +58,7 @@
             this.UserNameTxt.ForeColor = System.Drawing.SystemColors.InfoText;
             this.UserNameTxt.Location = new System.Drawing.Point(100, 226);
             this.UserNameTxt.Name = "UserNameTxt";
-            this.UserNameTxt.Size = new System.Drawing.Size(243, 25);
+            this.UserNameTxt.Size = new System.Drawing.Size(243, 29);
             this.UserNameTxt.TabIndex = 2;
             this.UserNameTxt.Text = "abcxyz@gmail.com";
             this.UserNameTxt.UseWaitCursor = true;
@@ -81,7 +81,7 @@
             this.PasswordTxt.ForeColor = System.Drawing.SystemColors.InfoText;
             this.PasswordTxt.Location = new System.Drawing.Point(100, 282);
             this.PasswordTxt.Name = "PasswordTxt";
-            this.PasswordTxt.Size = new System.Drawing.Size(243, 25);
+            this.PasswordTxt.Size = new System.Drawing.Size(243, 29);
             this.PasswordTxt.TabIndex = 5;
             this.PasswordTxt.Text = "Huy123";
             this.PasswordTxt.UseSystemPasswordChar = true;
@@ -98,13 +98,13 @@
             // 
             // loginBtn
             // 
-            this.loginBtn.Location = new System.Drawing.Point(134, 449);
+            this.loginBtn.Location = new System.Drawing.Point(189, 332);
             this.loginBtn.Name = "loginBtn";
             this.loginBtn.Size = new System.Drawing.Size(154, 56);
             this.loginBtn.TabIndex = 6;
             this.loginBtn.Text = "LOGIN";
             this.loginBtn.UseVisualStyleBackColor = true;
-            this.loginBtn.Click += new System.EventHandler(this.button1_Click);
+            this.loginBtn.Click += new System.EventHandler(this.loginBtn_Click);
             // 
             // pictureBox7
             // 
@@ -183,7 +183,7 @@
             this.label1.Cursor = System.Windows.Forms.Cursors.AppStarting;
             this.label1.Location = new System.Drawing.Point(417, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(16, 16);
+            this.label1.Size = new System.Drawing.Size(21, 21);
             this.label1.TabIndex = 11;
             this.label1.Text = "X";
             this.label1.Click += new System.EventHandler(this.label1_Click);

@@ -16,39 +16,26 @@ namespace CafeMana.VIEW
 {
     public partial class FormGeneral : Form
     {
-        public int SalesmanID = 0;
-        public string Username = string.Empty;
-        private static FormGeneral _Instance;
 
-        public static FormGeneral Instance
-        {
-            
-            get { if (_Instance == null) _Instance = new FormGeneral(); return _Instance; }
-            private set { _Instance = value; }
-        }
-       public FormGeneral()
+        public FormGeneral()
         {
             InitializeComponent();
             LoadCategory();
+            LoadInformation();
         }
 
-        public FormGeneral(int UserID)
-        {
-            InitializeComponent();
-            LoadCategory();
-            Username = DAL.DataAccess.Instance.ReturnUserName(UserID);
-
-            
-        }
 
         #region Load
 
+        private void LoadInformation()
+        {
+            UserNameIDMenuLabel.Text = Data.Instance.User.Name + "(" + Data.Instance.User.Role + ")";
+        }
+
         private void LoadCategory()
         {
-            CategoriesFlowPanel.Controls.Clear();
-            UserNameIDMenuLabel.Text = Username + "(" + SalesmanID + ")";
+            CategoriesFlowPanel.Controls.Clear();          
             List<Category> CategoriesList = Data.Instance.CategoriesList;
-
             foreach (Category Category in CategoriesList)
             {
                 Button btn = new Button();
@@ -66,7 +53,6 @@ namespace CafeMana.VIEW
 
                 btn.Click      += CategoryButtonClick;
             }
-
         }
 
         #endregion
@@ -215,12 +201,7 @@ namespace CafeMana.VIEW
 
         }
 
-
-        #endregion
-
-        #region ButtonDeleteForProductGridView
-
-        private void ProductsGridView_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        private void   ProductsGridView_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
             if (e.RowIndex < 0) return;
 
@@ -244,13 +225,15 @@ namespace CafeMana.VIEW
 
         #endregion
 
+        #region MenuStrip
 
-        //
         private void AdmintoolStrip_Click(object sender, EventArgs e)
         {
-            fAdmin f = new fAdmin();
-            f.ShowDialog();
-            LoadCategory();
+            if (Data.Instance.User.Role.ToLower() == "admin")
+            {
+                fAdmin f = new fAdmin();
+                f.ShowDialog();
+            }
 
         }
 
@@ -265,7 +248,7 @@ namespace CafeMana.VIEW
             this.Close();
         }
 
-      
+        #endregion
 
     }
 }

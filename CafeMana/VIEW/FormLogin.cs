@@ -3,6 +3,7 @@ using System;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using CafeMana.BLL;
+using System.Linq;
 namespace CafeMana
 {
     public partial class LoginForm : Form
@@ -11,15 +12,13 @@ namespace CafeMana
         {
             InitializeComponent();
         }
-
-        
-
+      
         private void label1_Click(object sender, EventArgs e)
         {
             Close();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void loginBtn_Click(object sender, EventArgs e)
         {
             string UsernameEmail = UserNameTxt.Text;
             string Password = PasswordTxt.Text;
@@ -28,8 +27,8 @@ namespace CafeMana
             {
                 if (UserBLL.Instance.ConfirmUser(UsernameEmail, Password))
                 {
-                    int UserID = Convert.ToInt32(DAL.DataAccess.Instance.ReturnUserID(UsernameEmail));
-                    FormGeneral f1 = new FormGeneral(UserID);
+                    Data.Instance.User = Data.Instance.UsersList.FirstOrDefault(x => x.Email == UsernameEmail);
+                    FormGeneral f1 = new FormGeneral();
                     this.Hide();
                     f1.ShowDialog();
                     this.Show();
@@ -41,13 +40,14 @@ namespace CafeMana
 
             }
         }
-        public bool ConfirmEmailAddress(string UserEmail)
+
+        public bool  ConfirmEmailAddress(string UserEmail)
         {
             var EmailRegex = new Regex(@"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?");
             return EmailRegex.IsMatch(UserEmail);
         }
 
-        public bool ConfirmPassword(string UserPassword)
+        public bool  ConfirmPassword(string UserPassword)
         {
             UserPassword = UserPassword.Trim();
             if (UserPassword == string.Empty)

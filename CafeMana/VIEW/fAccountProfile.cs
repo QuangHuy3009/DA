@@ -19,11 +19,11 @@ namespace CafeMana.VIEW
 
         private void LoadData()
         {
-            User user = (User)this.Tag;
+            User user = Data.Instance.User;
             txbUserName.Text = user.Name;
             txbEmail.Text    = user.Email;
             txbConfirm.Text  = txbNewPass.Text = txbPassword.Text = user.Password;
-            cbBoxRole.Text   = user.Role;
+            txbRole.Text     = user.Role;
         }
 
         private void ButtonUpdate_Click(object sender, EventArgs e)
@@ -32,12 +32,12 @@ namespace CafeMana.VIEW
             {
                 if (txbUserName.Text.Trim().Length > 0 && txbPassword.Text.Trim().Length > 0 && txbEmail.Text.Trim().Length > 0  && txbNewPass.Text == txbConfirm.Text)
                 {
-                    int    _ID       = Convert.ToInt32(((User)this.Tag).ID);
+                    int _ID          = Data.Instance.User.ID;
                     string _UserName = txbUserName.Text;
                     var h1 = new DTO.Hash();
                     string _Password = h1.MD5(txbNewPass.Text);
                     string _Email    = txbEmail.Text;
-                    string _Role     = cbBoxRole.Text;
+                    string _Role     = txbRole.Text;
 
                     UserBLL.Instance.UpdateUser(new User() { ID = _ID, Name = _UserName, Role = _Role, Email = _Email, Password = _Password });
                     MessageBox.Show("Successfully!");
