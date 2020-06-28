@@ -28,12 +28,17 @@ namespace CafeMana
             {
                 if (UserBLL.Instance.ConfirmUser(UsernameEmail, Password))
                 {
-                    FormGeneral f1 = new FormGeneral();
+                    int UserID = Convert.ToInt32(DAL.DataAccess.Instance.ReturnUserID(UsernameEmail));
+                    FormGeneral f1 = new FormGeneral(UserID);
                     this.Hide();
                     f1.ShowDialog();
                     this.Show();
-                } 
-                else MessageBox.Show("UserEmail Or PassWord Is Incorrect!");
+                }
+                else
+                {
+                    MessageBox.Show("Sai UsernameEmail hoặc mật khẩu ");
+                }
+
             }
         }
         public bool ConfirmEmailAddress(string UserEmail)
