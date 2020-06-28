@@ -171,7 +171,7 @@ namespace CafeMana.VIEW
     
         private void   ProductsGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {   
-            if (e.RowIndex >= 0)
+            if (e.RowIndex >= 0 && ProductsGridView.Rows[e.RowIndex].Cells["ID"].Value!=null)
             {
                 if (ProductsGridView.Columns[e.ColumnIndex].Name == "Delete")
                 {
@@ -197,6 +197,8 @@ namespace CafeMana.VIEW
                 Tag = ProductsGridView
             };
             f.ShowDialog();
+            ProductsGridView.Rows.Clear();
+            MessageBox.Show("Successful!!");
 
         }
 
