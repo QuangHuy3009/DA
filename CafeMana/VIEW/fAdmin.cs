@@ -173,7 +173,8 @@ namespace CafeMana.VIEW
             List<Product> ProductsList = Data.Instance.ProductsList;
             int IDCategory             = ((Category)ProductCategoryComboBox.SelectedValue).ID;
             string CategoryName        = ((Category)ProductCategoryComboBox.SelectedValue).Name;
-            string Txt                 = txbFindProduct.Text;
+            string Txt                 = txbFindProduct.Text.ToLower();
+
             if (Txt == "")
             {
                 foreach (Product product in ProductsList)
@@ -183,13 +184,14 @@ namespace CafeMana.VIEW
                         ProductsGridView.Rows.Add(product.ID, product.Name, product.Price, CategoryName, product.Description, product.Image, null, null);
 
             }
+
             else
             {
                 foreach (Product product in ProductsList)
                 
                     if (product.CatagoryID == IDCategory)
 
-                        if (product.Name.Contains(Txt) || product.Price.ToString().Contains(Txt) || product.Description.Contains(Txt))
+                        if (product.Name.ToLower().Contains(Txt) || product.Price.ToString().ToLower().Contains(Txt) || product.Description.ToLower().Contains(Txt))
 
                             ProductsGridView.Rows.Add(product.ID, product.Name, product.Price, CategoryName, product.Description, product.Image, null, null);
                 
@@ -343,19 +345,7 @@ namespace CafeMana.VIEW
                 MessageBox.Show("Successfully!");
                 LoadUser();
             }
-        }
-
-        private void buttonDelAcc_Click(object sender, EventArgs e)
-        {
-           
-            if(MessageBox.Show("Are You Sure!", "Notify", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                int ID = (int)(sender as Button).Tag;
-                UserBLL.Instance.DeleteUser(ID);
-                MessageBox.Show("Successfully!");
-                LoadUser();
-            }
-        }
+        }    
 
         private void buttonSetPassword_Click(object sender, EventArgs e)
         {
@@ -370,8 +360,7 @@ namespace CafeMana.VIEW
         {
             DataGridViewRow row     = UsersGridView.Rows[e.RowIndex];
             txbUserName.Text        = Convert.ToString(row.Cells["UserName"].Value);
-            cbBoxRole.Text          = Convert.ToString(row.Cells["Role"].Value);        
-            buttonDelAcc.Tag        = Convert.ToInt32(row.Cells["ID"].Value);
+            cbBoxRole.Text          = Convert.ToString(row.Cells["Role"].Value);                
             buttonEditAcc.Tag       = Convert.ToInt32(row.Cells["ID"].Value);
             buttonSetPassword.Tag   = Convert.ToInt32(row.Cells["ID"].Value);
         }
