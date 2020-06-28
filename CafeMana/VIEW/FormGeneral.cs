@@ -16,6 +16,13 @@ namespace CafeMana.VIEW
 {
     public partial class FormGeneral : Form
     {
+        private static FormGeneral _Instance;
+        public static FormGeneral Instance
+        {
+            get { if (_Instance == null) _Instance = new FormGeneral(); return _Instance; }
+            private set { _Instance = value; }
+        }
+
         public FormGeneral()
         {
             InitializeComponent();
@@ -26,6 +33,7 @@ namespace CafeMana.VIEW
 
         private void LoadCategory()
         {
+            CategoriesFlowPanel.Controls.Clear();
             List<Category> CategoriesList = Data.Instance.CategoriesList;
 
             foreach (Category Category in CategoriesList)
@@ -53,6 +61,7 @@ namespace CafeMana.VIEW
         #region Oder
 
         public int RowIndex = 0;
+
 
         public bool    CheckProductAlreadyAdded(int ProductID)
         {
@@ -226,6 +235,8 @@ namespace CafeMana.VIEW
         {
             fAdmin f = new fAdmin();
             f.ShowDialog();
+            LoadCategory();
+
         }
 
         private void AccountInformationToolStripMenuItem_Click(object sender, EventArgs e)

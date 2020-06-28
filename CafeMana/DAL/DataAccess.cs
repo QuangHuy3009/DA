@@ -84,6 +84,30 @@ namespace CafeMana.DAL
             }
         }
 
+        public int RetreiveIdentityProduct()
+        {
+            int Identity = 0;
+            using (SqlConnection connection = new SqlConnection(ConnectionString.connectionString))
+            {
+                SqlCommand command = new SqlCommand("SELECT  IDENT_CURRENT('Products')", connection);
+                connection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        Identity = Convert.ToInt32(reader[0].ToString());
+                    }
+                }
+                reader.Close();
+
+                return Identity;
+
+            }
+        }
+
         #endregion
 
         #region Sale
@@ -220,8 +244,8 @@ namespace CafeMana.DAL
                 {
                     while (reader.Read())
                     {
-                        int _ID = reader.GetInt32(0);
-                        string _Name = reader.GetString(1);
+                        int    _ID    = reader.GetInt32(0);
+                        string _Name  = reader.GetString(1);
                         string _Description = reader.GetString(2);
                         byte[] _Image = (byte[])reader[3];
 
@@ -263,6 +287,30 @@ namespace CafeMana.DAL
                 command.CommandText = "Update Categories set CategoryName=@CategoryName , CategoryDescription= @CategoryDescription , CategoryPicture=@CategoryPicture  where ID= @CategoryID";
                 command.ExecuteNonQuery();
                 connection.Close();
+
+            }
+        }
+
+        public int RetreiveIdentityCategory()
+        {
+            int Identity = 0;
+            using (SqlConnection connection = new SqlConnection(ConnectionString.connectionString))
+            {
+                SqlCommand command = new SqlCommand("SELECT  IDENT_CURRENT('Categories')", connection);
+                connection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        Identity = Convert.ToInt32(reader[0].ToString());
+                    }
+                }
+                reader.Close();
+
+                return Identity;
 
             }
         }
@@ -411,6 +459,30 @@ namespace CafeMana.DAL
             }
             else return false;
 
+        }
+
+        public int RetreiveIdentityUser()
+        {
+            int Identity = 0;
+            using (SqlConnection connection = new SqlConnection(ConnectionString.connectionString))
+            {
+                SqlCommand command = new SqlCommand("SELECT  IDENT_CURRENT('Users')", connection);
+                connection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        Identity = Convert.ToInt32(reader[0].ToString());
+                    }
+                }
+                reader.Close();
+
+                return Identity;
+
+            }
         }
 
         #endregion

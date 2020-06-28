@@ -94,7 +94,6 @@
             this.txbUserName = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.panel13 = new System.Windows.Forms.Panel();
-            this.buttonDelAcc = new System.Windows.Forms.Button();
             this.buttonEditAcc = new System.Windows.Forms.Button();
             this.buttonAddAcc = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
@@ -428,7 +427,7 @@
             this.ProductCategoryComboBox.FormattingEnabled = true;
             this.ProductCategoryComboBox.Items.AddRange(new object[] {
             "All Categories"});
-            this.ProductCategoryComboBox.Location = new System.Drawing.Point(216, 23);
+            this.ProductCategoryComboBox.Location = new System.Drawing.Point(214, 20);
             this.ProductCategoryComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ProductCategoryComboBox.Name = "ProductCategoryComboBox";
             this.ProductCategoryComboBox.Size = new System.Drawing.Size(273, 24);
@@ -798,7 +797,6 @@
             // 
             // panel13
             // 
-            this.panel13.Controls.Add(this.buttonDelAcc);
             this.panel13.Controls.Add(this.buttonEditAcc);
             this.panel13.Controls.Add(this.buttonAddAcc);
             this.panel13.Location = new System.Drawing.Point(11, 26);
@@ -807,23 +805,12 @@
             this.panel13.Size = new System.Drawing.Size(497, 69);
             this.panel13.TabIndex = 11;
             // 
-            // buttonDelAcc
-            // 
-            this.buttonDelAcc.Location = new System.Drawing.Point(413, 3);
-            this.buttonDelAcc.Margin = new System.Windows.Forms.Padding(4);
-            this.buttonDelAcc.Name = "buttonDelAcc";
-            this.buttonDelAcc.Size = new System.Drawing.Size(84, 62);
-            this.buttonDelAcc.TabIndex = 2;
-            this.buttonDelAcc.Text = "Delete";
-            this.buttonDelAcc.UseVisualStyleBackColor = true;
-            this.buttonDelAcc.Click += new System.EventHandler(this.buttonDelAcc_Click);
-            // 
             // buttonEditAcc
             // 
-            this.buttonEditAcc.Location = new System.Drawing.Point(222, 4);
+            this.buttonEditAcc.Location = new System.Drawing.Point(0, 7);
             this.buttonEditAcc.Margin = new System.Windows.Forms.Padding(4);
             this.buttonEditAcc.Name = "buttonEditAcc";
-            this.buttonEditAcc.Size = new System.Drawing.Size(84, 62);
+            this.buttonEditAcc.Size = new System.Drawing.Size(130, 62);
             this.buttonEditAcc.TabIndex = 1;
             this.buttonEditAcc.Text = "Update";
             this.buttonEditAcc.UseVisualStyleBackColor = true;
@@ -831,10 +818,10 @@
             // 
             // buttonAddAcc
             // 
-            this.buttonAddAcc.Location = new System.Drawing.Point(0, 4);
+            this.buttonAddAcc.Location = new System.Drawing.Point(367, 7);
             this.buttonAddAcc.Margin = new System.Windows.Forms.Padding(4);
             this.buttonAddAcc.Name = "buttonAddAcc";
-            this.buttonAddAcc.Size = new System.Drawing.Size(84, 62);
+            this.buttonAddAcc.Size = new System.Drawing.Size(130, 62);
             this.buttonAddAcc.TabIndex = 0;
             this.buttonAddAcc.Text = "Add";
             this.buttonAddAcc.UseVisualStyleBackColor = true;
@@ -909,7 +896,6 @@
         private System.Windows.Forms.TextBox txbUserName;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Panel panel13;
-        private System.Windows.Forms.Button buttonDelAcc;
         private System.Windows.Forms.Button buttonEditAcc;
         private System.Windows.Forms.GroupBox SalesGroupBox;
         private System.Windows.Forms.DataGridView SalesGridView;
