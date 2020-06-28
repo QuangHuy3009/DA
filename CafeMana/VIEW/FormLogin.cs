@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -18,28 +19,47 @@ namespace CafeMana
             InitializeComponent();
         }
 
+        
 
-
-        private void LoginForm_FormClosing(object sender, FormClosingEventArgs e)
+        private void label1_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Bạn có muốn thoát CT ?", "Thông báo", MessageBoxButtons.OKCancel) != System.Windows.Forms.DialogResult.OK)
+            Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            String UsernameEmail = UserNameTxt.Text;
+            string Password = PasswordTxt.Text;
+            if (ConfirmEmailAddress(UsernameEmail) && ConfirmPassword(Password))
             {
-                e.Cancel = true;
+                if (DAL.DataAccess.Instance.ConfirmUser(UsernameEmail, Password))
+                {
+                    FormGeneral f1 = new FormGeneral();
+                    this.Hide();
+                    f1.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Sai UsernameEmail hoặc mật khẩu ");
+                }
+
             }
+
+
         }
-
-        private void buttonLogin_Click(object sender, EventArgs e)
+        public bool ConfirmEmailAddress(string UserEmail)
         {
-            FormGeneral f = new FormGeneral();
-            this.Hide();
-            f.ShowDialog();
-            this.Show();
+            var EmailRegex = new Regex(@"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?");
+            return EmailRegex.IsMatch(UserEmail);
         }
-
-        private void buttonExit_Click(object sender, EventArgs e)
+        public bool ConfirmPassword(string UserPassword)
         {
-            Application.Exit();
-
+            UserPassword = UserPassword.Trim();
+            if (UserPassword == string.Empty)
+            {
+                return false;
+            }
+            else return true;
         }
     }
 }

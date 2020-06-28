@@ -59,7 +59,7 @@
             // AccountInformationToolStripMenuItem
             // 
             this.AccountInformationToolStripMenuItem.Name = "AccountInformationToolStripMenuItem";
-            this.AccountInformationToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.AccountInformationToolStripMenuItem.Size = new System.Drawing.Size(228, 26);
             this.AccountInformationToolStripMenuItem.Text = "Account Information";
             this.AccountInformationToolStripMenuItem.Click += new System.EventHandler(this.AccountInformationToolStripMenuItem_Click);
             // 
@@ -69,20 +69,20 @@
             this.AccountInformationToolStripMenuItem,
             this.LogoutToolStripMenuItem});
             this.thôngTinToolStripMenuItem.Name = "thôngTinToolStripMenuItem";
-            this.thôngTinToolStripMenuItem.Size = new System.Drawing.Size(82, 20);
+            this.thôngTinToolStripMenuItem.Size = new System.Drawing.Size(101, 24);
             this.thôngTinToolStripMenuItem.Text = "Information";
             // 
             // LogoutToolStripMenuItem
             // 
             this.LogoutToolStripMenuItem.Name = "LogoutToolStripMenuItem";
-            this.LogoutToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.LogoutToolStripMenuItem.Size = new System.Drawing.Size(228, 26);
             this.LogoutToolStripMenuItem.Text = "Log out";
             this.LogoutToolStripMenuItem.Click += new System.EventHandler(this.LogoutToolStripMenuItem_Click);
             // 
             // AdmintoolStrip
             // 
             this.AdmintoolStrip.Name = "AdmintoolStrip";
-            this.AdmintoolStrip.Size = new System.Drawing.Size(55, 20);
+            this.AdmintoolStrip.Size = new System.Drawing.Size(67, 24);
             this.AdmintoolStrip.Text = "Admin";
             this.AdmintoolStrip.Click += new System.EventHandler(this.AdmintoolStrip_Click);
             // 
@@ -95,7 +95,7 @@
             this.UserNameIDMenuLabel});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(903, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1204, 28);
             this.menuStrip1.TabIndex = 6;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -107,15 +107,17 @@
             this.UserNameIDMenuLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.UserNameIDMenuLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.UserNameIDMenuLabel.Name = "UserNameIDMenuLabel";
-            this.UserNameIDMenuLabel.Size = new System.Drawing.Size(22, 20);
+            this.UserNameIDMenuLabel.Size = new System.Drawing.Size(27, 24);
             this.UserNameIDMenuLabel.Text = " ";
             // 
             // BillGroupBox
             // 
             this.BillGroupBox.Controls.Add(this.ProductsGridView);
-            this.BillGroupBox.Location = new System.Drawing.Point(471, 27);
+            this.BillGroupBox.Location = new System.Drawing.Point(628, 33);
+            this.BillGroupBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.BillGroupBox.Name = "BillGroupBox";
-            this.BillGroupBox.Size = new System.Drawing.Size(425, 469);
+            this.BillGroupBox.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BillGroupBox.Size = new System.Drawing.Size(567, 577);
             this.BillGroupBox.TabIndex = 9;
             this.BillGroupBox.TabStop = false;
             this.BillGroupBox.Text = "Bill";
@@ -124,6 +126,7 @@
             // 
             this.ProductsGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.ProductsGridView.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
+            this.ProductsGridView.ColumnHeadersHeight = 29;
             this.ProductsGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.ProductsGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ID,
@@ -134,11 +137,12 @@
             this.Delete});
             this.ProductsGridView.Dock = System.Windows.Forms.DockStyle.Top;
             this.ProductsGridView.GridColor = System.Drawing.SystemColors.AppWorkspace;
-            this.ProductsGridView.Location = new System.Drawing.Point(3, 16);
+            this.ProductsGridView.Location = new System.Drawing.Point(4, 19);
+            this.ProductsGridView.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ProductsGridView.Name = "ProductsGridView";
             this.ProductsGridView.RowHeadersWidth = 51;
             this.ProductsGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.ProductsGridView.Size = new System.Drawing.Size(419, 448);
+            this.ProductsGridView.Size = new System.Drawing.Size(559, 551);
             this.ProductsGridView.TabIndex = 0;
             this.ProductsGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ProductsGridView_CellContentClick);
             this.ProductsGridView.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.ProductsGridView_CellPainting);
@@ -161,6 +165,7 @@
             this.ProductName.MinimumWidth = 6;
             this.ProductName.Name = "ProductName";
             this.ProductName.ReadOnly = true;
+            this.ProductName.Width = 125;
             // 
             // ProductPrice
             // 
@@ -204,9 +209,11 @@
             // ProductsGroupBox
             // 
             this.ProductsGroupBox.Controls.Add(this.ProductsFlowPanel);
-            this.ProductsGroupBox.Location = new System.Drawing.Point(12, 240);
+            this.ProductsGroupBox.Location = new System.Drawing.Point(16, 295);
+            this.ProductsGroupBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ProductsGroupBox.Name = "ProductsGroupBox";
-            this.ProductsGroupBox.Size = new System.Drawing.Size(450, 300);
+            this.ProductsGroupBox.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ProductsGroupBox.Size = new System.Drawing.Size(600, 369);
             this.ProductsGroupBox.TabIndex = 8;
             this.ProductsGroupBox.TabStop = false;
             this.ProductsGroupBox.Text = "Products";
@@ -215,17 +222,20 @@
             // 
             this.ProductsFlowPanel.AutoScroll = true;
             this.ProductsFlowPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ProductsFlowPanel.Location = new System.Drawing.Point(3, 16);
+            this.ProductsFlowPanel.Location = new System.Drawing.Point(4, 19);
+            this.ProductsFlowPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ProductsFlowPanel.Name = "ProductsFlowPanel";
-            this.ProductsFlowPanel.Size = new System.Drawing.Size(444, 281);
+            this.ProductsFlowPanel.Size = new System.Drawing.Size(592, 346);
             this.ProductsFlowPanel.TabIndex = 0;
             // 
             // CategoryGroupBox
             // 
             this.CategoryGroupBox.Controls.Add(this.CategoriesFlowPanel);
-            this.CategoryGroupBox.Location = new System.Drawing.Point(12, 27);
+            this.CategoryGroupBox.Location = new System.Drawing.Point(16, 33);
+            this.CategoryGroupBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.CategoryGroupBox.Name = "CategoryGroupBox";
-            this.CategoryGroupBox.Size = new System.Drawing.Size(453, 207);
+            this.CategoryGroupBox.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.CategoryGroupBox.Size = new System.Drawing.Size(604, 255);
             this.CategoryGroupBox.TabIndex = 7;
             this.CategoryGroupBox.TabStop = false;
             this.CategoryGroupBox.Text = "Categories";
@@ -235,16 +245,18 @@
             this.CategoriesFlowPanel.AutoScroll = true;
             this.CategoriesFlowPanel.BackColor = System.Drawing.SystemColors.Control;
             this.CategoriesFlowPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CategoriesFlowPanel.Location = new System.Drawing.Point(3, 16);
+            this.CategoriesFlowPanel.Location = new System.Drawing.Point(4, 19);
+            this.CategoriesFlowPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.CategoriesFlowPanel.Name = "CategoriesFlowPanel";
-            this.CategoriesFlowPanel.Size = new System.Drawing.Size(447, 188);
+            this.CategoriesFlowPanel.Size = new System.Drawing.Size(596, 232);
             this.CategoriesFlowPanel.TabIndex = 0;
             // 
             // CheckOutButton
             // 
-            this.CheckOutButton.Location = new System.Drawing.Point(787, 505);
+            this.CheckOutButton.Location = new System.Drawing.Point(1049, 622);
+            this.CheckOutButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.CheckOutButton.Name = "CheckOutButton";
-            this.CheckOutButton.Size = new System.Drawing.Size(75, 23);
+            this.CheckOutButton.Size = new System.Drawing.Size(100, 28);
             this.CheckOutButton.TabIndex = 12;
             this.CheckOutButton.Text = "Check Out";
             this.CheckOutButton.UseVisualStyleBackColor = true;
@@ -252,25 +264,27 @@
             // 
             // TotalBillBox
             // 
-            this.TotalBillBox.Location = new System.Drawing.Point(571, 507);
+            this.TotalBillBox.Location = new System.Drawing.Point(761, 624);
+            this.TotalBillBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.TotalBillBox.Name = "TotalBillBox";
-            this.TotalBillBox.Size = new System.Drawing.Size(210, 20);
+            this.TotalBillBox.Size = new System.Drawing.Size(279, 22);
             this.TotalBillBox.TabIndex = 11;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(518, 510);
+            this.label1.Location = new System.Drawing.Point(691, 628);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(47, 13);
+            this.label1.Size = new System.Drawing.Size(62, 17);
             this.label1.TabIndex = 10;
             this.label1.Text = "Total Bill";
             // 
             // FormGeneral
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(903, 542);
+            this.ClientSize = new System.Drawing.Size(1204, 667);
             this.Controls.Add(this.CheckOutButton);
             this.Controls.Add(this.TotalBillBox);
             this.Controls.Add(this.label1);
@@ -278,6 +292,7 @@
             this.Controls.Add(this.ProductsGroupBox);
             this.Controls.Add(this.CategoryGroupBox);
             this.Controls.Add(this.menuStrip1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FormGeneral";
             this.Text = "Cafe Management Software";
             this.menuStrip1.ResumeLayout(false);

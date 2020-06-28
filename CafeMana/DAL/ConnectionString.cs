@@ -8,6 +8,6 @@ namespace CafeMana.DAL
 {
     class ConnectionString
     {
-        public static string connectionString = @"Data Source=DESKTOP-IA2LFL1;Initial Catalog=QuanLyCaPhe1;Integrated Security=True";
+        public static string connectionString = @"Data Source=DESKTOP-0FO06O9;Initial Catalog=QuanLyCaPhe1;Integrated Security=True";
     }
 }

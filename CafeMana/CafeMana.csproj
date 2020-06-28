@@ -56,6 +56,7 @@
     <Compile Include="DAL\ConnectionString.cs" />
     <Compile Include="DAL\DataAccess.cs" />
     <Compile Include="DTO\Category.cs" />
+    <Compile Include="DTO\Hash.cs" />
     <Compile Include="DTO\Product.cs" />
     <Compile Include="DTO\Sale.cs" />
     <Compile Include="DTO\SaleItem.cs" />
@@ -176,10 +177,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Image\iconLogin.png" />
     <Content Include="Image\1212.jpg" />
     <Content Include="Image\editbutton.png" />
     <Content Include="Image\food.jpg" />
     <Content Include="Image\kinhlup.jpg" />
+    <None Include="Image\password.png" />
+    <Content Include="Image\user.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

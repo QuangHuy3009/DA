@@ -335,6 +335,83 @@ namespace CafeMana.DAL
 
             }
         }
+        public string ReturnUserName(int UserID)
+        {
+            using (SqlConnection connection = new SqlConnection(ConnectionString.connectionString))
+            {
+                SqlCommand command = new SqlCommand("SELECT Name FROM Users where ID = '" + UserID + "';", connection);
+                connection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                string UserName = string.Empty;
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        UserName = reader.GetString(0);
+                    }
+                }
+                reader.Close();
+
+                return UserName;
+            }
+        }
+
+        public int ReturnUserID(string UserEmail)
+        {
+            using (SqlConnection connection = new SqlConnection(ConnectionString.connectionString))
+            {
+                SqlCommand command = new SqlCommand("SELECT ID FROM Users where Email = '" + UserEmail + "';", connection);
+                connection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                int UserID = 0;
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        UserID = reader.GetInt32(0);
+                    }
+                }
+                reader.Close();
+
+                return UserID;
+            }
+        }
+        public bool ConfirmUser(string UserEmail, string UserPassword)
+        {
+            string PasswordFromDatabase="";
+
+            using (SqlConnection connection = new SqlConnection(ConnectionString.connectionString))
+            {
+                SqlCommand command = new SqlCommand("SELECT Password FROM Users where Email = '" + UserEmail + "';", connection);
+                connection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        PasswordFromDatabase = reader.GetString(0);
+                    }
+                }
+               
+                reader.Close();
+            }
+            var hash = new CafeMana.DTO.Hash();
+            string st = hash.MD5(UserPassword);
+            if (PasswordFromDatabase == hash.MD5(UserPassword))
+            {
+                return true;
+            }
+            else return false;
+
+        }
 
         #endregion
 
