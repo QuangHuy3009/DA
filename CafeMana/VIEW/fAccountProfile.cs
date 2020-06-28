@@ -34,7 +34,8 @@ namespace CafeMana.VIEW
                 {
                     int    _ID       = Convert.ToInt32(((User)this.Tag).ID);
                     string _UserName = txbUserName.Text;
-                    string _Password = txbNewPass.Text;
+                    var h1 = new DTO.Hash();
+                    string _Password = h1.MD5(txbNewPass.Text);
                     string _Email    = txbEmail.Text;
                     string _Role     = cbBoxRole.Text;
 
