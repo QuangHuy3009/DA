@@ -15,6 +15,7 @@ namespace CafeMana.VIEW
 {
     public partial class fAdmin : Form
     {
+
         public fAdmin()
         {
             InitializeComponent();
@@ -264,6 +265,7 @@ namespace CafeMana.VIEW
             LoadCategory();
         }
 
+
         private void CategoryButton_Click(object sender, EventArgs e)
         {
             int ID = (int)(sender as Button).Tag;
@@ -378,14 +380,19 @@ namespace CafeMana.VIEW
         {
             UsersGridView.Rows.Clear();
             List<User> UsersList = Data.Instance.UsersList;
-            string     Txt       = txbFindUser.Text;
+            string     Txt       = txbFindUser.Text.ToLower();
 
             if (Txt == "") LoadUser();
             else
             {
                 foreach (User user in UsersList)
-                    if (user.Name.Contains(Txt) || user.Role.Contains(Txt) || user.Email.Contains(Txt) || user.ID.ToString().Contains(Txt))
+                {
+                    string Name = user.Name.ToLower();
+                    string Role = user.Role.ToLower();
+                    string Email = user.Email.ToLower();
+                    if (Name.Contains(Txt) || Role.Contains(Txt) || Email.Contains(Txt) || ID.ToString().Contains(Txt))
                         UsersGridView.Rows.Add(user.ID, user.Name, user.Role, user.Email);
+                }
             }
         }
 

@@ -8,6 +8,7 @@ namespace CafeMana.VIEW
 {
     public partial class AddCategory : Form
     {
+
         public AddCategory()
         {
             InitializeComponent();
@@ -29,6 +30,7 @@ namespace CafeMana.VIEW
 
         private void AddCategoryButton_Click(object sender, EventArgs e)
         {
+            
             try
             {
                 MemoryStream ms = new MemoryStream();
