@@ -267,7 +267,6 @@ namespace CafeMana.VIEW
             LoadCategory();
         }
 
-
         private void CategoryButton_Click(object sender, EventArgs e)
         {
             int ID = (int)(sender as Button).Tag;
@@ -281,9 +280,12 @@ namespace CafeMana.VIEW
         
         private void buttonDelCate_Click(object sender, EventArgs e)
         {
-            int ID = int.Parse(CategoryIDBox.Text.ToString());
-            CategoryBLL.Instance.DeleteCategory(ID);
-            LoadCategory();
+            if (MessageBox.Show("Are You Sure!", "Notify", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                int ID = int.Parse(CategoryIDBox.Text.ToString());
+                CategoryBLL.Instance.DeleteCategory(ID);
+                LoadCategory();
+            }
         }
       
         private void UploadPictureButton_Click(object sender, EventArgs e)
@@ -314,6 +316,7 @@ namespace CafeMana.VIEW
                 Category category = new Category() { ID = _ID, Name = _Name, Description = _Description, Image = _Image };
                 CategoryBLL.Instance.UpdateCategory(category);
                 LoadCategory();
+                LoadProducts();
 
             }
             catch (Exception er)
@@ -344,6 +347,7 @@ namespace CafeMana.VIEW
                 UserBLL.Instance.UpdateUser(user);
                 MessageBox.Show("Successfully!");
                 LoadUser();
+                LoadSale();
             }
         }    
 

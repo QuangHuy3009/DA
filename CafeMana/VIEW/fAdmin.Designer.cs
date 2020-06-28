@@ -489,6 +489,7 @@
             this.CategoryIDBox.Location = new System.Drawing.Point(156, 38);
             this.CategoryIDBox.Margin = new System.Windows.Forms.Padding(4);
             this.CategoryIDBox.Name = "CategoryIDBox";
+            this.CategoryIDBox.ReadOnly = true;
             this.CategoryIDBox.Size = new System.Drawing.Size(193, 22);
             this.CategoryIDBox.TabIndex = 7;
             // 

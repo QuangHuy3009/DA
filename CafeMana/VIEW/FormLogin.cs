@@ -33,12 +33,11 @@ namespace CafeMana
                     f1.ShowDialog();
                     this.Show();
                 }
-                else
-                {
-                    MessageBox.Show("Sai UsernameEmail hoặc mật khẩu ");
-                }
+                else MessageBox.Show("UsernameEmail Or Password Is Incorrect");
 
             }
+            else MessageBox.Show("UsernameEmail Or Password Is Incorrect");
+
         }
 
         public bool  ConfirmEmailAddress(string UserEmail)

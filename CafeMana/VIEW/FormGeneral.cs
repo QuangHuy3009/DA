@@ -245,7 +245,7 @@ namespace CafeMana.VIEW
         
         private void LogoutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.Close();
+            this.Hide();
         }
 
         #endregion

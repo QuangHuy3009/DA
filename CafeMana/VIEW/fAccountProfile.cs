@@ -2,6 +2,7 @@
 using CafeMana.DTO;
 using CafeMana.BLL;
 using System.Windows.Forms;
+using System.Linq;
 
 namespace CafeMana.VIEW
 {
@@ -47,6 +48,7 @@ namespace CafeMana.VIEW
 
                 else MessageBox.Show("Update Failed!");
                 }
+
                 else
                 {
                     if (txbUserName.Text.Trim().Length > 0 && txbPassword.Text.Trim().Length > 0 && txbEmail.Text.Trim().Length > 0)
@@ -61,6 +63,8 @@ namespace CafeMana.VIEW
                         UserBLL.Instance.UpdateUser(new User() { ID = _ID, Name = _UserName, Role = _Role, Email = _Email, Password = _Password });
                         MessageBox.Show("Successfully!");
                     }
+
+                    else MessageBox.Show("Update Failed!");
                 }
             }
         }
