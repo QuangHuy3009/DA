@@ -16,17 +16,28 @@ namespace CafeMana.VIEW
 {
     public partial class FormGeneral : Form
     {
+        public int SalesmanID = 0;
+        public string Username = string.Empty;
         private static FormGeneral _Instance;
         public static FormGeneral Instance
         {
+            
             get { if (_Instance == null) _Instance = new FormGeneral(); return _Instance; }
             private set { _Instance = value; }
         }
-
-        public FormGeneral()
+       public FormGeneral()
         {
             InitializeComponent();
             LoadCategory();
+        }
+
+        public FormGeneral(int UserID)
+        {
+            InitializeComponent();
+            LoadCategory();
+            Username = DAL.DataAccess.Instance.ReturnUserName(UserID);
+
+            
         }
 
         #region Load
@@ -34,6 +45,7 @@ namespace CafeMana.VIEW
         private void LoadCategory()
         {
             CategoriesFlowPanel.Controls.Clear();
+            UserNameIDMenuLabel.Text = Username + "(" + SalesmanID + ")";
             List<Category> CategoriesList = Data.Instance.CategoriesList;
 
             foreach (Category Category in CategoriesList)

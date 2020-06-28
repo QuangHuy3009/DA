@@ -34,10 +34,11 @@ namespace CafeMana
             {
                 if (DAL.DataAccess.Instance.ConfirmUser(UsernameEmail, Password))
                 {
-                    FormGeneral f1 = new FormGeneral();
+                    int UserID = Convert.ToInt32(DAL.DataAccess.Instance.ReturnUserID(UsernameEmail));
+                    FormGeneral f1 = new FormGeneral(UserID);
                     this.Hide();
-                    f1.ShowDialog();
-                    this.Show();
+                    f1.Show();
+                    
                 }
                 else
                 {
