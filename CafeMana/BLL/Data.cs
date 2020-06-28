@@ -13,6 +13,8 @@ namespace CafeMana.BLL
             get { if (_Instance == null) _Instance = new Data(); return _Instance; }
         }
 
+        public User User { get; set; }
+
         public int IdentityProduct  { get; set; }
         public int IdentityCategory { get; set; }
         public int IdentityUser     { get; set; }

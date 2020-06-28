@@ -49,16 +49,10 @@ namespace CafeMana.BLL
             DataAccess.Instance.UpdateUser(user);
         }
 
-        public void DeleteUser(int ID)
+        public bool ConfirmUser(string UsernameEmail, string Password)
         {
-            List<User> UsersList = Data.Instance.UsersList;
-            int Index = 0;
-            for (int i = 0; i < UsersList.Count; i++)
-            {
-                if (UsersList[i].ID == ID) {Index = i; break; }
-            }
-            UsersList.RemoveAt(Index);
-            DataAccess.Instance.DeleteSomething(ID, "Users");
+            return DataAccess.Instance.ConfirmUser(UsernameEmail, Password);
         }
+
     }
 }

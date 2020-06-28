@@ -17,6 +17,7 @@ namespace CafeMana.VIEW
     public partial class FormGeneral : Form
     {
         private static FormGeneral _Instance;
+
         public static FormGeneral Instance
         {
             get { if (_Instance == null) _Instance = new FormGeneral(); return _Instance; }

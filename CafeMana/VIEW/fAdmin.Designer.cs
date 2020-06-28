@@ -484,7 +484,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(359, 340);
             this.panel2.TabIndex = 0;
-            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
             // CategoryIDBox
             // 
@@ -533,8 +532,6 @@
             this.CategoryDescriptionRBox.Size = new System.Drawing.Size(193, 89);
             this.CategoryDescriptionRBox.TabIndex = 2;
             this.CategoryDescriptionRBox.Text = "";
-            this.CategoryDescriptionRBox.TextChanged += new System.EventHandler(this.CategoryDescriptionRBox_TextChanged);
-            // 
             // CategoryNameBox
             // 
             this.CategoryNameBox.Location = new System.Drawing.Point(156, 70);
@@ -542,7 +539,7 @@
             this.CategoryNameBox.Name = "CategoryNameBox";
             this.CategoryNameBox.Size = new System.Drawing.Size(193, 22);
             this.CategoryNameBox.TabIndex = 3;
-            this.CategoryNameBox.TextChanged += new System.EventHandler(this.CategoryNameBox_TextChanged);
+
             // 
             // label3
             // 
@@ -563,7 +560,6 @@
             this.label2.Size = new System.Drawing.Size(140, 17);
             this.label2.TabIndex = 5;
             this.label2.Text = "Category Description";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label4
             // 
@@ -574,8 +570,6 @@
             this.label4.Size = new System.Drawing.Size(106, 17);
             this.label4.TabIndex = 6;
             this.label4.Text = "Category Name";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
-            // 
             // CategoryGroupBox
             // 
             this.CategoryGroupBox.Controls.Add(this.CategoriesFlowPanel);

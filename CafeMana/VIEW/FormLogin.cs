@@ -1,15 +1,8 @@
 ﻿using CafeMana.VIEW;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using CafeMana.BLL;
 namespace CafeMana
 {
     public partial class LoginForm : Form
@@ -28,31 +21,27 @@ namespace CafeMana
 
         private void button1_Click(object sender, EventArgs e)
         {
-            String UsernameEmail = UserNameTxt.Text;
+            string UsernameEmail = UserNameTxt.Text;
             string Password = PasswordTxt.Text;
+
             if (ConfirmEmailAddress(UsernameEmail) && ConfirmPassword(Password))
             {
-                if (DAL.DataAccess.Instance.ConfirmUser(UsernameEmail, Password))
+                if (UserBLL.Instance.ConfirmUser(UsernameEmail, Password))
                 {
                     FormGeneral f1 = new FormGeneral();
                     this.Hide();
                     f1.ShowDialog();
                     this.Show();
-                }
-                else
-                {
-                    MessageBox.Show("Sai UsernameEmail hoặc mật khẩu ");
-                }
-
+                } 
+                else MessageBox.Show("UserEmail Or PassWord Is Incorrect!");
             }
-
-
         }
         public bool ConfirmEmailAddress(string UserEmail)
         {
             var EmailRegex = new Regex(@"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?");
             return EmailRegex.IsMatch(UserEmail);
         }
+
         public bool ConfirmPassword(string UserPassword)
         {
             UserPassword = UserPassword.Trim();
