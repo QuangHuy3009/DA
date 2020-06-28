@@ -23,9 +23,13 @@ namespace CafeMana.BLL
         }
 
         public int RetreiveCategoryID()
+        {         
+            return ++Data.Instance.IdentityCategory;
+        }
+
+        public int RetreiveIdentityCategory()
         {
-            Data.Instance.IdentityCategory++;
-            return Data.Instance.IdentityCategory;
+            return DataAccess.Instance.RetreiveIdentityCategory();
         }
 
         public void AddNewCategory(Category category)

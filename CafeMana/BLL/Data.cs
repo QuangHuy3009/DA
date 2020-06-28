@@ -30,13 +30,13 @@ namespace CafeMana.BLL
             SaleItemsList  = SaleItemBLL.Instance.RetreiveAllSale();
 
             UsersList      = UserBLL.Instance.RetreiveAllUser();
-            IdentityUser   = UsersList[UsersList.Count - 1].ID;
+            IdentityUser   = UserBLL.Instance.RetreiveIdentityUser();
 
             CategoriesList   = CategoryBLL.Instance.RetreiveAllCategories();
-            IdentityCategory = CategoriesList[CategoriesList.Count - 1].ID;
+            IdentityCategory = CategoryBLL.Instance.RetreiveIdentityCategory();
 
             ProductsList    = ProductBLL.Instance.RetreiveAllProducts();
-            IdentityProduct = ProductsList[ProductsList.Count - 1].ID;
+            IdentityProduct = ProductBLL.Instance.RetreiveIdentityProduct();
         }
 
         

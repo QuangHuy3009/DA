@@ -17,10 +17,13 @@ namespace CafeMana.BLL
         private UserBLL() { }
 
         public int RetreiveUserID()
-        {
+        {         
+            return ++Data.Instance.IdentityUser;
+        }
 
-            Data.Instance.IdentityUser++;
-            return Data.Instance.IdentityUser;
+        public int RetreiveIdentityUser()
+        {
+           return  DataAccess.Instance.RetreiveIdentityUser();
         }
 
         public List<User> RetreiveAllUser()
