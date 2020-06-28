@@ -101,8 +101,7 @@ namespace CafeMana.VIEW
                     saleItem.SaleID          = sale.ID;
 
                     SaleItemBLL.Instance.AddNewSaleItem(saleItem);
-                 
-                   
+                    this.Close();
                 }                
             }
            

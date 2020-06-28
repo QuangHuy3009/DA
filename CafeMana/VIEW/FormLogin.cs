@@ -36,7 +36,8 @@ namespace CafeMana
                 {
                     FormGeneral f1 = new FormGeneral();
                     this.Hide();
-                    f1.Show();
+                    f1.ShowDialog();
+                    this.Show();
                 }
                 else
                 {
