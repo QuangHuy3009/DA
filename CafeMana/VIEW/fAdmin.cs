@@ -165,6 +165,7 @@ namespace CafeMana.VIEW
         {
             AddProduct _AddProduct = new AddProduct();
             _AddProduct.ShowDialog();
+            LoadProducts();
         }
 
         private void buttonFindProduct_Click(object sender, EventArgs e)
@@ -267,8 +268,10 @@ namespace CafeMana.VIEW
             LoadCategory();
         }
 
+        static int indexCate = -1;
         private void CategoryButton_Click(object sender, EventArgs e)
         {
+            indexCate = (sender as Button).TabIndex;
             int ID = (int)(sender as Button).Tag;
             Category category = Data.Instance.CategoriesList.FirstOrDefault(x => x.ID == ID);
             CategoryIDBox.Text = category.ID.ToString();
@@ -280,11 +283,14 @@ namespace CafeMana.VIEW
         
         private void buttonDelCate_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Are You Sure!", "Notify", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (indexCate >= 0)
             {
-                int ID = int.Parse(CategoryIDBox.Text.ToString());
-                CategoryBLL.Instance.DeleteCategory(ID);
-                LoadCategory();
+                if (MessageBox.Show("Are You Sure!", "Notify", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    int ID = int.Parse(CategoryIDBox.Text.ToString());
+                    CategoryBLL.Instance.DeleteCategory(ID);
+                    LoadCategory();
+                }
             }
         }
       
@@ -304,19 +310,21 @@ namespace CafeMana.VIEW
         private void buttonEditCate_Click(object sender, EventArgs e)
         {
             try
-            {
-                MemoryStream ms = new MemoryStream();
-                CategoryPictureBox.Image.Save(ms, CategoryPictureBox.Image.RawFormat);
+            {   if (indexCate >= 0)
+                {
+                    MemoryStream ms = new MemoryStream();
+                    CategoryPictureBox.Image.Save(ms, CategoryPictureBox.Image.RawFormat);
 
-                int _ID = int.Parse(CategoryIDBox.Text);
-                string _Name = CategoryNameBox.Text;
-                string _Description = CategoryDescriptionRBox.Text;
-                byte[] _Image = ms.GetBuffer();
+                    int _ID = int.Parse(CategoryIDBox.Text);
+                    string _Name = CategoryNameBox.Text;
+                    string _Description = CategoryDescriptionRBox.Text;
+                    byte[] _Image = ms.GetBuffer();
 
-                Category category = new Category() { ID = _ID, Name = _Name, Description = _Description, Image = _Image };
-                CategoryBLL.Instance.UpdateCategory(category);
-                LoadCategory();
-                LoadProducts();
+                    Category category = new Category() { ID = _ID, Name = _Name, Description = _Description, Image = _Image };
+                    CategoryBLL.Instance.UpdateCategory(category);
+                    LoadCategory();
+                    LoadProducts();
+                }
 
             }
             catch (Exception er)
@@ -337,22 +345,25 @@ namespace CafeMana.VIEW
         }
 
         private void buttonEditAcc_Click(object sender, EventArgs e)
-        {
-            if (MessageBox.Show("Are You Sure!", "Notify", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+        {   if (indexUser >= 0)
             {
-                int    _ID   = (int)(sender as Button).Tag;
-                User   user  = Data.Instance.UsersList.FirstOrDefault(x => x.ID == _ID);
-                user.Name    = txbUserName.Text;
-                user.Role    = cbBoxRole.Text;
-                UserBLL.Instance.UpdateUser(user);
-                MessageBox.Show("Successfully!");
-                LoadUser();
-                LoadSale();
+                if (MessageBox.Show("Are You Sure!", "Notify", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    int _ID = (int)(sender as Button).Tag;
+                    User user = Data.Instance.UsersList.FirstOrDefault(x => x.ID == _ID);
+                    user.Name = txbUserName.Text;
+                    user.Role = cbBoxRole.Text;
+                    UserBLL.Instance.UpdateUser(user);
+                    MessageBox.Show("Successfully!");
+                    LoadUser();
+                    LoadSale();
+                }
             }
-        }    
-
+        }
+        static int indexUser = -1;
         private void UsersGridView_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
+            indexUser = e.RowIndex;
             DataGridViewRow row     = UsersGridView.Rows[e.RowIndex];
             txbUserName.Text        = Convert.ToString(row.Cells["UserName"].Value);
             cbBoxRole.Text          = Convert.ToString(row.Cells["Role"].Value);                

@@ -197,8 +197,7 @@ namespace CafeMana.VIEW
             };
             f.ShowDialog();
             ProductsGridView.Rows.Clear();
-            MessageBox.Show("Successful!!");
-
+            MessageBox.Show("Successfully!");
         }
 
         private void   ProductsGridView_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)

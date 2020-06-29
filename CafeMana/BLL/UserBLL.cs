@@ -52,10 +52,10 @@ namespace CafeMana.BLL
 
         public bool ConfirmUser(string UsernameEmail, string Password)
         {
-            string _Password = Data.Instance.UsersList.FirstOrDefault(x=>x.Email==UsernameEmail).Password;
+            string _Password = Data.Instance.UsersList.FirstOrDefault(x=>x.Email==UsernameEmail).Password.Trim();
             var hash = new CafeMana.DTO.Hash();
-            string st = hash.MD5(Password);
-            if (_Password == hash.MD5(Password)) return true;
+            string st = hash.MD5(Password).Trim();
+            if (_Password == st) return true;
             else return false;
         }
 

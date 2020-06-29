@@ -43,7 +43,7 @@ namespace CafeMana.VIEW
               
                 Category category = new Category() { ID = _ID, Name = _Name, Description = _Description, Image = _Image};
                 CategoryBLL.Instance.AddNewCategory(category);
-
+                MessageBox.Show("Successfully!");
             }
             catch (Exception er)
             {
