@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using CafeMana.DTO;
 using CafeMana.DAL;
@@ -51,7 +52,11 @@ namespace CafeMana.BLL
 
         public bool ConfirmUser(string UsernameEmail, string Password)
         {
-            return DataAccess.Instance.ConfirmUser(UsernameEmail, Password);
+            string _Password = Data.Instance.UsersList.FirstOrDefault(x=>x.Email==UsernameEmail).Password;
+            var hash = new CafeMana.DTO.Hash();
+            string st = hash.MD5(Password);
+            if (_Password == hash.MD5(Password)) return true;
+            else return false;
         }
 
     }

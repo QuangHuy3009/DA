@@ -383,37 +383,6 @@ namespace CafeMana.DAL
 
             }
         }
- 
-        public bool ConfirmUser(string UserEmail, string UserPassword)
-        {
-            string PasswordFromDatabase="";
-
-            using (SqlConnection connection = new SqlConnection(ConnectionString.connectionString))
-            {
-                SqlCommand command = new SqlCommand("Select Password From Users where Email = '" + UserEmail + "';", connection);
-                connection.Open();
-
-                SqlDataReader reader = command.ExecuteReader();
-
-                if (reader.HasRows)
-                {
-                    while (reader.Read())
-                    {
-                        PasswordFromDatabase = reader.GetString(0);
-                    }
-                }
-               
-                reader.Close();
-            }
-            var hash = new CafeMana.DTO.Hash();
-            string st = hash.MD5(UserPassword);
-            if (PasswordFromDatabase == hash.MD5(UserPassword))
-            {
-                return true;
-            }
-            else return false;
-
-        }
 
         public int  RetreiveIdentityUser()
         {
