@@ -101,6 +101,11 @@ namespace CafeMana.VIEW
 
         #region Sale
 
+        public delegate void ViewClicked();
+        public event ViewClicked EventViewClicked;
+
+        void DaClickView() { }
+
         private void buttonThongke_Click(object sender, EventArgs e)
         {
             DateTime Time = dateTimePicker1.Value;
@@ -113,11 +118,36 @@ namespace CafeMana.VIEW
                 {
                     foreach (User user in UsersList)
                     {
-                        if (user.ID == sale.SalesManID) { SalesGridView.Rows.Add(sale.ID, sale.Time, user.Name, sale.Total, "View Product"); break; }
+                        if (user.ID == sale.SalesManID) { SalesGridView.Rows.Add(sale.ID, sale.Time, user.Name, sale.Total, null); break; }
                     }
                 }
 
             }
+            EventViewClicked += DaClickView;
+        }
+        // KetXuat excel
+        private DataTable ConvertToDt()
+        {
+            DataTable dt = new DataTable();
+            for (int i = 0; i < SalesGridView.ColumnCount - 1; i++)
+                dt.Columns.Add(SalesGridView.Columns[i].HeaderText);
+            for (int i = 0; i < SalesGridView.Rows.Count; i++)
+                dt.Rows.Add(SalesGridView.Rows[i].Cells[0].Value, SalesGridView.Rows[i].Cells[1].Value, SalesGridView.Rows[i].Cells[2].Value, SalesGridView.Rows[i].Cells[3].Value);
+            return dt;
+        }
+        private void buttonExport_Click(object sender, EventArgs e)
+        {
+            ExportToExcel excel = new ExportToExcel();
+            if (EventViewClicked != null && SalesGridView.Rows.Count > 1)
+            {
+
+                excel.Export(ConvertToDt(), "Bill", dateTimePicker1.Value.ToString());
+            }
+            else if (EventViewClicked == null)
+            {
+                excel.Export(ConvertToDt(), "AllBill", "(Tất cả)");
+            }
+
         }
 
         private void SalesGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -160,7 +190,6 @@ namespace CafeMana.VIEW
         #endregion
 
         #region Product
-
         private void buttonAddProduct_Click(object sender, EventArgs e)
         {
             AddProduct _AddProduct = new AddProduct();
@@ -256,6 +285,7 @@ namespace CafeMana.VIEW
             }
 
         }
+       
 
         #endregion
 
@@ -391,8 +421,12 @@ namespace CafeMana.VIEW
             }
         }
 
+
+
+
+
         #endregion
 
-        
+
     }
 }

@@ -38,6 +38,7 @@
             this.TotalBillColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProductsColumn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.buttonExport = new System.Windows.Forms.Button();
             this.buttonThongke = new System.Windows.Forms.Button();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.tabControl2 = new System.Windows.Forms.TabControl();
@@ -137,7 +138,7 @@
             this.tabSales.Controls.Add(this.tabControl2);
             this.tabSales.Location = new System.Drawing.Point(4, 22);
             this.tabSales.Name = "tabSales";
-            this.tabSales.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabSales.Padding = new System.Windows.Forms.Padding(3);
             this.tabSales.Size = new System.Drawing.Size(648, 409);
             this.tabSales.TabIndex = 0;
             this.tabSales.Text = "Sales";
@@ -206,12 +207,23 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.buttonExport);
             this.panel1.Controls.Add(this.buttonThongke);
             this.panel1.Controls.Add(this.dateTimePicker1);
             this.panel1.Location = new System.Drawing.Point(8, 3);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(639, 42);
             this.panel1.TabIndex = 4;
+            // 
+            // buttonExport
+            // 
+            this.buttonExport.Location = new System.Drawing.Point(469, 5);
+            this.buttonExport.Name = "buttonExport";
+            this.buttonExport.Size = new System.Drawing.Size(75, 23);
+            this.buttonExport.TabIndex = 2;
+            this.buttonExport.Text = "Export";
+            this.buttonExport.UseVisualStyleBackColor = true;
+            this.buttonExport.Click += new System.EventHandler(this.buttonExport_Click);
             // 
             // buttonThongke
             // 
@@ -244,7 +256,7 @@
             // 
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage3.Size = new System.Drawing.Size(0, 0);
             this.tabPage3.TabIndex = 0;
             this.tabPage3.Text = "tabPage3";
@@ -254,7 +266,7 @@
             // 
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage4.Size = new System.Drawing.Size(0, 0);
             this.tabPage4.TabIndex = 1;
             this.tabPage4.Text = "tabPage4";
@@ -267,7 +279,7 @@
             this.tabProduct.Controls.Add(this.panel3);
             this.tabProduct.Location = new System.Drawing.Point(4, 22);
             this.tabProduct.Name = "tabProduct";
-            this.tabProduct.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabProduct.Padding = new System.Windows.Forms.Padding(3);
             this.tabProduct.Size = new System.Drawing.Size(648, 409);
             this.tabProduct.TabIndex = 1;
             this.tabProduct.Text = "Product";
@@ -408,7 +420,7 @@
             this.ProductCategoryComboBox.Items.AddRange(new object[] {
             "All Categories"});
             this.ProductCategoryComboBox.Location = new System.Drawing.Point(160, 16);
-            this.ProductCategoryComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ProductCategoryComboBox.Margin = new System.Windows.Forms.Padding(2);
             this.ProductCategoryComboBox.Name = "ProductCategoryComboBox";
             this.ProductCategoryComboBox.Size = new System.Drawing.Size(206, 21);
             this.ProductCategoryComboBox.TabIndex = 3;
@@ -439,7 +451,7 @@
             this.tabProductCategory.Controls.Add(this.panel8);
             this.tabProductCategory.Location = new System.Drawing.Point(4, 22);
             this.tabProductCategory.Name = "tabProductCategory";
-            this.tabProductCategory.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabProductCategory.Padding = new System.Windows.Forms.Padding(3);
             this.tabProductCategory.Size = new System.Drawing.Size(648, 409);
             this.tabProductCategory.TabIndex = 2;
             this.tabProductCategory.Text = "Category";
@@ -607,7 +619,7 @@
             this.tabUsers.Controls.Add(this.panel13);
             this.tabUsers.Location = new System.Drawing.Point(4, 22);
             this.tabUsers.Name = "tabUsers";
-            this.tabUsers.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabUsers.Padding = new System.Windows.Forms.Padding(3);
             this.tabUsers.Size = new System.Drawing.Size(648, 409);
             this.tabUsers.TabIndex = 3;
             this.tabUsers.Text = "Users";
@@ -867,5 +879,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn UserName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Role;
         private System.Windows.Forms.DataGridViewTextBoxColumn Email;
+        private System.Windows.Forms.Button buttonExport;
     }
 }
