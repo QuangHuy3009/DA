@@ -42,8 +42,9 @@ namespace CafeMana.VIEW
                 byte[] _Image       = ms.GetBuffer();
               
                 Category category = new Category() { ID = _ID, Name = _Name, Description = _Description, Image = _Image};
-                if(CategoryBLL.Instance.AddNewCategory(category)) MessageBox.Show("Them Thanh Cong!");
-                else                                              MessageBox.Show("Them That Bai!");
+                if (_Name.Trim().Length <= 0 || _Description.Trim().Length <= 0) throw null;
+                if (CategoryBLL.Instance.AddNewCategory(category)) MessageBox.Show("Them Thanh Cong!");
+                else                                               MessageBox.Show("Them That Bai!");
 
             }
             catch

@@ -354,25 +354,29 @@ namespace CafeMana.VIEW
             try
             {   if (indexCate >= 0)
                 {
-                    MemoryStream ms = new MemoryStream();
-                    CategoryPictureBox.Image.Save(ms, CategoryPictureBox.Image.RawFormat);
+                    if (CategoryNameBox.Text.Trim().Length >0 && CategoryDescriptionRBox.Text.Trim().Length > 0)
+                    {
+                        MemoryStream ms = new MemoryStream();
+                        CategoryPictureBox.Image.Save(ms, CategoryPictureBox.Image.RawFormat);
 
-                    int _ID = int.Parse(CategoryIDBox.Text);
-                    string _Name = CategoryNameBox.Text;
-                    string _Description = CategoryDescriptionRBox.Text;
-                    byte[] _Image = ms.GetBuffer();
+                        int _ID = int.Parse(CategoryIDBox.Text);
+                        string _Name = CategoryNameBox.Text;
+                        string _Description = CategoryDescriptionRBox.Text;
+                        byte[] _Image = ms.GetBuffer();
 
-                    Category category = new Category() { ID = _ID, Name = _Name, Description = _Description, Image = _Image };
-                    if (CategoryBLL.Instance.UpdateCategory(category)) MessageBox.Show("Cap Nhat Thanh Cong!");
-                    else                                               MessageBox.Show("Cap Nhat That Bai!");
-                    LoadCategory();
-                    LoadProducts();
+                        Category category = new Category() { ID = _ID, Name = _Name, Description = _Description, Image = _Image };
+                        if (CategoryBLL.Instance.UpdateCategory(category)) MessageBox.Show("Cap Nhat Thanh Cong!");
+                        else                                               MessageBox.Show("Cap Nhat That Bai!");
+                        LoadCategory();
+                        LoadProducts();
+                    }
+                    else MessageBox.Show("Nhap Thieu Thong Tin!");
                 }
 
             }
             catch
             {
-                MessageBox.Show("Cap Nhat That Bai!");
+                MessageBox.Show("Nhap Thieu Thong Tin!");
             }
         }
 
@@ -393,16 +397,20 @@ namespace CafeMana.VIEW
             {
                 if (MessageBox.Show("Are You Sure!", "Notify", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    int _ID = (int)(sender as Button).Tag;
-                    User user = Data.Instance.UsersList.FirstOrDefault(x => x.ID == _ID);
-                    user.Name     = txbUserName.Text;
-                    user.Role     = cbBoxRole.Text;
-                    var hash      = new Hash();
-                    user.Password = hash.MD5(txbPassword.Text);
-                    if(UserBLL.Instance.UpdateUser(user)) MessageBox.Show("Cap Nhat Thanh Cong!");
-                    else                                  MessageBox.Show("Cap Nhat That Bai!");
-                    LoadUser();
-                    LoadSale();
+                    if (txbUserName.Text.Trim().Length > 0 && txbPassword.Text.Trim().Length > 0)
+                    {
+                        int _ID = (int)(sender as Button).Tag;
+                        User user = Data.Instance.UsersList.FirstOrDefault(x => x.ID == _ID);
+                        user.Name = txbUserName.Text;
+                        user.Role = cbBoxRole.Text;
+                        var hash = new Hash();
+                        user.Password = hash.MD5(txbPassword.Text);
+                        if (UserBLL.Instance.UpdateUser(user)) MessageBox.Show("Cap Nhat Thanh Cong!");
+                        else MessageBox.Show("Cap Nhat That Bai!");
+                        LoadUser();
+                        LoadSale();
+                    }
+                    else MessageBox.Show("Nhap Thieu Thong Tin!");
                 }
             }
         }
