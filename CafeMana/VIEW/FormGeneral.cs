@@ -159,13 +159,25 @@ namespace CafeMana.VIEW
         {
             int index = e.RowIndex;
 
-            if (index >= 0)
+            if (index >= 0 )
             {
-                decimal price = Convert.ToDecimal(ProductsGridView.Rows[e.RowIndex].Cells["ProductPrice"].Value);
-                int quality   = Convert.ToInt32(ProductsGridView.Rows[e.RowIndex].Cells["ProductQuantity"].Value);
-                ProductsGridView.Rows[e.RowIndex].Cells["ProductTotal"].Value = price * quality;
-                TotalBillBox.Text = CalculateTotalBill(ProductsGridView).ToString();
+                if (Convert.ToInt32(ProductsGridView.Rows[e.RowIndex].Cells["ProductQuantity"].Value) > 0)
+                {
+                    decimal price = Convert.ToDecimal(ProductsGridView.Rows[e.RowIndex].Cells["ProductPrice"].Value);
+                    int quality = Convert.ToInt32(ProductsGridView.Rows[e.RowIndex].Cells["ProductQuantity"].Value);
+                    ProductsGridView.Rows[e.RowIndex].Cells["ProductTotal"].Value = price * quality;
+                    TotalBillBox.Text = CalculateTotalBill(ProductsGridView).ToString();
+                }
+                else
+                {
+                    decimal price   = Convert.ToDecimal(ProductsGridView.Rows[e.RowIndex].Cells["ProductPrice"].Value);
+                    int     quality = 1;
+                    ProductsGridView.Rows[e.RowIndex].Cells["ProductQuantity"].Value = 1;
+                    ProductsGridView.Rows[e.RowIndex].Cells["ProductTotal"].Value = price * quality;
+                    TotalBillBox.Text = CalculateTotalBill(ProductsGridView).ToString();
+                }
             }
+           
         }
     
         private void   ProductsGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -197,8 +209,6 @@ namespace CafeMana.VIEW
             };
             f.ShowDialog();
             ProductsGridView.Rows.Clear();
-            MessageBox.Show("Successful!!");
-
         }
 
         private void   ProductsGridView_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
@@ -233,6 +243,8 @@ namespace CafeMana.VIEW
             {
                 fAdmin f = new fAdmin();
                 f.ShowDialog();
+                LoadCategory();
+                LoadInformation();
             }
 
         }
@@ -241,6 +253,7 @@ namespace CafeMana.VIEW
         {
             fAccountProfile f = new fAccountProfile();
             f.ShowDialog();
+            LoadInformation();
         }
         
         private void LogoutToolStripMenuItem_Click(object sender, EventArgs e)

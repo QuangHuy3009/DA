@@ -227,7 +227,7 @@
 
         private System.Windows.Forms.TextBox ProductIDBox;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button CancelButton;
+        private new System.Windows.Forms.Button CancelButton;
         private System.Windows.Forms.ComboBox ProductCategoryComboBox;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox ProductPriceBox;

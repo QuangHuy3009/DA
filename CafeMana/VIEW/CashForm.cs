@@ -48,7 +48,7 @@ namespace CafeMana.VIEW
                 
                 if (txtCashGiven.Text != "") { CashGiven = Convert.ToDecimal(txtCashGiven.Text); }
                  CashReturn = CashGiven - TotalBill;
-                if (txtCashGiven.Text != "") txtCashReturn.Text = CashReturn.ToString();
+                if (txtCashGiven.Text != "" && CashReturn>=0) txtCashReturn.Text = CashReturn.ToString();
                 else txtCashReturn.Text = "";
             }
             catch (Exception er)
@@ -78,36 +78,42 @@ namespace CafeMana.VIEW
             }
         }
 
-        private void ConfirmCheckoutButton_Click(object sender, EventArgs e)
+        private void buttonConfirmCheckout_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Are You Sure!", "Notify", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (txtCashReturn.Text != "")
             {
-                DataGridView dataGridView = (DataGridView)this.Tag;
-                decimal TotalBill  = Convert.ToDecimal(txtBill.Text);
-                decimal Discount = numericDiscount.Value;
-                decimal CashGiven  = Convert.ToDecimal(txtCashGiven.Text);
-                decimal CashReturn = Convert.ToDecimal(txtCashReturn.Text);
-                int _SalesmanID    = Data.Instance.User.ID;
-                Sale sale = new Sale() { ID = SaleBLL.Instance.RetreiveSaleID(), Total = (TotalBill*(1-Discount/100)), CashGiven = CashGiven, CashReturn = CashReturn, Time = DateTime.Now, SalesManID = _SalesmanID };
-                SaleBLL.Instance.AddNewSale(sale);
-                foreach (DataGridViewRow row in dataGridView.Rows)
+                if (MessageBox.Show("Are You Sure!", "Notify", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    SaleItem saleItem        = new SaleItem();
-                    saleItem.ID              = SaleItemBLL.Instance.RetreiveSaleItemID();
-                    saleItem.ProductName     = Convert.ToString(row.Cells["ProductName"].Value);
-                    saleItem.ProductPrice    = Convert.ToDecimal(row.Cells["ProductPrice"].Value);
-                    saleItem.ProductQuantity = Convert.ToInt32(row.Cells["ProductQuantity"].Value);
-                    saleItem.ProductTotal    = Convert.ToDecimal(row.Cells["ProductTotal"].Value);
-                    saleItem.SaleID          = sale.ID;
+                    DataGridView dataGridView = (DataGridView)this.Tag;
+                    decimal TotalBill = Convert.ToDecimal(txtBill.Text);
+                    decimal Discount = numericDiscount.Value;
+                    decimal CashGiven = Convert.ToDecimal(txtCashGiven.Text);
+                    decimal CashReturn = Convert.ToDecimal(txtCashReturn.Text);
+                    int _SalesmanID = Data.Instance.User.ID;
+                    Sale sale = new Sale() { ID = SaleBLL.Instance.RetreiveSaleID(), Total = (TotalBill * (1 - Discount / 100)), CashGiven = CashGiven, CashReturn = CashReturn, Time = DateTime.Now, SalesManID = _SalesmanID };
+                    SaleBLL.Instance.AddNewSale(sale);
+                    foreach (DataGridViewRow row in dataGridView.Rows)
+                    {
+                        SaleItem saleItem = new SaleItem();
+                        saleItem.ID = SaleItemBLL.Instance.RetreiveSaleItemID();
+                        saleItem.ProductName = Convert.ToString(row.Cells["ProductName"].Value);
+                        saleItem.ProductPrice = Convert.ToDecimal(row.Cells["ProductPrice"].Value);
+                        saleItem.ProductQuantity = Convert.ToInt32(row.Cells["ProductQuantity"].Value);
+                        saleItem.ProductTotal = Convert.ToDecimal(row.Cells["ProductTotal"].Value);
+                        saleItem.SaleID = sale.ID;
 
-                    SaleItemBLL.Instance.AddNewSaleItem(saleItem);
+                        SaleItemBLL.Instance.AddNewSaleItem(saleItem);
+                    }
+                    MessageBox.Show("Successfully!");
                     this.Close();
-                }                
+                }
             }
-           
+            else MessageBox.Show("Nhap CashGiven hop le !!");
 
+            
         }
-
-        
     }
 }
+
+
+ 

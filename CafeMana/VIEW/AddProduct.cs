@@ -41,13 +41,14 @@ namespace CafeMana.VIEW
                 byte[]  _Image       = ms.GetBuffer();
                 int     _CategoryID  = ((Category)ProductCategoryComboBox.SelectedValue).ID;
                 Product product      = new Product() {ID=_ID,Name=_Name,Price=_Price,Description=_Description,Image=_Image,CatagoryID=_CategoryID};
-                ProductBLL.Instance.AddNewProduct(product);
-                MessageBox.Show("Successfully!");
-               
+                if (_Name.Trim().Length <= 0 || _Price.ToString().Trim().Length <= 0 || _Description.Trim().Length <= 0) throw null;
+                if(ProductBLL.Instance.AddNewProduct(product)) MessageBox.Show("Them Thanh Cong!");
+                else                                           MessageBox.Show("Them That Bai!");
+                this.Close();
             }
-            catch(Exception er)
+            catch
             {
-                MessageBox.Show("Fail");
+                MessageBox.Show("Phai Nhap Day Du Thong Tin!");
             }
         }
 

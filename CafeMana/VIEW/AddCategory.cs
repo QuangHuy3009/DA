@@ -42,12 +42,14 @@ namespace CafeMana.VIEW
                 byte[] _Image       = ms.GetBuffer();
               
                 Category category = new Category() { ID = _ID, Name = _Name, Description = _Description, Image = _Image};
-                CategoryBLL.Instance.AddNewCategory(category);
+                if (_Name.Trim().Length <= 0 || _Description.Trim().Length <= 0) throw null;
+                if (CategoryBLL.Instance.AddNewCategory(category)) MessageBox.Show("Them Thanh Cong!");
+                else                                               MessageBox.Show("Them That Bai!");
 
             }
-            catch (Exception er)
+            catch
             {
-                MessageBox.Show(er.Message);
+                MessageBox.Show("Phai Nhap Day Du Thong Tin!");
             }
         }
     }
