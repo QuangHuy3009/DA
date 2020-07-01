@@ -48,19 +48,27 @@ namespace CafeMana.VIEW
         {
             if (MessageBox.Show("Are You Sure You Want To Update This Product?", "Warning", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                MemoryStream ms = new MemoryStream();
-                ProductPictureBox.Image.Save(ms, ProductPictureBox.Image.RawFormat);
+                try
+                {
+                    MemoryStream ms = new MemoryStream();
+                    ProductPictureBox.Image.Save(ms, ProductPictureBox.Image.RawFormat);
 
-                int _ID             = int.Parse(ProductIDBox.Text);
-                string _Name        = ProductNameBox.Text;
-                decimal _Price      = decimal.Parse(ProductPriceBox.Text);
-                string _Description = ProductDescriptionRBox.Text;
-                byte[] _Image       = ms.GetBuffer();
-                int   _CategoryID   = ((Category)ProductCategoryComboBox.SelectedValue).ID;
+                    int _ID = int.Parse(ProductIDBox.Text);
+                    string _Name = ProductNameBox.Text;
+                    decimal _Price = decimal.Parse(ProductPriceBox.Text);
+                    string _Description = ProductDescriptionRBox.Text;
+                    byte[] _Image = ms.GetBuffer();
+                    int _CategoryID = ((Category)ProductCategoryComboBox.SelectedValue).ID;
 
-                Product product = new Product() { ID = _ID, Name = _Name, Price = _Price, Description = _Description, Image = _Image, CatagoryID = _CategoryID };
+                    Product product = new Product() { ID = _ID, Name = _Name, Price = _Price, Description = _Description, Image = _Image, CatagoryID = _CategoryID };
 
-                ProductBLL.Instance.UpdateProduct(product);
+                    if (ProductBLL.Instance.UpdateProduct(product)) MessageBox.Show("Cap Nhat Thanh Cong!");
+                    else MessageBox.Show("Cap Nhat That Bai!");
+                }
+                catch
+                {
+                    MessageBox.Show("Loi Nhap Thong Tin!");
+                }
             }
           
         }

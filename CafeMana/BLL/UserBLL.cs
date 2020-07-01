@@ -3,6 +3,8 @@ using System.Linq;
 using System.Collections.Generic;
 using CafeMana.DTO;
 using CafeMana.DAL;
+using System.Windows.Forms;
+
 namespace CafeMana.BLL
 {
     class UserBLL
@@ -32,31 +34,46 @@ namespace CafeMana.BLL
             return DataAccess.Instance.RetreiveAllUsers();
         }
 
-        public void AddNewUser(User user)
+        public bool AddNewUser(User user)
         {
-            Data.Instance.UsersList.Add(user);
-            DataAccess.Instance.AddNewUser(user);
+            if (DataAccess.Instance.AddNewUser(user))
+            {
+                Data.Instance.UsersList.Add(user);
+                return true;
+            }
+            return false;
+
         }
 
-        public void UpdateUser(User user)
+        public bool UpdateUser(User user)
         {
             List<User> UsersList = Data.Instance.UsersList;
-
-            for (int i = 0; i < UsersList.Count; i++)
+            if (DataAccess.Instance.UpdateUser(user))
             {
-                if (UsersList[i].ID == user.ID) { UsersList[i] = user; break; }
+                for (int i = 0; i < UsersList.Count; i++)
+                {
+                    if (UsersList[i].ID == user.ID) { Data.Instance.User = UsersList[i] = user; break; }
+                }
+                return true;
             }
-
-            DataAccess.Instance.UpdateUser(user);
+            return false;
+         
         }
 
         public bool ConfirmUser(string UsernameEmail, string Password)
         {
-            string _Password = Data.Instance.UsersList.FirstOrDefault(x=>x.Email==UsernameEmail).Password.Trim();
-            var hash = new CafeMana.DTO.Hash();
-            string st = hash.MD5(Password).Trim();
-            if (_Password == st) return true;
-            else return false;
+            try
+            {
+                string _Password = Data.Instance.UsersList.FirstOrDefault(x => x.Email == UsernameEmail).Password.Trim();
+                var hash = new CafeMana.DTO.Hash();
+                string st = hash.MD5(Password).Trim();
+                if (_Password == st) return true;
+                else return false;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
     }

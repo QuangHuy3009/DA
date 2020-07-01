@@ -63,6 +63,7 @@
             this.SaleItemsGridView.Location = new System.Drawing.Point(4, 19);
             this.SaleItemsGridView.Margin = new System.Windows.Forms.Padding(4);
             this.SaleItemsGridView.Name = "SaleItemsGridView";
+            this.SaleItemsGridView.ReadOnly = true;
             this.SaleItemsGridView.Size = new System.Drawing.Size(779, 405);
             this.SaleItemsGridView.TabIndex = 0;
             // 
@@ -70,21 +71,25 @@
             // 
             this.ProductNameColumn.HeaderText = "Name";
             this.ProductNameColumn.Name = "ProductNameColumn";
+            this.ProductNameColumn.ReadOnly = true;
             // 
             // ProductPriceColumn
             // 
             this.ProductPriceColumn.HeaderText = "Price";
             this.ProductPriceColumn.Name = "ProductPriceColumn";
+            this.ProductPriceColumn.ReadOnly = true;
             // 
             // ProductQuantityColumn
             // 
             this.ProductQuantityColumn.HeaderText = "Quantity";
             this.ProductQuantityColumn.Name = "ProductQuantityColumn";
+            this.ProductQuantityColumn.ReadOnly = true;
             // 
             // ProductTotalColumn
             // 
             this.ProductTotalColumn.HeaderText = "Total Price";
             this.ProductTotalColumn.Name = "ProductTotalColumn";
+            this.ProductTotalColumn.ReadOnly = true;
             this.ProductTotalColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // SaleItems

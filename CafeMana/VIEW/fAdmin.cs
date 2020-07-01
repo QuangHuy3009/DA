@@ -85,6 +85,7 @@ namespace CafeMana.VIEW
             List<Category> CategoriesList = Data.Instance.CategoriesList;
             ProductCategoryComboBox.DataSource = CategoriesList;
             ProductCategoryComboBox.DisplayMember = "Name";
+
         }
 
         private void LoadProducts()
@@ -135,6 +136,7 @@ namespace CafeMana.VIEW
                 dt.Rows.Add(SalesGridView.Rows[i].Cells[0].Value, SalesGridView.Rows[i].Cells[1].Value, SalesGridView.Rows[i].Cells[2].Value, SalesGridView.Rows[i].Cells[3].Value);
             return dt;
         }
+
         private void buttonExport_Click(object sender, EventArgs e)
         {
             ExportToExcel excel = new ExportToExcel();
@@ -190,6 +192,7 @@ namespace CafeMana.VIEW
         #endregion
 
         #region Product
+
         private void buttonAddProduct_Click(object sender, EventArgs e)
         {
             AddProduct _AddProduct = new AddProduct();
@@ -265,6 +268,7 @@ namespace CafeMana.VIEW
                 FormUpdateProduct formUpdateProduct = new FormUpdateProduct();
                 formUpdateProduct.Tag = Convert.ToInt32(row.Cells[0].Value);
                 formUpdateProduct.ShowDialog();
+                
                 int _ID= Convert.ToInt32(row.Cells[0].Value);
                 Product product = Data.Instance.ProductsList.FirstOrDefault(x => x.ID == _ID);
                 row.Cells[1].Value = product.Name;
@@ -278,15 +282,21 @@ namespace CafeMana.VIEW
             {
                 if (MessageBox.Show("Are You Sure You Want to Delete this Product\nfrom Database", "Warning", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    int _ID = Convert.ToInt32(row.Cells[0].Value);
-                    ProductBLL.Instance.DeleteProduct(_ID);
-                    ProductsGridView.Rows.RemoveAt(e.RowIndex);
+                    try
+                    {
+                        int _ID = Convert.ToInt32(row.Cells[0].Value);
+                        if (ProductBLL.Instance.DeleteProduct(_ID)) { ProductsGridView.Rows.RemoveAt(e.RowIndex); MessageBox.Show("Xoa Thanh Cong!");}
+                        else                                          MessageBox.Show("Xoa That Bai!");
+                    }
+                    catch
+                    {
+
+                    }
                 }
             }
 
         }
        
-
         #endregion
 
         #region Category
@@ -298,7 +308,8 @@ namespace CafeMana.VIEW
             LoadCategory();
         }
 
-        static int indexCate = -1;
+        static int   indexCate = -1;
+
         private void CategoryButton_Click(object sender, EventArgs e)
         {
             indexCate = (sender as Button).TabIndex;
@@ -318,7 +329,8 @@ namespace CafeMana.VIEW
                 if (MessageBox.Show("Are You Sure!", "Notify", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     int ID = int.Parse(CategoryIDBox.Text.ToString());
-                    CategoryBLL.Instance.DeleteCategory(ID);
+                    if(CategoryBLL.Instance.DeleteCategory(ID)) MessageBox.Show("Xoa Thanh Cong!");
+                    else                                        MessageBox.Show("Xoa That Bai!");
                     LoadCategory();
                 }
             }
@@ -333,8 +345,8 @@ namespace CafeMana.VIEW
             ofd.Filter = "Media Files|*.jpg;*.png;*.gif;*.bmp;*.jpeg|All Files|*.*";
 
             DialogResult result = ofd.ShowDialog();
-            if (result == DialogResult.OK)
-                CategoryPictureBox.Load(ofd.FileName);
+            if (result == DialogResult.OK) CategoryPictureBox.Load(ofd.FileName);
+
         }
 
         private void buttonEditCate_Click(object sender, EventArgs e)
@@ -351,15 +363,16 @@ namespace CafeMana.VIEW
                     byte[] _Image = ms.GetBuffer();
 
                     Category category = new Category() { ID = _ID, Name = _Name, Description = _Description, Image = _Image };
-                    CategoryBLL.Instance.UpdateCategory(category);
+                    if (CategoryBLL.Instance.UpdateCategory(category)) MessageBox.Show("Cap Nhat Thanh Cong!");
+                    else                                               MessageBox.Show("Cap Nhat That Bai!");
                     LoadCategory();
                     LoadProducts();
                 }
 
             }
-            catch (Exception er)
+            catch
             {
-                MessageBox.Show(er.Message);
+                MessageBox.Show("Cap Nhat That Bai!");
             }
         }
 
@@ -375,29 +388,36 @@ namespace CafeMana.VIEW
         }
 
         private void buttonEditAcc_Click(object sender, EventArgs e)
-        {   if (indexUser >= 0)
+        {
+            if (indexUser >= 0)
             {
                 if (MessageBox.Show("Are You Sure!", "Notify", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     int _ID = (int)(sender as Button).Tag;
                     User user = Data.Instance.UsersList.FirstOrDefault(x => x.ID == _ID);
-                    user.Name = txbUserName.Text;
-                    user.Role = cbBoxRole.Text;
-                    UserBLL.Instance.UpdateUser(user);
-                    MessageBox.Show("Successfully!");
+                    user.Name     = txbUserName.Text;
+                    user.Role     = cbBoxRole.Text;
+                    var hash      = new Hash();
+                    user.Password = hash.MD5(txbPassword.Text);
+                    if(UserBLL.Instance.UpdateUser(user)) MessageBox.Show("Cap Nhat Thanh Cong!");
+                    else                                  MessageBox.Show("Cap Nhat That Bai!");
                     LoadUser();
                     LoadSale();
                 }
             }
         }
-        static int indexUser = -1;
+
+        static int   indexUser = -1;
+
         private void UsersGridView_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             indexUser = e.RowIndex;
-            DataGridViewRow row     = UsersGridView.Rows[e.RowIndex];
-            txbUserName.Text        = Convert.ToString(row.Cells["UserName"].Value);
-            cbBoxRole.Text          = Convert.ToString(row.Cells["Role"].Value);                
-            buttonEditAcc.Tag       = Convert.ToInt32(row.Cells["ID"].Value);
+            int ID    = Convert.ToInt32(UsersGridView.Rows[e.RowIndex].Cells["ID"].Value);
+            User user = Data.Instance.UsersList.FirstOrDefault(x => x.ID == ID);
+            txbUserName.Text  = user.Name;
+            txbPassword.Text  = user.Password;
+            cbBoxRole.Text    = user.Role;
+            buttonEditAcc.Tag = ID;
            
         }
 
@@ -421,12 +441,7 @@ namespace CafeMana.VIEW
             }
         }
 
-
-
-
-
         #endregion
-
 
     }
 }

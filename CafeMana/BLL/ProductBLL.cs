@@ -41,35 +41,47 @@ namespace CafeMana.BLL
             return DataAccess.Instance.RetreiveIdentityProduct();
         }
 
-        public void AddNewProduct(Product product)
+        public bool AddNewProduct(Product product)
         {
-         
-            Data.Instance.ProductsList.Add(product);
-            DataAccess.Instance.AddNewProduct(product);
+            if (DataAccess.Instance.AddNewProduct(product))
+            { 
+                Data.Instance.ProductsList.Add(product);
+                return true;
+            }
+            return false;
         }
 
-        public void UpdateProduct(Product product)
+        public bool UpdateProduct(Product product)
         {
-            List<Product> ProductsList = Data.Instance.ProductsList;
-
-            for (int i=0;i< ProductsList.Count; i++)
+            if (DataAccess.Instance.UpdateProduct(product))
             {
-                if (ProductsList[i].ID == product.ID) { ProductsList[i] = product; break; }
+                List<Product> ProductsList = Data.Instance.ProductsList;
+
+                for (int i = 0; i < ProductsList.Count; i++)
+                {
+                    if (ProductsList[i].ID == product.ID) { ProductsList[i] = product; break; }
+                }
+            return true;
             }
+            return false;          
+          
+        }
+
+        public bool DeleteProduct(int ID)
+        {
+            if (DataAccess.Instance.DeleteSomething(ID, "Products"))
+            {
+                List<Product> ProductsList = Data.Instance.ProductsList;
+                int Index = 0;
+                for (int i = 0; i < ProductsList.Count; i++)
+                {
+                    if (ProductsList[i].ID == ID) { Index = i; break; }
+                }
+                ProductsList.RemoveAt(Index);
+                return true;
+            }
+            return false;
            
-            DataAccess.Instance.UpdateProduct(product);
-        }
-
-        public void DeleteProduct(int ID)
-        {
-            List<Product> ProductsList = Data.Instance.ProductsList;
-            int Index = 0;
-            for (int i = 0; i < ProductsList.Count; i++)
-            {
-                if (ProductsList[i].ID == ID) { Index=i; break; }
-            }
-            ProductsList.RemoveAt(Index);
-            DataAccess.Instance.DeleteSomething(ID,"Products");
         }
     }
 }

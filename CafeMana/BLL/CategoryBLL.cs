@@ -32,37 +32,53 @@ namespace CafeMana.BLL
             return DataAccess.Instance.RetreiveIdentityCategory();
         }
 
-        public void AddNewCategory(Category category)
+        public bool AddNewCategory(Category category)
         {
-            Data.Instance.CategoriesList.Add(category);
-            DataAccess.Instance.AddNewCategory(category);
+           
+            if (DataAccess.Instance.AddNewCategory(category))
+            {
+                Data.Instance.CategoriesList.Add(category);
+                return true;
+            }
+            return false;
+                
         }
 
-        public void UpdateCategory(Category category)
+        public bool UpdateCategory(Category category)
         {
-            List<Category> CategoriesList =Data.Instance.CategoriesList;
-            for (int i = 0; i < CategoriesList.Count; i++)
+            if (DataAccess.Instance.UpdateCategory(category))
             {
-                if (CategoriesList[i].ID == category.ID)
+                List<Category> CategoriesList = Data.Instance.CategoriesList;
+                for (int i = 0; i < CategoriesList.Count; i++)
                 {
-                    CategoriesList[i].Name=category.Name;
-                    CategoriesList[i].Description = category.Description;
-                    CategoriesList[i].Image = category.Image;
-                    break;
+                    if (CategoriesList[i].ID == category.ID)
+                    {
+                        CategoriesList[i].Name = category.Name;
+                        CategoriesList[i].Description = category.Description;
+                        CategoriesList[i].Image = category.Image;
+                        break;
+                    }
                 }
+                return true;
             }
-            DataAccess.Instance.UpdateCategory(category);
+            return false;
+           
         }
 
-        public void DeleteCategory(int ID)
+        public bool DeleteCategory(int ID)
         {
-            List<Category> CategoriesList = Data.Instance.CategoriesList;
-            int Index = 0;
-            for (int i = 0; i < CategoriesList.Count; i++)
+            if (DataAccess.Instance.DeleteSomething(ID, "Categories"))
             {
-                if (CategoriesList[i].ID == ID) { Index = i; break; }
+                List<Category> CategoriesList = Data.Instance.CategoriesList;
+                int Index = 0;
+                for (int i = 0; i < CategoriesList.Count; i++)
+                {
+                    if (CategoriesList[i].ID == ID) { Index = i; break; }
+                }
+                CategoriesList.RemoveAt(Index);
+                return true;
             }
-            if (DataAccess.Instance.DeleteSomething(ID, "Categories")==true) CategoriesList.RemoveAt(Index);
+            return false;
 
         }
 

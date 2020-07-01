@@ -48,7 +48,7 @@ namespace CafeMana.DAL
             }
         }
 
-        public void AddNewProduct(Product product)
+        public bool AddNewProduct(Product product)
         {
             using (SqlConnection connection = new SqlConnection(ConnectionString.connectionString))
             {
@@ -60,13 +60,13 @@ namespace CafeMana.DAL
                 command.Parameters.AddWithValue("@ProductDescription", product.Description);
                 command.Parameters.AddWithValue("@ProductImage", product.Image);
                 command.CommandText = "Insert Into Products(ProductName, ProductPrice, ProductCategoryID, ProductDescription, ProductImage) Values (@ProductName,@ProductPrice,@ProductCategoryID,@ProductDescription,@ProductImage)";
-                command.ExecuteNonQuery();
-                connection.Close();
+                if (command.ExecuteNonQuery() > 0) return true;
+                return false;
 
             }
         }
 
-        public void UpdateProduct(Product product)
+        public bool UpdateProduct(Product product)
         {
             using (SqlConnection connection = new SqlConnection(ConnectionString.connectionString))
             {
@@ -78,8 +78,8 @@ namespace CafeMana.DAL
                 command.Parameters.AddWithValue("@ProductDescription", product.Description);
                 command.Parameters.AddWithValue("@ProductImage", product.Image);
                 command.CommandText = "Update Products Set ProductName=@ProductName,ProductPrice=@ProductPrice,ProductCategoryID=@ProductCategoryID,ProductDescription=@ProductDescription,ProductImage=@ProductImage Where ID="+product.ID+" ";
-                command.ExecuteNonQuery();
-                connection.Close();
+                if (command.ExecuteNonQuery() > 0) return true;
+                return false;
 
             }
         }
@@ -152,7 +152,7 @@ namespace CafeMana.DAL
             }
         }
 
-        public void AddNewSale(Sale sale)
+        public bool AddNewSale(Sale sale)
         {
             using (SqlConnection connection = new SqlConnection(ConnectionString.connectionString))
             {
@@ -164,8 +164,8 @@ namespace CafeMana.DAL
                 command.Parameters.AddWithValue("@TotalBill",  sale.Total);
                 command.Parameters.AddWithValue("@CashReturn", sale.CashReturn);
                 command.CommandText = "Insert Into Sales(SaleTime, SalesManID, CashGiven, TotalBill, CashReturn) Values (@SaleTime,@SalesManID,@CashGiven,@TotalBill,@CashReturn)";
-                command.ExecuteNonQuery();
-                connection.Close();
+                if (command.ExecuteNonQuery() > 0) return true;
+                return false;
 
             }
 
@@ -206,7 +206,7 @@ namespace CafeMana.DAL
             }
         }
 
-        public void AddNewSaleItem(SaleItem saleItem)
+        public bool AddNewSaleItem(SaleItem saleItem)
         {
             using (SqlConnection connection = new SqlConnection(ConnectionString.connectionString))
             {
@@ -218,8 +218,8 @@ namespace CafeMana.DAL
                 command.Parameters.AddWithValue("@ProductTotal", saleItem.ProductTotal);
                 command.Parameters.AddWithValue("@SaleID", saleItem.SaleID);
                 command.CommandText = "Insert Into SaleItems(ProductName, ProductPrice, ProductQuantity, ProductTotal, SaleID) Values (@ProductName,@ProductPrice,@ProductQuantity,@ProductTotal,@SaleID)";
-                command.ExecuteNonQuery();
-                connection.Close();
+                if (command.ExecuteNonQuery() > 0) return true;
+                return false;
 
             }
 
@@ -258,7 +258,7 @@ namespace CafeMana.DAL
             }
         }
 
-        public void AddNewCategory(Category category)
+        public bool AddNewCategory(Category category)
         {
             using (SqlConnection connection = new SqlConnection(ConnectionString.connectionString))
             {
@@ -268,13 +268,13 @@ namespace CafeMana.DAL
                 command.Parameters.AddWithValue("@CategoryDescription", category.Description);
                 command.Parameters.AddWithValue("@CategoryPicture", category.Image);
                 command.CommandText = "Insert Into Categories(CategoryName, CategoryDescription, CategoryPicture) Values (@CategoryName,@CategoryDescription,@CategoryPicture)";
-                command.ExecuteNonQuery();
-                connection.Close();
+                if (command.ExecuteNonQuery() > 0) return true;
+                return false;
 
             }
         }
 
-        public void UpdateCategory(Category category)
+        public bool UpdateCategory(Category category)
         {
             using (SqlConnection connection = new SqlConnection(ConnectionString.connectionString))
             {
@@ -285,9 +285,8 @@ namespace CafeMana.DAL
                 command.Parameters.AddWithValue("@CategoryPicture", category.Image);
                 command.Parameters.AddWithValue("@CategoryID", category.ID);
                 command.CommandText = "Update Categories set CategoryName=@CategoryName , CategoryDescription= @CategoryDescription , CategoryPicture=@CategoryPicture  where ID= @CategoryID";
-                command.ExecuteNonQuery();
-                connection.Close();
-
+                if (command.ExecuteNonQuery() > 0) return true;
+                return false;
             }
         }
 
@@ -349,7 +348,7 @@ namespace CafeMana.DAL
             }
         }
 
-        public void AddNewUser(User user)
+        public bool AddNewUser(User user)
         {
             using (SqlConnection connection = new SqlConnection(ConnectionString.connectionString))
             {
@@ -360,13 +359,13 @@ namespace CafeMana.DAL
                 command.Parameters.AddWithValue("@Email", user.Email);
                 command.Parameters.AddWithValue("@Password", user.Password);
                 command.CommandText = "Insert Into Users(Name, Role, Email,Password) Values (@Name,@Role,@Email,@Password)";
-                command.ExecuteNonQuery();
-                connection.Close();
+                if (command.ExecuteNonQuery() > 0) return true;
+                return false;
 
             }
         }
 
-        public void UpdateUser(User user)
+        public bool UpdateUser(User user)
         {
             using (SqlConnection connection = new SqlConnection(ConnectionString.connectionString))
             {
@@ -377,9 +376,9 @@ namespace CafeMana.DAL
                 command.Parameters.AddWithValue("@Role", user.Role);
                 command.Parameters.AddWithValue("@Email", user.Email);
                 command.Parameters.AddWithValue("@Password", user.Password);
-                command.CommandText = "Update Users Set Name=@Name , Role= @Role , Email=@Email ,Password=@Password Where ID= @ID";              
-                command.ExecuteNonQuery();
-                connection.Close();
+                command.CommandText = "Update Users Set Name=@Name , Role= @Role , Email=@Email ,Password=@Password Where ID= @ID";
+                if (command.ExecuteNonQuery() > 0) return true;
+                return false;
 
             }
         }
@@ -426,7 +425,6 @@ namespace CafeMana.DAL
             }
             catch
             {
-                MessageBox.Show("Ban phai xoa Product truoc khi xoa Category!!");
                 return false;
             }
         }

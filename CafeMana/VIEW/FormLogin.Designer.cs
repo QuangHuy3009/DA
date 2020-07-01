@@ -60,7 +60,7 @@
             this.UserNameTxt.Name = "UserNameTxt";
             this.UserNameTxt.Size = new System.Drawing.Size(243, 29);
             this.UserNameTxt.TabIndex = 2;
-            this.UserNameTxt.Text = "abcxyz@gmail.com";
+            this.UserNameTxt.Text = "Tu@gmail.com";
             this.UserNameTxt.UseWaitCursor = true;
             this.UserNameTxt.WordWrap = false;
             // 
@@ -83,7 +83,7 @@
             this.PasswordTxt.Name = "PasswordTxt";
             this.PasswordTxt.Size = new System.Drawing.Size(243, 29);
             this.PasswordTxt.TabIndex = 5;
-            this.PasswordTxt.Text = "Huy123";
+            this.PasswordTxt.Text = "123";
             this.PasswordTxt.UseSystemPasswordChar = true;
             this.PasswordTxt.UseWaitCursor = true;
             // 

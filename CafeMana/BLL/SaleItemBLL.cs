@@ -32,10 +32,14 @@ namespace CafeMana.BLL
             return ID + 1;
         }
 
-        public void AddNewSaleItem(SaleItem saleItem)
+        public bool AddNewSaleItem(SaleItem saleItem)
         {
-            Data.Instance.SaleItemsList.Add(saleItem);
-            DataAccess.Instance.AddNewSaleItem(saleItem);
+            if (DataAccess.Instance.AddNewSaleItem(saleItem))
+            {
+                Data.Instance.SaleItemsList.Add(saleItem);
+                return true;               
+            }
+            return false;
         }
     }
 }

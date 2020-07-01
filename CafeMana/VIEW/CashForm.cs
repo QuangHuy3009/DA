@@ -78,8 +78,6 @@ namespace CafeMana.VIEW
             }
         }
 
-
-
         private void buttonConfirmCheckout_Click(object sender, EventArgs e)
         {
             if (txtCashReturn.Text != "")
