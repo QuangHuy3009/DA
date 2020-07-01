@@ -61,7 +61,6 @@ namespace CafeMana.VIEW
                     int _CategoryID = ((Category)ProductCategoryComboBox.SelectedValue).ID;
 
                     Product product = new Product() { ID = _ID, Name = _Name, Price = _Price, Description = _Description, Image = _Image, CatagoryID = _CategoryID };
-
                     if (ProductBLL.Instance.UpdateProduct(product)) MessageBox.Show("Cap Nhat Thanh Cong!");
                     else MessageBox.Show("Cap Nhat That Bai!");
                 }

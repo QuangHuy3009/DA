@@ -103,9 +103,9 @@ namespace CafeMana.VIEW
                         saleItem.SaleID = sale.ID;
 
                         SaleItemBLL.Instance.AddNewSaleItem(saleItem);
-                        MessageBox.Show("Successfully!");
-                        this.Close();
                     }
+                    MessageBox.Show("Successfully!");
+                    this.Close();
                 }
             }
             else MessageBox.Show("Nhap CashGiven hop le !!");
