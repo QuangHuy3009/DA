@@ -243,6 +243,8 @@ namespace CafeMana.VIEW
             {
                 fAdmin f = new fAdmin();
                 f.ShowDialog();
+                LoadCategory();
+                LoadInformation();
             }
 
         }

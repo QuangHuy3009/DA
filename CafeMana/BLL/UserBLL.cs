@@ -52,7 +52,7 @@ namespace CafeMana.BLL
             {
                 for (int i = 0; i < UsersList.Count; i++)
                 {
-                    if (UsersList[i].ID == user.ID) { Data.Instance.User = UsersList[i] = user; break; }
+                    if (UsersList[i].ID == user.ID) { UsersList[i] = user; break; }
                 }
                 return true;
             }

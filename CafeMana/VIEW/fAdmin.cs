@@ -26,7 +26,6 @@ namespace CafeMana.VIEW
             LoadSale();
             LoadUser();
             LoadCategory();
-            LoadComboBoxCategories();
             LoadProducts();
         }
 
@@ -83,6 +82,7 @@ namespace CafeMana.VIEW
         private void LoadComboBoxCategories()
         {
             List<Category> CategoriesList = Data.Instance.CategoriesList;
+            ProductCategoryComboBox.DataSource = null;
             ProductCategoryComboBox.DataSource = CategoriesList;
             ProductCategoryComboBox.DisplayMember = "Name";
 
@@ -91,6 +91,7 @@ namespace CafeMana.VIEW
         private void LoadProducts()
         {
             ProductsGridView.Rows.Clear();
+            LoadComboBoxCategories();
             List<Product>  ProductsList = Data.Instance.ProductsList;
             foreach (Product product in ProductsList)
             {
@@ -198,6 +199,8 @@ namespace CafeMana.VIEW
             AddProduct _AddProduct = new AddProduct();
             _AddProduct.ShowDialog();
             LoadProducts();
+
+
         }
 
         private void buttonFindProduct_Click(object sender, EventArgs e)
@@ -306,6 +309,7 @@ namespace CafeMana.VIEW
             AddCategory _AddCategory = new AddCategory();
             _AddCategory.ShowDialog();
             LoadCategory();
+            LoadComboBoxCategories();
         }
 
         static int   indexCate = -1;
@@ -332,6 +336,7 @@ namespace CafeMana.VIEW
                     if(CategoryBLL.Instance.DeleteCategory(ID)) MessageBox.Show("Xoa Thanh Cong!");
                     else                                        MessageBox.Show("Xoa That Bai!");
                     LoadCategory();
+                    LoadComboBoxCategories();
                 }
             }
         }
@@ -393,20 +398,34 @@ namespace CafeMana.VIEW
 
         private void buttonEditAcc_Click(object sender, EventArgs e)
         {
+
             if (indexUser >= 0)
             {
                 if (MessageBox.Show("Are You Sure!", "Notify", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
+                    int _ID = (int)(sender as Button).Tag;
+                    User user = Data.Instance.UsersList.FirstOrDefault(x => x.ID == _ID);
+
                     if (txbUserName.Text.Trim().Length > 0 && txbPassword.Text.Trim().Length > 0)
                     {
-                        int _ID = (int)(sender as Button).Tag;
-                        User user = Data.Instance.UsersList.FirstOrDefault(x => x.ID == _ID);
-                        user.Name = txbUserName.Text;
-                        user.Role = cbBoxRole.Text;
-                        var hash = new Hash();
-                        user.Password = hash.MD5(txbPassword.Text);
-                        if (UserBLL.Instance.UpdateUser(user)) MessageBox.Show("Cap Nhat Thanh Cong!");
-                        else MessageBox.Show("Cap Nhat That Bai!");
+                        if (txbPassword.Text != user.Password)
+                        {
+                            user.Name = txbUserName.Text;
+                            user.Role = cbBoxRole.Text;
+                            var hash = new Hash();
+                            user.Password = hash.MD5(txbPassword.Text);
+                            if (UserBLL.Instance.UpdateUser(user)) MessageBox.Show("Cap Nhat Thanh Cong!");
+                            else MessageBox.Show("Cap Nhat That Bai!");
+                        }
+                        else
+                        {
+                            user.Name = txbUserName.Text;
+                            user.Role = cbBoxRole.Text;
+                            if (UserBLL.Instance.UpdateUser(user)) MessageBox.Show("Cap Nhat Thanh Cong!");
+                            else MessageBox.Show("Cap Nhat That Bai!");
+                            
+
+                        }
                         LoadUser();
                         LoadSale();
                     }
