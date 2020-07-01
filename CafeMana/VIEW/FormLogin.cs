@@ -31,7 +31,7 @@ namespace CafeMana
                     FormGeneral f1 = new FormGeneral();
                     this.Hide();
                     f1.ShowDialog();
-                    this.Show();
+                    
                 }
                 else MessageBox.Show("UsernameEmail Or Password Is Incorrect");
 

@@ -39,7 +39,7 @@ namespace CafeMana.VIEW
             foreach (Category Category in CategoriesList)
             {
                 Button btn = new Button();
-                btn.Text = Category.Name;
+                //btn.Text = Category.Name;
                 btn.Size = new System.Drawing.Size(80, 80);
                 btn.ForeColor = Color.White;
 
@@ -102,7 +102,7 @@ namespace CafeMana.VIEW
             foreach (Product Product in ProductBLL.Instance.RetreiveProductsFromCategory(CategoryID))
             {
                 Button ProductButton = new Button();
-                ProductButton.Text = Product.Name;
+                //ProductButton.Text = Product.Name;
                 ProductButton.Size = new System.Drawing.Size(80, 80);
                 ProductButton.ForeColor = Color.White;
 
@@ -246,6 +246,8 @@ namespace CafeMana.VIEW
         private void LogoutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Hide();
+            LoginForm l1 = new LoginForm();
+            l1.Show();
         }
 
         #endregion

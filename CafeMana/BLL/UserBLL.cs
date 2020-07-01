@@ -56,7 +56,7 @@ namespace CafeMana.BLL
             var hash = new CafeMana.DTO.Hash();
             string st = hash.MD5(Password);
             if (_Password == hash.MD5(Password)) return true;
-            else return false;
+            else return false;  
         }
 
     }

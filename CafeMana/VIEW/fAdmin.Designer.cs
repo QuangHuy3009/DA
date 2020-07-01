@@ -172,6 +172,7 @@
             this.SalesGridView.Margin = new System.Windows.Forms.Padding(4);
             this.SalesGridView.Name = "SalesGridView";
             this.SalesGridView.ReadOnly = true;
+            this.SalesGridView.RowHeadersWidth = 51;
             this.SalesGridView.Size = new System.Drawing.Size(844, 420);
             this.SalesGridView.TabIndex = 0;
             this.SalesGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.SalesGridView_CellContentClick);
@@ -180,30 +181,35 @@
             // SaleIDColumn
             // 
             this.SaleIDColumn.HeaderText = "ID";
+            this.SaleIDColumn.MinimumWidth = 6;
             this.SaleIDColumn.Name = "SaleIDColumn";
             this.SaleIDColumn.ReadOnly = true;
             // 
             // TimeColumn
             // 
             this.TimeColumn.HeaderText = "Time";
+            this.TimeColumn.MinimumWidth = 6;
             this.TimeColumn.Name = "TimeColumn";
             this.TimeColumn.ReadOnly = true;
             // 
             // SalesmanColumn
             // 
             this.SalesmanColumn.HeaderText = "Salesman";
+            this.SalesmanColumn.MinimumWidth = 6;
             this.SalesmanColumn.Name = "SalesmanColumn";
             this.SalesmanColumn.ReadOnly = true;
             // 
             // TotalBillColumn
             // 
             this.TotalBillColumn.HeaderText = "Total Bill";
+            this.TotalBillColumn.MinimumWidth = 6;
             this.TotalBillColumn.Name = "TotalBillColumn";
             this.TotalBillColumn.ReadOnly = true;
             // 
             // ProductsColumn
             // 
             this.ProductsColumn.HeaderText = "Products";
+            this.ProductsColumn.MinimumWidth = 6;
             this.ProductsColumn.Name = "ProductsColumn";
             this.ProductsColumn.ReadOnly = true;
             this.ProductsColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
@@ -315,6 +321,7 @@
             this.ProductsGridView.Margin = new System.Windows.Forms.Padding(4);
             this.ProductsGridView.Name = "ProductsGridView";
             this.ProductsGridView.ReadOnly = true;
+            this.ProductsGridView.RowHeadersWidth = 51;
             this.ProductsGridView.Size = new System.Drawing.Size(851, 388);
             this.ProductsGridView.TabIndex = 0;
             this.ProductsGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ProductsGridView_CellContentClick);
@@ -324,6 +331,7 @@
             // 
             this.ProductIDColumn.FillWeight = 21.90435F;
             this.ProductIDColumn.HeaderText = "ID";
+            this.ProductIDColumn.MinimumWidth = 6;
             this.ProductIDColumn.Name = "ProductIDColumn";
             this.ProductIDColumn.ReadOnly = true;
             // 
@@ -331,6 +339,7 @@
             // 
             this.ProductNameColumn.FillWeight = 68.73803F;
             this.ProductNameColumn.HeaderText = "Product Name";
+            this.ProductNameColumn.MinimumWidth = 6;
             this.ProductNameColumn.Name = "ProductNameColumn";
             this.ProductNameColumn.ReadOnly = true;
             // 
@@ -338,6 +347,7 @@
             // 
             this.ProductPriceColumn.FillWeight = 81.48138F;
             this.ProductPriceColumn.HeaderText = "Price";
+            this.ProductPriceColumn.MinimumWidth = 6;
             this.ProductPriceColumn.Name = "ProductPriceColumn";
             this.ProductPriceColumn.ReadOnly = true;
             // 
@@ -345,6 +355,7 @@
             // 
             this.ProductCategoryColumn.FillWeight = 72.3064F;
             this.ProductCategoryColumn.HeaderText = "Category";
+            this.ProductCategoryColumn.MinimumWidth = 6;
             this.ProductCategoryColumn.Name = "ProductCategoryColumn";
             this.ProductCategoryColumn.ReadOnly = true;
             // 
@@ -352,6 +363,7 @@
             // 
             this.ProductDescriptionColumn.FillWeight = 76.51581F;
             this.ProductDescriptionColumn.HeaderText = "Description";
+            this.ProductDescriptionColumn.MinimumWidth = 6;
             this.ProductDescriptionColumn.Name = "ProductDescriptionColumn";
             this.ProductDescriptionColumn.ReadOnly = true;
             // 
@@ -360,6 +372,7 @@
             this.ProductImageColumn.FillWeight = 75.21452F;
             this.ProductImageColumn.HeaderText = "Image";
             this.ProductImageColumn.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Stretch;
+            this.ProductImageColumn.MinimumWidth = 6;
             this.ProductImageColumn.Name = "ProductImageColumn";
             this.ProductImageColumn.ReadOnly = true;
             // 
@@ -367,6 +380,7 @@
             // 
             this.EditProductColumn.FillWeight = 48.87409F;
             this.EditProductColumn.HeaderText = "Edit";
+            this.EditProductColumn.MinimumWidth = 6;
             this.EditProductColumn.Name = "EditProductColumn";
             this.EditProductColumn.ReadOnly = true;
             this.EditProductColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
@@ -377,6 +391,7 @@
             // 
             this.DeleteProductColumn.FillWeight = 48.87409F;
             this.DeleteProductColumn.HeaderText = "Delete";
+            this.DeleteProductColumn.MinimumWidth = 6;
             this.DeleteProductColumn.Name = "DeleteProductColumn";
             this.DeleteProductColumn.ReadOnly = true;
             this.DeleteProductColumn.Text = "";
@@ -694,6 +709,7 @@
             this.UsersGridView.Location = new System.Drawing.Point(11, 124);
             this.UsersGridView.Margin = new System.Windows.Forms.Padding(4);
             this.UsersGridView.Name = "UsersGridView";
+            this.UsersGridView.RowHeadersWidth = 51;
             this.UsersGridView.Size = new System.Drawing.Size(497, 356);
             this.UsersGridView.TabIndex = 1;
             this.UsersGridView.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.UsersGridView_RowHeaderMouseClick);
@@ -702,24 +718,28 @@
             // 
             this.ID.FillWeight = 40.60914F;
             this.ID.HeaderText = "ID";
+            this.ID.MinimumWidth = 6;
             this.ID.Name = "ID";
             // 
             // UserName
             // 
             this.UserName.FillWeight = 119.797F;
             this.UserName.HeaderText = "UserName";
+            this.UserName.MinimumWidth = 6;
             this.UserName.Name = "UserName";
             // 
             // Role
             // 
             this.Role.FillWeight = 119.797F;
             this.Role.HeaderText = "Role";
+            this.Role.MinimumWidth = 6;
             this.Role.Name = "Role";
             // 
             // Email
             // 
             this.Email.FillWeight = 119.797F;
             this.Email.HeaderText = "Email";
+            this.Email.MinimumWidth = 6;
             this.Email.Name = "Email";
             // 
             // panel12

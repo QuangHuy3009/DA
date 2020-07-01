@@ -165,6 +165,7 @@ namespace CafeMana.VIEW
         {
             AddProduct _AddProduct = new AddProduct();
             _AddProduct.ShowDialog();
+            LoadProducts();
         }
 
         private void buttonFindProduct_Click(object sender, EventArgs e)

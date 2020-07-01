@@ -267,7 +267,7 @@ namespace CafeMana.DAL
                 command.Parameters.AddWithValue("@CategoryName", category.Name);
                 command.Parameters.AddWithValue("@CategoryDescription", category.Description);
                 command.Parameters.AddWithValue("@CategoryPicture", category.Image);
-                command.CommandText = "Insert Into Categories(CategoryName, CategoryDescription, CategoryPicture) Values (@CategoryName,@CategoryDescription,@CategoryPicture)";
+                command.CommandText = "Insert Into Categories(CategoryName, CategoryDescription, CategoryPicture) Values (N'@CategoryName,N'@CategoryDescription,@CategoryPicture)";
                 command.ExecuteNonQuery();
                 connection.Close();
 
@@ -284,7 +284,7 @@ namespace CafeMana.DAL
                 command.Parameters.AddWithValue("@CategoryDescription", category.Description);
                 command.Parameters.AddWithValue("@CategoryPicture", category.Image);
                 command.Parameters.AddWithValue("@CategoryID", category.ID);
-                command.CommandText = "Update Categories set CategoryName=@CategoryName , CategoryDescription= @CategoryDescription , CategoryPicture=@CategoryPicture  where ID= @CategoryID";
+                command.CommandText = "Update Categories set CategoryName=N'@CategoryName , CategoryDescription= @CategoryDescription , CategoryPicture=@CategoryPicture  where ID= @CategoryID";
                 command.ExecuteNonQuery();
                 connection.Close();
 

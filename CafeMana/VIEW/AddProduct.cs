@@ -42,11 +42,12 @@ namespace CafeMana.VIEW
                 int     _CategoryID  = ((Category)ProductCategoryComboBox.SelectedValue).ID;
                 Product product      = new Product() {ID=_ID,Name=_Name,Price=_Price,Description=_Description,Image=_Image,CatagoryID=_CategoryID};
                 ProductBLL.Instance.AddNewProduct(product);
+                MessageBox.Show("Successfully!");
                
             }
             catch(Exception er)
             {
-                MessageBox.Show(er.Message);
+                MessageBox.Show("Fail");
             }
         }
 
